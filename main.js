@@ -45,17 +45,31 @@ function create() {
 function update() {
 	var hitPlatform = game.physics.arcade.collide(star, platforms);
 
+	star.body.velocity.x = 0;
 
 	if (game.input.pointer1.isDown)
 	{
 		if (game.input.pointer1.x < window.innerWidth/2)
 	   	{
-	        star.x -= 2;
+	        star.body.velocity.x = -150;
 	    }
 	    else if(game.input.pointer1.x > window.innerWidth/2)
 	    {
-	        star.x += 2;
+	        star.body.velocity.x = 150;
 	    }
 	}
-	
+
+	if (game.input.pointer2.isDown)
+	{
+		if (game.input.pointer2.x < window.innerWidth/2)
+	   	{
+	        star.body.velocity.x = -150;
+	    }
+	    else if(game.input.pointer2.x > window.innerWidth/2)
+	    {
+	        star.body.velocity.x = 150;
+	    }
+	}
+
+
 }
