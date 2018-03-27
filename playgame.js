@@ -27,6 +27,12 @@ playGame = {
         this.actionBtn.inputEnabled = true;
         this.actionBtn.fixedToCamera = true;
 
+        this.switchBtn = game.add.button(gameWidth-20, gameHeight-60, 'switch', this.switch, this, 2, 1, 0);
+        this.switchBtn.anchor.set(0.5);
+        this.switchBtn.scale.set(0.5);
+        this.switchBtn.inputEnabled = true;
+        this.switchBtn.fixedToCamera = true;
+
     },
     bindKeys: function () {
         this.wasd = {
@@ -439,6 +445,10 @@ playGame = {
         {
             this.player.body.velocity.y = -170;
         }
+    },
+
+    switch: function (sprite, pointer) {
+        
     }
 
 }

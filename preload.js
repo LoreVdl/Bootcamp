@@ -18,11 +18,11 @@ preload = {
         game.load.atlasJSONArray('atlas-props', 'assets/atlas/atlas-props.png', 'assets/atlas/atlas-props.json');
 
         game.load.spritesheet("levels", "assets/levels.png", game.global.thumbWidth, game.global.thumbHeight);
-		    game.load.spritesheet("level_arrows", "assets/level_arrows.png", 48, 48);
+		game.load.spritesheet("level_arrows", "assets/level_arrows.png", 48, 48);
 
         game.load.image('jump', 'assets/buttons/jump.png');
         game.load.image('action', 'assets/buttons/action.png');
-
+        game.load.image('switch', 'assets/buttons/switch.png');
     },
     create: function () {
         this.game.state.start('TitleScreen');
