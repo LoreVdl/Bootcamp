@@ -117,7 +117,7 @@ level1 = {
         this.layer = this.map.createLayer('Tile Layer 1');
         this.layer.resizeWorld();
         // which tiles collide
-        this.map.setCollision([27, 29, 31, 33, 35, 37, 77, 81, 86, 87, 127, 129, 131, 133, 134, 135, 83, 84, 502, 504, 505, 529, 530, 333, 335, 337, 339, 366, 368, 262, 191, 193, 195, 241, 245, 291, 293, 295,]);
+        this.map.setCollision([27, 29, 31, 33, 35, 37, 77, 81, 86, 87, 127, 129, 131, 133, 134, 135, 83, 84, 502, 504, 505, 529, 530, 333, 335, 337, 339, 366, 368, 262, 191, 193, 195, 241, 245, 247, 249, 291, 293, 295,]);
         // set some tiles one way collision
         this.setTopCollisionTiles(35);
         this.setTopCollisionTiles(36);
@@ -128,6 +128,7 @@ level1 = {
         this.setTopCollisionTiles(366);
         this.setTopCollisionTiles(367);
         this.setTopCollisionTiles(368);
+        this.setTopCollisionTiles(370);
         this.setTopCollisionTiles(262);
     },
 
