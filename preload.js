@@ -17,13 +17,17 @@ preload = {
         game.load.atlasJSONArray('atlas', 'assets/atlas/atlas.png', 'assets/atlas/atlas.json');
         game.load.atlasJSONArray('atlas-props', 'assets/atlas/atlas-props.png', 'assets/atlas/atlas-props.json');
 
-<<<<<<< HEAD
+
         game.load.spritesheet("levels", "assets/sprites/LevelScreen", game.global.thumbWidth, game.global.thumbHeight);
 		    game.load.spritesheet("level_arrows", "assets/level_arrows.png", 48, 48);
-=======
-        game.load.spritesheet("levels", "assets/levels.png", game.global.thumbWidth, game.global.thumbHeight);
-		game.load.spritesheet("level_arrows", "assets/level_arrows.png", 48, 48);
->>>>>>> 8c7ea5adb46a7efe18071f29866e45d23a74c51f
+
+        game.load.spritesheet("level1", "assets/sprites/Level1.png", game.global.thumbWidth, game.global.thumbHeight);
+        game.load.spritesheet("level2", "assets/sprites/Level2.png", game.global.thumbWidth, game.global.thumbHeight);
+        game.load.spritesheet("level3", "assets/sprites/Level3.png", game.global.thumbWidth, game.global.thumbHeight);
+        game.load.spritesheet("level4", "assets/sprites/Level4.png", game.global.thumbWidth, game.global.thumbHeight);
+        game.load.spritesheet("level5", "assets/sprites/Level5.png", game.global.thumbWidth, game.global.thumbHeight);
+        game.load.spritesheet("level6", "assets/sprites/Level6.png", game.global.thumbWidth, game.global.thumbHeight);
+
 
         game.load.image('jump', 'assets/buttons/jump.png');
         game.load.image('action', 'assets/buttons/action.png');

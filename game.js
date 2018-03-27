@@ -12,12 +12,12 @@ var frogJumpSide = 'left';
 var game = new Phaser.Game(gameWidth, gameHeight, Phaser.AUTO, "");
 
 game.global = {
-  thumbRows: 5,
-  thumbCols : 4,
+  thumbRows: 2,
+  thumbCols : 3,
   thumbWidth : 64,
   thumbHeight : 64,
   thumbSpacing : 8,
-  starsArray : [0,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4],
+  starsArray : [0,4,4,4,4,4],
   level : 0
 }
 
