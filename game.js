@@ -184,7 +184,7 @@ var player = {
 
     switchPlayer: function (sprite, pointer) {
 
-        switch(character) {
+          switch(character) {
     case 'link':
 
                 this.player.anchor.setTo(0.5);
@@ -202,7 +202,21 @@ var player = {
                 character = 'mario';
         break;
     case 'mario':
-
+                this.player.anchor.setTo(0.5);
+                game.physics.arcade.enable(this.player);
+                this.player.body.gravity.y = 500;
+                this.player.body.setSize(15, 15, 0, 0);
+                //add animations
+                var animVel = 15;
+                this.player.animations.add('idle', Phaser.Animation.generateFrameNames('player-2/run-', 1, 4, '', 0), animVel, true);
+                this.player.animations.add('run', Phaser.Animation.generateFrameNames('player-2/run-', 1, 2, '', 0), 10, true);
+                this.player.animations.add('jump', Phaser.Animation.generateFrameNames('player-2/run-', 1, 4, '', 0), animVel, true);
+                this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player-2/hurt-', 1, 4, '', 0), animVel, true);
+                this.player.animations.play('idle');
+                
+                character = 'pacman';
+             break;
+    case 'pacman':
                 this.player.anchor.setTo(0.5);
                 game.physics.arcade.enable(this.player);
                 this.player.body.gravity.y = 500;
@@ -214,7 +228,7 @@ var player = {
                 this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player-3/hurt-', 1, 2, '', 0), animVel, true);
                 this.player.animations.add('jump', ['player-3/run-2'], 1, false);
                 this.player.animations.play('idle');
-                character = 'link';
+                character = 'link'
         break;
         }
     }
