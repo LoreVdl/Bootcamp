@@ -147,33 +147,33 @@ var player = {
         }
     },
 
-    action: function (sprite, pointer) {
-        if (character == 'fox')
-        {
-            if (jumpCounter < maxJump)
-            {
-                this.player.body.velocity.y = -160;
-                jumpCounter++;
-            }
-        }
-        else if (character == 'mario')
-        {
-            if (this.player.body.onFloor())
-            {
-                this.player.body.velocity.y = -250;
-            }
-        }
-        else if (character == 'pacman')
-        {
-            if (this.player.scale.x == -1)
-            {
-                this.player.body.velocity.x = -1000;
-            }
-            else if (this.player.scale.x == 1)
-            {
-                this.player.body.velocity.x = 1000;
-            }
-        }
+		action: function (sprite, pointer) {
+			switch(character) {
+				case 'link':
+					if (jumpCounter < maxJump)
+					{
+							this.player.body.velocity.y = -160;
+							jumpCounter++;
+					}
+					break;
+
+				case 'mario':
+					if (this.player.body.onFloor())
+					{
+							this.player.body.velocity.y = -250;
+					}
+					break;
+
+				case 'pacman':
+					if (this.player.scale.x == -1)
+					{
+							this.player.body.velocity.x = -1000;
+					}
+					else if (this.player.scale.x == 1)
+					{
+							this.player.body.velocity.x = 1000;
+					}
+			}
     },
 
     switchPlayer: function (sprite, pointer) {
