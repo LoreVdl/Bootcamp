@@ -141,10 +141,20 @@ var player = {
     },
 
     jump: function (sprite, pointer) {
-        if (this.player.body.onFloor())
-        {
-            this.player.body.velocity.y = -170;
-        }
+				if (character == 'link') {
+	        if (this.player.body.onFloor())
+	        {
+	            this.player.body.velocity.y = -170;
+	        }
+				}
+
+				if (character == 'mario') {
+					if (jumpCounter < maxJump)
+					{
+							this.player.body.velocity.y = -160;
+							jumpCounter++;
+					}
+				}
     },
 
 		action: function (sprite, pointer) {
@@ -157,11 +167,7 @@ var player = {
 					break;
 
 				case 'mario':
-					if (jumpCounter < maxJump)
-					{
-							this.player.body.velocity.y = -160;
-							jumpCounter++;
-					}
+
 					break;
 
 				case 'pacman':
