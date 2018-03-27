@@ -152,13 +152,49 @@
     "spriteSourceSize": {"x":0,"y":0,"w":15,"h":15},
     "sourceSize": {"w":15,"h":15},
     "pivot": {"x":0.5,"y":0.5}
+  },
+  {
+    "filename": "player-3/hurt-1",
+    "frame": {"x":72,"y":74,"w":18,"h":18},
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {"x":0,"y":0,"w":18,"h":18},
+    "sourceSize": {"w":18,"h":18},
+    "pivot": {"x":0.5,"y":0.5}
+  },
+  {
+    "filename": "player-3/hurt-2",
+    "frame": {"x":108,"y":74,"w":18,"h":18},
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {"x":0,"y":0,"w":18,"h":18},
+    "sourceSize": {"w":18,"h":18},
+    "pivot": {"x":0.5,"y":0.5}
+  },
+  {
+    "filename": "player-3/run-1",
+    "frame": {"x":0,"y":74,"w":18,"h":18},
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {"x":0,"y":0,"w":18,"h":18},
+    "sourceSize": {"w":18,"h":18},
+    "pivot": {"x":0.5,"y":0.5}
+  },
+  {
+    "filename": "player-3/run-2",
+    "frame": {"x":36,"y":74,"w":18,"h":18},
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {"x":0,"y":0,"w":18,"h":18},
+    "sourceSize": {"w":18,"h":18},
+    "pivot": {"x":0.5,"y":0.5}
   }],
   "meta": {
     "app": "http://127.0.0.1",
     "version": "1.0",
     "image": "characters.png",
     "format": "RGBA8888",
-    "size": {"w":200,"h":60},
+    "size": {"w":165,"h":60},
     "scale": "1",
     "smartupdate": "$TexturePacker:SmartUpdate:310eca03ddf229966b059f92c542f203:2128f572e5e965473ee320ba55ca8b0e:cbce6b53f0f49e0bf15173c25c41f876$"
   }
