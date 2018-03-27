@@ -16,10 +16,11 @@ preload = {
         // atlas sprites
         game.load.atlasJSONArray('atlas', 'assets/atlas/atlas.png', 'assets/atlas/atlas.json');
         game.load.atlasJSONArray('atlas-props', 'assets/atlas/atlas-props.png', 'assets/atlas/atlas-props.json');
-
+        // characters sprites
+        game.load.atlasJSONArray('characters', 'assets/characters/characters.png', 'assets/characters/characters.json');
 
         game.load.spritesheet("levels", "assets/sprites/LevelScreen", game.global.thumbWidth, game.global.thumbHeight);
-		    game.load.spritesheet("level_arrows", "assets/level_arrows.png", 48, 48);
+		game.load.spritesheet("level_arrows", "assets/level_arrows.png", 48, 48);
 
         game.load.spritesheet("level1", "assets/sprites/Level1.png", game.global.thumbWidth, game.global.thumbHeight);
         game.load.spritesheet("level2", "assets/sprites/Level2.png", game.global.thumbWidth, game.global.thumbHeight);
