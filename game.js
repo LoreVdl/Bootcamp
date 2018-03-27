@@ -29,6 +29,6 @@ game.state.add('Boot', boot);
 game.state.add('Preload', preload);
 game.state.add('TitleScreen', titleScreen);
 game.state.add('LevelSelect', levelSelect);
-game.state.add('PlayGame', playGame);
+game.state.add('Level1', level1);
 
 game.state.start("Boot");
