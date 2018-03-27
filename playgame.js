@@ -431,6 +431,13 @@ playGame = {
             this.player.animations.play('fall');
         }
 
+
+
+        // reset jumpcounter
+        if (this.player.body.onFloor())
+        {
+            jumpCounter = 0;
+        }
     },
 
     jump: function (sprite, pointer) {
@@ -441,14 +448,51 @@ playGame = {
     },
 
     action: function (sprite, pointer) {
-        if (this.player.body.onFloor())
+        if (character == 'fox')
         {
-            this.player.body.velocity.y = -170;
+            if (jumpCounter < maxJump)
+            {
+                this.player.body.velocity.y = -160;
+                jumpCounter++;
+            }
+        }
+        else if (character == 'mario')
+        {
+            if (this.player.body.onFloor())
+            {
+                this.player.body.velocity.y = -250;
+            }
+        }
+        else if (character == 'pacman')
+        {
+            if (this.player.scale.x == -1)
+            {
+                this.player.body.velocity.x = -1000;
+            }
+            else if (this.player.scale.x == 1)
+            {
+                this.player.body.velocity.x = 1000;
+            }
         }
     },
 
     switch: function (sprite, pointer) {
-        
+        if (character == 'fox')
+        {
+            character = 'mario';
+            this.player.loadTexture('switch');
+        }
+        else if (character == 'mario')
+        {
+            character = 'pacman';
+            this.player.loadTexture('jump');
+        }
+        else if (character == 'pacman')
+        {
+            jumpCounter = 0;
+            character = 'fox';
+            this.player.loadTexture('atlas');
+        }
     }
 
 }

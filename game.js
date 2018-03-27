@@ -8,6 +8,10 @@ var hurtTimer;
 var frogTimer;
 var frogJumpSide = 'left';
 
+var character = 'fox';
+var jumpCounter = 0;
+var maxJump = 2;
+
 
 var game = new Phaser.Game(gameWidth, gameHeight, Phaser.AUTO, "");
 
