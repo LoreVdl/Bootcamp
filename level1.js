@@ -1,4 +1,4 @@
-playGame = {
+level1 = {
     create: function () {
         this.createBackgrounds();
 
