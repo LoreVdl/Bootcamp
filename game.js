@@ -185,8 +185,7 @@ var player = {
     switchPlayer: function (sprite, pointer) {
 
         switch(character) {
-    case 'link':
-
+		    case 'link':
                 this.player.anchor.setTo(0.5);
                 game.physics.arcade.enable(this.player);
                 this.player.body.gravity.y = 500;
@@ -200,9 +199,9 @@ var player = {
                 this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player-1/hurt-', 1, 2, '', 0), animVel, true);
                 this.player.animations.play('idle');
                 character = 'mario';
-        break;
-    case 'mario':
-
+		        break;
+		        
+		    case 'mario':
                 this.player.anchor.setTo(0.5);
                 game.physics.arcade.enable(this.player);
                 this.player.body.gravity.y = 500;
@@ -215,7 +214,7 @@ var player = {
                 this.player.animations.add('jump', ['player-3/run-2'], 1, false);
                 this.player.animations.play('idle');
                 character = 'link';
-        break;
+		        break;
         }
     }
 }
