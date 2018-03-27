@@ -18,7 +18,7 @@ game.global = {
   thumbHeight : 64,
   thumbSpacing : 8,
   starsArray : [0,4,4,4,4,4],
-  level : 0
+  level : 1
 }
 
 game.state.add('Boot', boot);

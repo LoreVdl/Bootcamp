@@ -8,7 +8,7 @@ preload = {
         game.load.image('middleground', 'assets/environment/middle.png');
 
         game.load.image('title', 'assets/sprites/title-screen.png');
-        game.load.image('enter', 'assets/sprites/press-enter-text.png');
+        game.load.image('enter', 'assets/sprites/tap-the-screen.png');
         game.load.image('credits', 'assets/sprites/credits-text.png');
         //tileset
         game.load.image('tileset', 'assets/environment/tileset.png');
