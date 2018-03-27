@@ -67,20 +67,17 @@ var player = {
     createPlayer: function (x, y) {
         x *= 16;
         y *= 16;
-        this.player = game.add.sprite(x, y, 'atlas', 'player/idle/player-idle-1');
-        this.player.anchor.setTo(0.5);
-        game.physics.arcade.enable(this.player);
-        this.player.body.gravity.y = 500;
-        this.player.body.setSize(12, 16, 8, 16);
-        //add animations
-        var animVel = 15;
-        this.player.animations.add('idle', Phaser.Animation.generateFrameNames('player/idle/player-idle-', 1, 4, '', 0), animVel - 3, true);
-        this.player.animations.add('run', Phaser.Animation.generateFrameNames('player/run/player-run-', 1, 6, '', 0), animVel, true);
-        this.player.animations.add('jump', ['player/jump/player-jump-1'], 1, false);
-        this.player.animations.add('fall', ['player/jump/player-jump-2'], 1, false);
-        this.player.animations.add('crouch', Phaser.Animation.generateFrameNames('player/crouch/player-crouch-', 1, 2, '', 0), 10, true);
-        this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player/hurt/player-hurt-', 1, 2, '', 0), animVel, true);
-        this.player.animations.play('idle');
+				this.player = game.add.sprite(x, y, 'characters', 'player-3/run-1');
+				this.player.anchor.setTo(0.5);
+				game.physics.arcade.enable(this.player);
+				this.player.body.gravity.y = 500;
+				this.player.body.setSize(18, 18, 0, 0);
+				//add animations
+				var animVel = 15;
+				this.player.animations.add('idle', ['player-3/run-1'], 1, false);
+				this.player.animations.add('run', Phaser.Animation.generateFrameNames('player-3/run-', 1, 2, '', 0), 10, true);
+				this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player-3/hurt-', 1, 2, '', 0), animVel, true);
+				this.player.animations.play('idle');
         // timer
         hurtTimer = game.time.create(false);
         hurtTimer.loop(500, this.resetHurt, this);
@@ -180,10 +177,10 @@ var player = {
     },
 
     switchPlayer: function (sprite, pointer) {
-        
+
         switch(character) {
     case 'link':
-                
+
                 this.player.anchor.setTo(0.5);
                 game.physics.arcade.enable(this.player);
                 this.player.body.gravity.y = 500;
@@ -193,13 +190,13 @@ var player = {
                 this.player.animations.add('idle', ['player-1/idle'], 1, false);
                 this.player.animations.add('run', Phaser.Animation.generateFrameNames('player-1/run-', 1, 4, '', 0), animVel, true);
                 this.player.animations.add('jump', ['player-1/jump-1'], 1, false);
-     
+
                 this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player-1/hurt-', 1, 2, '', 0), animVel, true);
                 this.player.animations.play('idle');
                 character = 'mario';
         break;
     case 'mario':
-                
+
                 this.player.anchor.setTo(0.5);
                 game.physics.arcade.enable(this.player);
                 this.player.body.gravity.y = 500;
