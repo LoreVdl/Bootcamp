@@ -8,7 +8,7 @@ var hurtTimer;
 var frogTimer;
 var frogJumpSide = 'left';
 
-var character = 'fox';
+var character = 'link';
 var jumpCounter = 0;
 var maxJump = 2;
 
@@ -36,7 +36,7 @@ var player = {
         this.actionBtn.inputEnabled = true;
         this.actionBtn.fixedToCamera = true;
 
-        this.switchBtn = game.add.button(gameWidth-20, gameHeight-60, 'switch', this.switch, this, 2, 1, 0);
+        this.switchBtn = game.add.button(gameWidth-20, gameHeight-60, 'switch', this.switchPlayer, this, 2, 1, 0);
         this.switchBtn.anchor.set(0.5);
         this.switchBtn.scale.set(0.5);
         this.switchBtn.inputEnabled = true;
@@ -176,22 +176,40 @@ var player = {
         }
     },
 
-    switch: function (sprite, pointer) {
-        if (character == 'fox')
-        {
-            character = 'mario';
-            this.player.loadTexture('switch');
-        }
-        else if (character == 'mario')
-        {
-            character = 'pacman';
-            this.player.loadTexture('jump');
-        }
-        else if (character == 'pacman')
-        {
-            jumpCounter = 0;
-            character = 'fox';
-            this.player.loadTexture('atlas');
+    switchPlayer: function (sprite, pointer) {
+        
+        switch(character) {
+    case 'link':
+                
+                this.player.anchor.setTo(0.5);
+                game.physics.arcade.enable(this.player);
+                this.player.body.gravity.y = 500;
+                this.player.body.setSize(10, 24, 10, 0);
+                //add animations
+                var animVel = 15;
+                this.player.animations.add('idle', ['player-1/idle'], 1, false);
+                this.player.animations.add('run', Phaser.Animation.generateFrameNames('player-1/run-', 1, 4, '', 0), animVel, true);
+                this.player.animations.add('jump', ['player-1/jump-1'], 1, false);
+     
+                this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player-1/hurt-', 1, 2, '', 0), animVel, true);
+                this.player.animations.play('idle');
+                character = 'mario';
+        break;
+    case 'mario':
+                
+                this.player.anchor.setTo(0.5);
+                game.physics.arcade.enable(this.player);
+                this.player.body.gravity.y = 500;
+                this.player.body.setSize(18, 18, 0, 0);
+                //add animations
+                var animVel = 15;
+                this.player.animations.add('idle', ['player-3/run-1'], 1, false);
+                this.player.animations.add('run', Phaser.Animation.generateFrameNames('player-3/run-', 1, 2, '', 0), 10, true);
+                this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player-3/hurt-', 1, 2, '', 0), animVel, true);
+                this.player.animations.add('jump', ['player-3/run-2'], 1, false);
+                this.player.animations.play('idle');
+                character = 'link';
+        break;
         }
     }
 }
