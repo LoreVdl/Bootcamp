@@ -8,7 +8,7 @@ levelSelect = {
   create: function() {
     background = game.add.tileSprite(0, 0, gameWidth, gameHeight, 'background');
     middleground = game.add.tileSprite(0, 80, gameWidth, gameHeight, 'middleground');
-    
+
     pages = game.global.starsArray.length/(game.global.thumbRows*game.global.thumbCols);
   	currentPage = Math.floor(game.global.level/(game.global.thumbRows*game.global.thumbCols));
 
@@ -99,7 +99,7 @@ levelSelect = {
 
     if(button.frame < 4) {
       game.global.level = button.levelNumber;
-      game.state.start("PlayGame");
+      game.state.start("Level1");
 		}
 
 		else{
