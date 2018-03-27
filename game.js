@@ -29,14 +29,8 @@ var player = {
         this.jumpBtn.scale.set(0.5);
         this.jumpBtn.inputEnabled = true;
         this.jumpBtn.fixedToCamera = true;
-
-        this.actionBtn = game.add.button(gameWidth-20, gameHeight-20, 'action', this.action, this, 2, 1, 0);
-        this.actionBtn.anchor.set(0.5);
-        this.actionBtn.scale.set(0.5);
-        this.actionBtn.inputEnabled = true;
-        this.actionBtn.fixedToCamera = true;
-
-        this.switchBtn = game.add.button(gameWidth-20, gameHeight-60, 'switch', this.switchPlayer, this, 2, 1, 0);
+				
+        this.switchBtn = game.add.button(gameWidth-20, gameHeight-20, 'switch', this.switchPlayer, this, 2, 1, 0);
         this.switchBtn.anchor.set(0.5);
         this.switchBtn.scale.set(0.5);
         this.switchBtn.inputEnabled = true;
@@ -157,31 +151,6 @@ var player = {
 				}
     },
 
-		action: function (sprite, pointer) {
-			switch(character) {
-				case 'link':
-					if (this.player.body.onFloor())
-					{
-							this.player.body.velocity.y = -250;
-					}
-					break;
-
-				case 'mario':
-
-					break;
-
-				case 'pacman':
-					if (this.player.scale.x == -1)
-					{
-							this.player.body.velocity.x = -1000;
-					}
-					else if (this.player.scale.x == 1)
-					{
-							this.player.body.velocity.x = 1000;
-					}
-			}
-    },
-
     switchPlayer: function (sprite, pointer) {
 
           switch(character) {
@@ -213,7 +182,7 @@ var player = {
                 this.player.animations.add('jump', Phaser.Animation.generateFrameNames('player-2/run-', 1, 4, '', 0), animVel, true);
                 this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player-2/hurt-', 1, 4, '', 0), animVel, true);
                 this.player.animations.play('idle');
-                
+
                 character = 'pacman';
              break;
     case 'pacman':
