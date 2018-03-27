@@ -6,55 +6,58 @@ var rightArrow;
 
 levelSelect = {
   create: function() {
-  pages = game.global.starsArray.length/(game.global.thumbRows*game.global.thumbCols);
-	currentPage = Math.floor(game.global.level/(game.global.thumbRows*game.global.thumbCols));
+    background = game.add.tileSprite(0, 0, gameWidth, gameHeight, 'background');
+    middleground = game.add.tileSprite(0, 80, gameWidth, gameHeight, 'middleground');
+    
+    pages = game.global.starsArray.length/(game.global.thumbRows*game.global.thumbCols);
+  	currentPage = Math.floor(game.global.level/(game.global.thumbRows*game.global.thumbCols));
 
-	if(currentPage>pages-1) {
-	   currentPage = pages-1;
-	}
+  	if(currentPage>pages-1) {
+  	   currentPage = pages-1;
+  	}
 
-  leftArrow = game.add.button(50,420,"level_arrows",this.arrowClicked,this);
-	leftArrow.anchor.setTo(0.5);
-	leftArrow.frame = 0;
+    leftArrow = game.add.button(50,420,"level_arrows",this.arrowClicked,this);
+  	leftArrow.anchor.setTo(0.5);
+  	leftArrow.frame = 0;
 
-	if(currentPage==0) {
-	   leftArrow.alpha = 0.3;
-	}
+  	if(currentPage==0) {
+  	   leftArrow.alpha = 0.3;
+  	}
 
-	rightArrow = game.add.button(270,420,"level_arrows",this.arrowClicked,this);
-	rightArrow.anchor.setTo(0.5);
-	rightArrow.frame = 1;
+  	rightArrow = game.add.button(270,420,"level_arrows",this.arrowClicked,this);
+  	rightArrow.anchor.setTo(0.5);
+  	rightArrow.frame = 1;
 
-	if(currentPage==pages-1) {
-	   rightArrow.alpha = 0.3;
-	}
+  	if(currentPage==pages-1) {
+  	   rightArrow.alpha = 0.3;
+  	}
 
-	levelThumbsGroup = game.add.group();
+  	levelThumbsGroup = game.add.group();
 
-	var levelLength = game.global.thumbWidth*game.global.thumbCols+game.global.thumbSpacing*(game.global.thumbCols-1);
-	var levelHeight = game.global.thumbWidth*game.global.thumbRows+game.global.thumbSpacing*(game.global.thumbRows-1);
+  	var levelLength = game.global.thumbWidth*game.global.thumbCols+game.global.thumbSpacing*(game.global.thumbCols-1);
+  	var levelHeight = game.global.thumbWidth*game.global.thumbRows+game.global.thumbSpacing*(game.global.thumbRows-1);
 
-	for(var l = 0; l < pages; l++) {
+  	for(var l = 0; l < pages; l++) {
 
-	   var offsetX = (game.width-levelLength)/2+game.width*l;
-     var offsetY = 20;
-     var level = 1;
+  	   var offsetX = (game.width-levelLength)/2+game.width*l;
+       var offsetY = 20;
+       var level = 1;
 
-		 for(var i = 0; i < game.global.thumbRows; i ++) {
-       for(var j = 0; j < game.global.thumbCols; j ++) {
-         var levelNumber = i*game.global.thumbCols+j+l*(game.global.thumbRows*game.global.thumbCols);
-         var levelThumb = game.add.button(offsetX+j*(game.global.thumbWidth+game.global.thumbSpacing), offsetY+i*(game.global.thumbHeight+game.global.thumbSpacing), "level"+(level), this.thumbClicked, this);
+  		 for(var i = 0; i < game.global.thumbRows; i ++) {
+         for(var j = 0; j < game.global.thumbCols; j ++) {
+           var levelNumber = i*game.global.thumbCols+j+l*(game.global.thumbRows*game.global.thumbCols);
+           var levelThumb = game.add.button(offsetX+j*(game.global.thumbWidth+game.global.thumbSpacing), offsetY+i*(game.global.thumbHeight+game.global.thumbSpacing), "level"+(level), this.thumbClicked, this);
 
-         levelThumb.frame=game.global.starsArray[levelNumber];
-         levelThumb.levelNumber = levelNumber+1;
-         levelThumbsGroup.add(levelThumb);
+           levelThumb.frame=game.global.starsArray[levelNumber];
+           levelThumb.levelNumber = levelNumber+1;
+           levelThumbsGroup.add(levelThumb);
 
-         level++;
+           level++;
+         }
        }
      }
-   }
 
-   levelThumbsGroup.x = currentPage * game.width * -1
+     levelThumbsGroup.x = currentPage * game.width * -1
  },
 
  arrowClicked:function(button) {
@@ -115,5 +118,11 @@ levelSelect = {
 			}, 20, Phaser.Easing.Cubic.None);
 			buttonTween.start();
 		}
-	}
+	},
+
+  update: function () {
+        background.tilePosition.x -= .3;
+        middleground.tilePosition.x -= .6;
+
+    }
 }
