@@ -97,7 +97,7 @@ levelSelect = {
 
   thumbClicked:function(button) {
 
-    if(button.frame < 4) {
+    if(button.levelNumber == 1) {
       game.global.level = button.levelNumber;
       game.state.start("Level1");
 		}
