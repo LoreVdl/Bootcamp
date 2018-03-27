@@ -1,0 +1,31 @@
+Pacman:
+
+this.player = game.add.sprite(x, y, 'characters', 'player-1/run-1');
+this.player.anchor.setTo(0.5);
+game.physics.arcade.enable(this.player);
+this.player.body.gravity.y = 500;
+this.player.body.setSize(15, 15, 0, 0);
+//add animations
+var animVel = 15;
+this.player.animations.add('idle', Phaser.Animation.generateFrameNames('player-2/run-', 1, 4, '', 0), animVel, true);
+this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player-2/hurt-', 1, 4, '', 0), animVel, true);
+this.player.animations.play('idle');
+// timer
+hurtTimer = game.time.create(false);
+hurtTimer.loop(500, this.resetHurt, this);
+
+Mario:
+
+this.player = game.add.sprite(x, y, 'characters', 'player-1/idle');
+this.player.anchor.setTo(0.5);
+game.physics.arcade.enable(this.player);
+this.player.body.gravity.y = 500;
+this.player.body.setSize(10, 24, 10, 0);
+//add animations
+var animVel = 15;
+this.player.animations.add('idle', ['player-1/idle'], 1, false);
+this.player.animations.add('run', Phaser.Animation.generateFrameNames('player-1/run-', 1, 4, '', 0), animVel, true);
+this.player.animations.add('jump', ['player-1/jump-1'], 1, false);
+this.player.animations.add('fall', ['player-1/jump-2'], 1, false);
+this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player-1/hurt-', 1, 2, '', 0), animVel, true);
+this.player.animations.play('idle');
