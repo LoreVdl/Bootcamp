@@ -91,6 +91,15 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
+	"filename": "house_open",
+	"frame": {"x":2,"y":333,"w":87,"h":108},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":87,"h":108},
+	"sourceSize": {"w":87,"h":108},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
 	"filename": "platform-long",
 	"frame": {"x":50,"y":19,"w":32,"h":16},
 	"rotated": false,
