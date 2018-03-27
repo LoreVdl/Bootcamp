@@ -4,49 +4,15 @@ level1 = {
 
         this.createWorld();
         this.decorWorld();
-        this.createPlayer(54, 9);
-        this.bindKeys();
-        game.camera.follow(this.player, Phaser.Camera.FOLLOW_PLATFORMER);
+
+        player.create();
+
         this.populateWorld();
 
 		// music
         this.music = game.add.audio('music');
         this.music.loop = true;
         this.music.play();
-
-        // create buttons
-        this.jumpBtn = game.add.button(20, gameHeight-20, 'jump', this.jump, this, 2, 1, 0);
-        this.jumpBtn.anchor.set(0.5);
-        this.jumpBtn.scale.set(0.5);
-        this.jumpBtn.inputEnabled = true;
-        this.jumpBtn.fixedToCamera = true;
-
-        this.actionBtn = game.add.button(gameWidth-20, gameHeight-20, 'action', this.action, this, 2, 1, 0);
-        this.actionBtn.anchor.set(0.5);
-        this.actionBtn.scale.set(0.5);
-        this.actionBtn.inputEnabled = true;
-        this.actionBtn.fixedToCamera = true;
-
-        this.switchBtn = game.add.button(gameWidth-20, gameHeight-60, 'switch', this.switch, this, 2, 1, 0);
-        this.switchBtn.anchor.set(0.5);
-        this.switchBtn.scale.set(0.5);
-        this.switchBtn.inputEnabled = true;
-        this.switchBtn.fixedToCamera = true;
-
-    },
-    bindKeys: function () {
-        this.wasd = {
-            jump: game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR),
-            left: game.input.keyboard.addKey(Phaser.Keyboard.LEFT),
-            right: game.input.keyboard.addKey(Phaser.Keyboard.RIGHT),
-            crouch: game.input.keyboard.addKey(Phaser.Keyboard.DOWN)
-        },
-        game.input.keyboard.addKeyCapture(
-            [Phaser.Keyboard.SPACEBAR,
-                Phaser.Keyboard.LEFT,
-                Phaser.Keyboard.RIGHT,
-                Phaser.Keyboard.DOWN]
-        );
     },
 
     decorWorld: function () {
@@ -146,27 +112,6 @@ level1 = {
         }
     },
 
-    createPlayer: function (x, y) {
-        x *= 16;
-        y *= 16;
-        this.player = game.add.sprite(x, y, 'atlas', 'player/idle/player-idle-1');
-        this.player.anchor.setTo(0.5);
-        game.physics.arcade.enable(this.player);
-        this.player.body.gravity.y = 500;
-        this.player.body.setSize(12, 16, 8, 16);
-        //add animations
-        var animVel = 15;
-        this.player.animations.add('idle', Phaser.Animation.generateFrameNames('player/idle/player-idle-', 1, 4, '', 0), animVel - 3, true);
-        this.player.animations.add('run', Phaser.Animation.generateFrameNames('player/run/player-run-', 1, 6, '', 0), animVel, true);
-        this.player.animations.add('jump', ['player/jump/player-jump-1'], 1, false);
-        this.player.animations.add('fall', ['player/jump/player-jump-2'], 1, false);
-        this.player.animations.add('crouch', Phaser.Animation.generateFrameNames('player/crouch/player-crouch-', 1, 2, '', 0), 10, true);
-        this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player/hurt/player-hurt-', 1, 2, '', 0), animVel, true);
-        this.player.animations.play('idle');
-        // timer
-        hurtTimer = game.time.create(false);
-        hurtTimer.loop(500, this.resetHurt, this);
-    },
     createEnemyDeath: function (x, y) {
         this.enemyDeath = game.add.sprite(x, y, 'atlas');
         this.enemyDeath.anchor.setTo(0.5);
@@ -185,10 +130,6 @@ level1 = {
         animFeedback.onComplete.add(function () {
             itemFeedback.kill();
         }, this);
-    },
-
-    resetHurt: function () {
-        hurtFlag = false;
     },
 
     createOpossum: function (x, y) {
@@ -276,11 +217,13 @@ level1 = {
 
     update: function () {
         //this.debugGame();
-        game.physics.arcade.collide(this.player, this.layer);
+        game.physics.arcade.collide(player.player, this.layer);
         game.physics.arcade.collide(this.enemies, this.layer);
-        game.physics.arcade.overlap(this.player, this.enemies, this.checkAgainstEnemies, null, this);
-        game.physics.arcade.overlap(this.player, this.items, this.pickItem, null, this);
-        this.movePlayer();
+        game.physics.arcade.overlap(player.player, this.enemies, this.checkAgainstEnemies, null, this);
+        game.physics.arcade.overlap(player.player, this.items, this.pickItem, null, this);
+
+        player.movePlayer();
+
         this.enemiesManager();
         this.parallaxBackground();
 
@@ -307,7 +250,7 @@ level1 = {
 
             // eagle
             if (tempEnemy.enemyType == 'eagle') {
-                if (tempEnemy.x > this.player.x) {
+                if (tempEnemy.x > player.player.x) {
                     tempEnemy.scale.x = 1;
                 } else {
                     tempEnemy.scale.x = -1;
@@ -362,10 +305,11 @@ level1 = {
         }
         hurtFlag = true;
         hurtTimer.start();
-        this.player.body.velocity.y = -100;
+        player.player.body.velocity.y = -100;
 
-        this.player.body.velocity.x = (this.player.scale.x == 1) ? -100 : 100;
+        player.player.body.velocity.x = (player.player.scale.x == 1) ? -100 : 100;
     },
+
     parallaxBackground: function () {
         this.background.tilePosition.x = this.layer.x * -0.1;
         this.middleground.tilePosition.x = this.layer.x * -0.5;
@@ -382,117 +326,5 @@ level1 = {
     renderGroup: function (member) {
         game.debug.body(member);
     },
-
-    movePlayer: function () {
-
-        if (hurtFlag) {
-            this.player.animations.play('hurt');
-            return;
-        }
-
-        if (this.wasd.jump.isDown && this.player.body.onFloor()) {
-            this.player.body.velocity.y = -170;
-        }
-
-        var vel = 150;
-
-        if (this.wasd.left.isDown) {
-            this.player.body.velocity.x = -vel;
-            this.player.animations.play('run');
-            this.player.scale.x = -1;
-        } else if (this.wasd.right.isDown) {
-            this.player.body.velocity.x = vel;
-            this.player.animations.play('run');
-            this.player.scale.x = 1;
-        } else if (game.input.pointer1.isDown) {
-            if (game.input.pointer1.x < game.width/2) {
-                this.player.body.velocity.x = -vel;
-                this.player.animations.play('run');
-                this.player.scale.x = -1;
-            } else if (game.input.pointer1.x > game.width/2) {
-                this.player.body.velocity.x = vel;
-                this.player.animations.play('run');
-                this.player.scale.x = 1;
-            } else {
-                this.player.body.velocity.x = 0;
-                this.player.animations.play('idle');
-            }
-        } else {
-            this.player.body.velocity.x = 0;
-            this.player.animations.play('idle');
-        }
-
-
-
-        // jump animation
-        if (this.player.body.velocity.y < 0) {
-            this.player.animations.play('jump');
-        } else if (this.player.body.velocity.y > 0) {
-            this.player.animations.play('fall');
-        }
-
-
-
-        // reset jumpcounter
-        if (this.player.body.onFloor())
-        {
-            jumpCounter = 0;
-        }
-    },
-
-    jump: function (sprite, pointer) {
-        if (this.player.body.onFloor())
-        {
-            this.player.body.velocity.y = -170;
-        }
-    },
-
-    action: function (sprite, pointer) {
-        if (character == 'fox')
-        {
-            if (jumpCounter < maxJump)
-            {
-                this.player.body.velocity.y = -160;
-                jumpCounter++;
-            }
-        }
-        else if (character == 'mario')
-        {
-            if (this.player.body.onFloor())
-            {
-                this.player.body.velocity.y = -250;
-            }
-        }
-        else if (character == 'pacman')
-        {
-            if (this.player.scale.x == -1)
-            {
-                this.player.body.velocity.x = -1000;
-            }
-            else if (this.player.scale.x == 1)
-            {
-                this.player.body.velocity.x = 1000;
-            }
-        }
-    },
-
-    switch: function (sprite, pointer) {
-        if (character == 'fox')
-        {
-            character = 'mario';
-            this.player.loadTexture('switch');
-        }
-        else if (character == 'mario')
-        {
-            character = 'pacman';
-            this.player.loadTexture('jump');
-        }
-        else if (character == 'pacman')
-        {
-            jumpCounter = 0;
-            character = 'fox';
-            this.player.loadTexture('atlas');
-        }
-    }
 
 }
