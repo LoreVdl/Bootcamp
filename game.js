@@ -29,14 +29,8 @@ var player = {
         this.jumpBtn.scale.set(0.5);
         this.jumpBtn.inputEnabled = true;
         this.jumpBtn.fixedToCamera = true;
-
-        this.actionBtn = game.add.button(gameWidth-20, gameHeight-20, 'action', this.action, this, 2, 1, 0);
-        this.actionBtn.anchor.set(0.5);
-        this.actionBtn.scale.set(0.5);
-        this.actionBtn.inputEnabled = true;
-        this.actionBtn.fixedToCamera = true;
-
-        this.switchBtn = game.add.button(gameWidth-20, gameHeight-60, 'switch', this.switchPlayer, this, 2, 1, 0);
+				
+        this.switchBtn = game.add.button(gameWidth-20, gameHeight-20, 'switch', this.switchPlayer, this, 2, 1, 0);
         this.switchBtn.anchor.set(0.5);
         this.switchBtn.scale.set(0.5);
         this.switchBtn.inputEnabled = true;
@@ -157,35 +151,16 @@ var player = {
 				}
     },
 
-		action: function (sprite, pointer) {
-			switch(character) {
-				case 'link':
-					if (this.player.body.onFloor())
-					{
-							this.player.body.velocity.y = -250;
-					}
-					break;
-
-				case 'mario':
-
-					break;
-
-				case 'pacman':
-					if (this.player.scale.x == -1)
-					{
-							this.player.body.velocity.x = -1000;
-					}
-					else if (this.player.scale.x == 1)
-					{
-							this.player.body.velocity.x = 1000;
-					}
-			}
-    },
-
     switchPlayer: function (sprite, pointer) {
 
+<<<<<<< HEAD
         switch(character) {
 		    case 'link':
+=======
+          switch(character) {
+    case 'link':
+
+>>>>>>> 45b72b19552d2d8ba66b8c36348067d414af5080
                 this.player.anchor.setTo(0.5);
                 game.physics.arcade.enable(this.player);
                 this.player.body.gravity.y = 500;
@@ -199,9 +174,29 @@ var player = {
                 this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player-1/hurt-', 1, 2, '', 0), animVel, true);
                 this.player.animations.play('idle');
                 character = 'mario';
+<<<<<<< HEAD
 		        break;
 		        
 		    case 'mario':
+=======
+        break;
+    case 'mario':
+                this.player.anchor.setTo(0.5);
+                game.physics.arcade.enable(this.player);
+                this.player.body.gravity.y = 500;
+                this.player.body.setSize(15, 15, 0, 0);
+                //add animations
+                var animVel = 15;
+                this.player.animations.add('idle', Phaser.Animation.generateFrameNames('player-2/run-', 1, 4, '', 0), animVel, true);
+                this.player.animations.add('run', Phaser.Animation.generateFrameNames('player-2/run-', 1, 2, '', 0), 10, true);
+                this.player.animations.add('jump', Phaser.Animation.generateFrameNames('player-2/run-', 1, 4, '', 0), animVel, true);
+                this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player-2/hurt-', 1, 4, '', 0), animVel, true);
+                this.player.animations.play('idle');
+
+                character = 'pacman';
+             break;
+    case 'pacman':
+>>>>>>> 45b72b19552d2d8ba66b8c36348067d414af5080
                 this.player.anchor.setTo(0.5);
                 game.physics.arcade.enable(this.player);
                 this.player.body.gravity.y = 500;
@@ -213,8 +208,13 @@ var player = {
                 this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player-3/hurt-', 1, 2, '', 0), animVel, true);
                 this.player.animations.add('jump', ['player-3/run-2'], 1, false);
                 this.player.animations.play('idle');
+<<<<<<< HEAD
                 character = 'link';
 		        break;
+=======
+                character = 'link'
+        break;
+>>>>>>> 45b72b19552d2d8ba66b8c36348067d414af5080
         }
     }
 }
