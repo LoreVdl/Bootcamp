@@ -150,17 +150,17 @@ var player = {
 		action: function (sprite, pointer) {
 			switch(character) {
 				case 'link':
-					if (jumpCounter < maxJump)
+					if (this.player.body.onFloor())
 					{
-							this.player.body.velocity.y = -160;
-							jumpCounter++;
+							this.player.body.velocity.y = -250;
 					}
 					break;
 
 				case 'mario':
-					if (this.player.body.onFloor())
+					if (jumpCounter < maxJump)
 					{
-							this.player.body.velocity.y = -250;
+							this.player.body.velocity.y = -160;
+							jumpCounter++;
 					}
 					break;
 
