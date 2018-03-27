@@ -38,26 +38,18 @@ levelSelect = {
 
 	   var offsetX = (game.width-levelLength)/2+game.width*l;
      var offsetY = 20;
+     var level = 1;
 
 		 for(var i = 0; i < game.global.thumbRows; i ++) {
        for(var j = 0; j < game.global.thumbCols; j ++) {
          var levelNumber = i*game.global.thumbCols+j+l*(game.global.thumbRows*game.global.thumbCols);
-         var levelThumb = game.add.button(offsetX+j*(game.global.thumbWidth+game.global.thumbSpacing), offsetY+i*(game.global.thumbHeight+game.global.thumbSpacing), "levels", this.thumbClicked, this);
+         var levelThumb = game.add.button(offsetX+j*(game.global.thumbWidth+game.global.thumbSpacing), offsetY+i*(game.global.thumbHeight+game.global.thumbSpacing), "level"+(level), this.thumbClicked, this);
 
          levelThumb.frame=game.global.starsArray[levelNumber];
          levelThumb.levelNumber = levelNumber+1;
          levelThumbsGroup.add(levelThumb);
 
-         if(game.global.starsArray[levelNumber]<4) {
-           var style = {
-             font: "18px Arial",
-             fill: "#ffffff"
-           };
-
-           var levelText = game.add.text(levelThumb.x+5,levelThumb.y+5,levelNumber+1,style);
-					 levelText.setShadow(2, 2, 'rgba(0,0,0,0.5)', 1);
-           levelThumbsGroup.add(levelText);
-         }
+         level++;
        }
      }
    }

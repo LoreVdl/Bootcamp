@@ -16,13 +16,13 @@ var maxJump = 2;
 var game = new Phaser.Game(gameWidth, gameHeight, Phaser.AUTO, "");
 
 game.global = {
-  thumbRows: 5,
-  thumbCols : 4,
+  thumbRows: 2,
+  thumbCols : 3,
   thumbWidth : 64,
   thumbHeight : 64,
   thumbSpacing : 8,
-  starsArray : [0,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4],
-  level : 0
+  starsArray : [0,4,4,4,4,4],
+  level : 1
 }
 
 game.state.add('Boot', boot);
