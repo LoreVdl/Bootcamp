@@ -88,6 +88,13 @@ var player = {
 
     movePlayer: function () {
 
+		// reset jumpcounter
+        if (this.player.body.onFloor())
+        {
+            jumpCounter = 0;
+        }
+        
+
         if (hurtFlag) {
             this.player.animations.play('hurt');
             return;
@@ -95,6 +102,7 @@ var player = {
 
         if (this.wasd.jump.isDown && this.player.body.onFloor()) {
             this.player.body.velocity.y = -170;
+            jumpCounter++;
         }
 
         var vel = 150;
@@ -133,20 +141,13 @@ var player = {
         } else if (this.player.body.velocity.y > 0) {
             this.player.animations.play('fall');
         }
-
-
-
-        // reset jumpcounter
-        if (this.player.body.onFloor())
-        {
-            jumpCounter = 0;
-        }
     },
 
     jump: function (sprite, pointer) {
         if (this.player.body.onFloor())
         {
             this.player.body.velocity.y = -170;
+            jumpCounter++;
         }
     },
 
