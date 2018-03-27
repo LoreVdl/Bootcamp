@@ -137,7 +137,7 @@ level1 = {
         x *= 16;
         y *= 16;
         var temp = game.add.sprite(x, y, 'atlas', 'opossum/opossum-1');
-        temp.anchor.setTo(0.5);
+        temp.anchor.setTo(0.8);
         game.physics.arcade.enable(temp);
         temp.body.gravity.y = 500;
         temp.body.setSize(16, 13, 8, 15);
