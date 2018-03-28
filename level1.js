@@ -9,10 +9,12 @@ level1 = {
 
         this.populateWorld();
 
-		// music
+        // music
         this.music = game.add.audio('music');
         this.music.loop = true;
         this.music.play();
+
+        player.resetHurt();
     },
 
     decorWorld: function () {
@@ -35,6 +37,9 @@ level1 = {
         this.ends = game.add.group();
         this.ends.enableBody = true;
 
+        this.arrows = game.add.group();
+        this.arrows.enableBody = true;
+
         this.obstacles = game.add.group();
         this.obstacles.enableBody = true;
 
@@ -48,6 +53,10 @@ level1 = {
         frogTimer = game.time.create(false);
         frogTimer.loop(2000, this.switchFrogJump, this);
         frogTimer.start();
+
+        arrowTimer = game.time.create(false);
+        arrowTimer.loop(2000, this.createArrow, this, 10, 12.5, 1);
+        arrowTimer.start();
 
         // create items
         this.createEnd(50, 12);
@@ -80,6 +89,21 @@ level1 = {
         this.createEagle(16, 9);
         this.createOpossum(44, 21);
         this.createOpossum(25, 21);
+    },
+
+    createArrow: function (x, y, scale) {
+        x *= 16;
+        y *= 16;
+        var temp = game.add.sprite(x, y, 'new-atlas' , 'arrow-1');
+        temp.anchor.setTo(0.8);
+        temp.scale.setTo(scale);
+        game.physics.arcade.enable(temp);
+        //add animations
+        temp.animations.add('fly', Phaser.Animation.generateFrameNames('arrow-', 1, 3, '', 0), 5, true);
+        temp.animations.play('fly');
+        temp.body.velocity.x = 100 * scale;
+
+        this.arrows.add(temp);
     },
 
     switchFrogJump: function () {
@@ -291,12 +315,34 @@ level1 = {
         game.physics.arcade.overlap(this.ends, player.player, this.endGame, null, this);
         game.physics.arcade.collide(this.cranks.children[0], player.player, this.destroyBlock, null, this);
         game.physics.arcade.collide(this.cranks.children[1], player.player, this.destroyBlockBig, null, this);
+        game.physics.arcade.collide(this.arrows, this.layer, this.arrowHitWorld, null, this);
+        game.physics.arcade.overlap(player.player, this.arrows, this.arrowHitPlayer, null, this);
 
         player.movePlayer();
 
         this.enemiesManager();
         this.parallaxBackground();
 
+    },
+
+    arrowHitWorld: function (arrow) {
+        arrow.kill();
+    },
+
+    arrowHitPlayer: function (player, arrow) {
+        if (character == 'link' && hurtFlag == false) {
+
+            if (((player.x + player.body.width * 0.5 > arrow.x) && player.scale.x == -1) || ((player.x + player.body.width * 0.5 < arrow.x) && player.scale.x == 1)) {
+
+                arrow.kill()
+            } else {
+                arrow.kill();
+                this.hurtPlayer();
+            }
+        } else {
+            arrow.kill();
+            this.hurtPlayer();
+        }
     },
 
     destroyBlock: function (player, item) {
@@ -381,20 +427,6 @@ level1 = {
             this.createEnemyDeath(enemy.x, enemy.y);
             enemy.kill();
             player.body.velocity.y = -200;
-        } else if (character == 'link' && hurtFlag == false) {
-
-            if ((player.x + player.body.width * 0.5 > enemy.x) && (player.y + player.body.height * 0.5 > enemy.y) && (player.y - player.body.height * 0.5 < enemy.y) && player.scale.x == -1) {
-
-                this.createEnemyDeath(enemy.x, enemy.y);
-                enemy.kill();
-            } else if ((player.x + player.body.width < enemy.x) && (player.y + player.body.height * 0.5 > enemy.y) && (player.y - player.body.height * 0.5 < enemy.y) && player.scale.x == 1) {
-
-                this.createEnemyDeath(enemy.x, enemy.y);
-                enemy.kill();
-            } else {
-                this.hurtPlayer();
-            }
-
         } else {
             this.hurtPlayer();
         }
