@@ -16,7 +16,7 @@ var maxJump = 2;
 var player = {
 	create: function () {
 
-        this.createPlayer(54, 9);
+        this.createPlayer(7, 12);
 
 
         this.bindKeys();
