@@ -224,7 +224,6 @@ var player = {
 					jumpCounter++;
 			}
 		}
->>>>>>> 2be50589c4350b70966d2a7fa702ff26dc251c14
     },
 
     switchPlayer: function (sprite, pointer) {
