@@ -235,6 +235,16 @@ var player = {
         }
     },
 
+		createItemFeedback: function (x, y) {
+        var itemFeedback = game.add.sprite(x, y, 'atlas');
+        itemFeedback.anchor.setTo(0.5);
+        var animFeedback = itemFeedback.animations.add('feedback', Phaser.Animation.generateFrameNames('item-feedback/item-feedback-', 1, 4, '', 0), 16, false);
+        itemFeedback.animations.play('feedback');
+        animFeedback.onComplete.add(function () {
+            itemFeedback.kill();
+        }, this);
+    },
+
     switchPlayer: function (sprite, pointer) {
         switch(character) {
 		    case 'link':
