@@ -55,18 +55,18 @@ level1 = {
         frogTimer.start();
 
         arrowTimer1 = game.time.create(false);
-        arrowTimer1.loop(2000, this.createArrow, this, 49, 21.5, -1);
+        arrowTimer1.loop(2000, this.createArrow, this, 48, 21.5, -1);
         arrowTimer1.start();
 
         arrowTimer2 = game.time.create(false);
-        arrowTimer2.loop(2000, this.createArrow, this, 52, 20.5, -1);
+        arrowTimer2.loop(3000, this.createArrow, this, 49, 20.5, -1);
         arrowTimer2.start();
 
         // create items
         this.createEnd(50, 12);
 
         this.createHendel(21, 5);
-        this.createHendel(54, 21);
+        this.createHendel(53, 21);
 
         this.createObstacle(33, 21);
 
