@@ -188,6 +188,42 @@
     "spriteSourceSize": {"x":0,"y":0,"w":18,"h":18},
     "sourceSize": {"w":18,"h":18},
     "pivot": {"x":0.5,"y":0.5}
+  },
+  {
+    "filename": "ghost/run-1",
+    "frame": {"x":0,"y":108,"w":16,"h":16},
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+    "sourceSize": {"w":16,"h":16},
+    "pivot": {"x":0.5,"y":0.5}
+  },
+  {
+    "filename": "ghost/run-2",
+    "frame": {"x":30,"y":108,"w":16,"h":16},
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+    "sourceSize": {"w":16,"h":16},
+    "pivot": {"x":0.5,"y":0.5}
+  },
+  {
+    "filename": "ghost/ability-1",
+    "frame": {"x":60,"y":108,"w":16,"h":16},
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+    "sourceSize": {"w":16,"h":16},
+    "pivot": {"x":0.5,"y":0.5}
+  },
+  {
+    "filename": "ghost/ability-2",
+    "frame": {"x":90,"y":108,"w":16,"h":16},
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+    "sourceSize": {"w":16,"h":16},
+    "pivot": {"x":0.5,"y":0.5}
   }],
   "meta": {
     "app": "http://127.0.0.1",
