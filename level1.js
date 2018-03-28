@@ -279,8 +279,7 @@ level1 = {
     },
 
     destroyBlock: function (player, item) {
-      this.createItemFeedback(item.x, item.y);
-      item.kill();
+   
     },
 
     endGame: function () {
