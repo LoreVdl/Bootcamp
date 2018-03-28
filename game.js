@@ -11,6 +11,7 @@ var frogJumpSide = 'left';
 var character = 'link';
 var jumpCounter = 0;
 var maxJump = 2;
+var pacmanAbility = 0;
 
 
 var player = {

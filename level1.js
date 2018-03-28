@@ -253,6 +253,25 @@ level1 = {
         this.enemies.add(temp);
     },
 
+    createGhost: function (x, y) {
+        x *= 16;
+        y *= 16;
+        var temp = game.add.sprite(x, y, 'characters', 'ghost/run-1');
+        temp.anchor.setTo(0.5);
+        game.physics.arcade.enable(temp);
+        temp.body.gravity.y = 500;
+        temp.body.setSize(16, 16, 0, 0);
+        //add animations
+        temp.animations.add('run', Phaser.Animation.generateFrameNames('ghost/run-', 1, 2, '', 0), 5, true);
+        temp.animations.add('ability', Phaser.Animation.generateFrameNames('ghost/ability-', 1, 2, '', 0), 5, true);
+        temp.animations.play('ability');
+        temp.body.velocity.x = 60 * game.rnd.pick([1, -1]);
+        temp.body.bounce.x = 1;
+        temp.enemyType = 'ghost';
+
+        this.enemies.add(temp);
+    },
+
     createEagle: function (x, y) {
         x *= 16;
         y *= 16;
