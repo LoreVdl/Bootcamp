@@ -55,11 +55,11 @@ level1 = {
         frogTimer.start();
 
         arrowTimer1 = game.time.create(false);
-        arrowTimer1.loop(2000, this.createArrow, this, 49, 21, -1);
+        arrowTimer1.loop(2000, this.createArrow, this, 49, 21.5, -1);
         arrowTimer1.start();
 
         arrowTimer2 = game.time.create(false);
-        arrowTimer2.loop(2000, this.createArrow, this, 52, 20, -1);
+        arrowTimer2.loop(2000, this.createArrow, this, 52, 20.5, -1);
         arrowTimer2.start();
 
         // create items
@@ -99,7 +99,7 @@ level1 = {
         x *= 16;
         y *= 16;
         var temp = game.add.sprite(x, y, 'new-atlas' , 'arrow-1');
-        temp.anchor.setTo(0.8);
+        temp.anchor.setTo(0.5);
         temp.scale.setTo(scale);
         game.physics.arcade.enable(temp);
         //add animations
