@@ -16,13 +16,12 @@ level1 = {
     },
 
     decorWorld: function () {
-        game.add.image(31 * 16, 4 * 16 + 3, 'atlas-props', 'tree');
-        game.add.image(48 * 16, 3 * 16 + 5, 'atlas-props', 'house');
-        game.add.image(10 * 16, 8 * 16 + 4, 'atlas-props', 'bush');
-        game.add.image(11 * 16, 19 * 16 - 4, 'atlas-props', 'sign');
-        game.add.image(15 * 16, 19 * 16 + 6, 'atlas-props', 'skulls');
-        game.add.image(23 * 16, 19 * 16, 'atlas-props', 'face-block');
-        game.add.image(28 * 16, 20 * 16, 'atlas-props', 'shrooms');
+        game.add.image(42 * 16, 6 * 16 + 3, 'atlas-props', 'tree');
+        game.add.image(7 * 16, 6 * 16 + 5, 'atlas-props', 'house');
+        game.add.image(41 * 16, 11 * 16 + 4, 'atlas-props', 'bush');
+        game.add.image(25 * 16, 21 * 16 + 6, 'atlas-props', 'skulls');
+        game.add.image(44 * 16, 21 * 16 + 6, 'atlas-props', 'skulls');
+        game.add.image(16 * 16, 21 * 16, 'atlas-props', 'shrooms');
     },
 
     populateWorld: function () {
@@ -42,32 +41,26 @@ level1 = {
         frogTimer.start();
 
         // create items
-        this.createEnd(47,9.4);
+        this.createEnd(50,12);
 
+        this.createCherry(28, 5);
+        this.createCherry(29, 5);
         this.createCherry(30, 5);
-        this.createCherry(31, 5);
-        this.createCherry(32, 5);
+
         //
-        this.createCherry(23, 17);
-        this.createCherry(24, 17);
-        this.createCherry(25, 17);
-        //
-        this.createGem(3, 6);
-        this.createGem(4, 6);
-        this.createGem(5, 6);
-        //
-        this.createGem(44, 12);
-        this.createGem(42, 13);
-        this.createGem(42, 16);
+        this.createGem(28, 21);
+        this.createGem(37, 20);
+        this.createGem(38, 20);
+        this.createGem(39, 20);
+
 
         // create enemies
 
-        this.createFrog(15, 9);
-        this.createFrog(30, 20);
-        this.createEagle(33, 6);
-        this.createEagle(6, 7);
-        this.createOpossum(42, 9);
-        this.createOpossum(23, 20);
+        this.createFrog(31, 12);
+        this.createFrog(44, 12);
+        this.createEagle(16, 9);
+        this.createOpossum(44, 21);
+        this.createOpossum(25, 21);
     },
 
     switchFrogJump: function () {
