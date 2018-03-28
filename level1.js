@@ -294,6 +294,20 @@ level1 = {
             this.createEnemyDeath(enemy.x, enemy.y);
             enemy.kill();
             player.body.velocity.y = -200;
+        } else if (character == 'link' && hurtFlag == false) {
+
+            if ((player.x + player.body.width * 0.5 > enemy.x) && (player.y + player.body.height * 0.5 > enemy.y) && (player.y - player.body.height * 0.5 < enemy.y) && player.scale.x == -1) {
+
+                this.createEnemyDeath(enemy.x, enemy.y);
+                enemy.kill();
+            } else if ((player.x + player.body.width < enemy.x) && (player.y + player.body.height * 0.5 > enemy.y) && (player.y - player.body.height * 0.5 < enemy.y) && player.scale.x == 1) {
+
+                this.createEnemyDeath(enemy.x, enemy.y);
+                enemy.kill();
+            } else {
+                this.hurtPlayer();
+            }
+
         } else {
             this.hurtPlayer();
         }
