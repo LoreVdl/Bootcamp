@@ -30,7 +30,6 @@ var player = {
         this.bindKeys();
         game.camera.follow(this.player, Phaser.Camera.FOLLOW_PLATFORMER);
 
-
         scoreString = 'Score : ';
         scoreText = game.add.text(25, 10, scoreString + score, { font: '10px Arial', fill: '#fff' });
         scoreText.fixedToCamera = true;
@@ -64,17 +63,17 @@ var player = {
     createPlayer: function (x, y) {
         x *= 16;
         y *= 16;
-				this.player = game.add.sprite(x, y, 'characters', 'player-3/run-1');
-				this.player.anchor.setTo(0.5);
-				game.physics.arcade.enable(this.player);
-				this.player.body.gravity.y = 500;
-				this.player.body.setSize(18, 18, 0, 0);
-				//add animations
-				var animVel = 15;
-				this.player.animations.add('idle', ['player-3/run-1'], 1, false);
-				this.player.animations.add('run', Phaser.Animation.generateFrameNames('player-3/run-', 1, 2, '', 0), 10, true);
-				this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player-3/hurt-', 1, 2, '', 0), animVel, true);
-				this.player.animations.play('idle');
+		this.player = game.add.sprite(x, y, 'characters', 'player-3/run-1');
+		this.player.anchor.setTo(0.5);
+		game.physics.arcade.enable(this.player);
+		this.player.body.gravity.y = 500;
+		this.player.body.setSize(18, 18, 0, 0);
+		//add animations
+		var animVel = 15;
+		this.player.animations.add('idle', ['player-3/run-1'], 1, false);
+		this.player.animations.add('run', Phaser.Animation.generateFrameNames('player-3/run-', 1, 2, '', 0), 10, true);
+		this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player-3/hurt-', 1, 2, '', 0), animVel, true);
+		this.player.animations.play('idle');
         // timer
         hurtTimer = game.time.create(false);
         hurtTimer.loop(500, this.resetHurt, this);
@@ -100,7 +99,7 @@ var player = {
             this.player.body.velocity.x = vel;
             this.player.animations.play('run');
             this.player.scale.x = 1;
-        } else if (game.input.pointer1.isDown) {
+        } /*else if (game.input.pointer1.isDown) {
             if (game.input.pointer1.x < game.width/2) {
                 this.player.body.velocity.x = -vel;
                 this.player.animations.play('run');
@@ -113,7 +112,7 @@ var player = {
                 this.player.body.velocity.x = 0;
                 this.player.animations.play('idle');
             }
-        } else {
+        }*/ else {
             this.player.body.velocity.x = 0;
             this.player.animations.play('idle');
         }
@@ -140,6 +139,7 @@ var player = {
 			}
 		});
 */
+
 
 		if (this.player.body.velocity.x !=0)
 		{
@@ -176,12 +176,12 @@ var player = {
             }
             else if (game.input.pointer1.x > game.width/2)
             {
-                this.switch();
+                this.switchPlayer();
             }
         }
     },
-    
-    pacmanReset: function (){
+
+    pacmanReset : function () {
         pacmanAbility = !pacmanAbility;
     },
                         
@@ -204,13 +204,24 @@ var player = {
                 this.pacmanReset();
                 game.time.events.add = (Phaser.Timer.SECOND*5,this.pacmanReset);
                 break;
-                
+
         }
+    },
+
+    createItemFeedback: function (x, y) {
+        var itemFeedback = game.add.sprite(x, y, 'atlas');
+        itemFeedback.anchor.setTo(0.5);
+        var animFeedback = itemFeedback.animations.add('feedback', Phaser.Animation.generateFrameNames('item-feedback/item-feedback-', 1, 4, '', 0), 16, false);
+        itemFeedback.animations.play('feedback');
+        animFeedback.onComplete.add(function () {
+            itemFeedback.kill();
+        }, this);
     },
 
     switchPlayer: function () {
         switch(character) {
 		    case 'link':
+				this.createItemFeedback(this.player.x, this.player.y);
                 this.player.anchor.setTo(0.5);
                 game.physics.arcade.enable(this.player);
                 this.player.body.gravity.y = 500;
@@ -227,6 +238,7 @@ var player = {
 		        break;
 
 		    case 'mario':
+				this.createItemFeedback(this.player.x, this.player.y);
                 this.player.anchor.setTo(0.5);
                 game.physics.arcade.enable(this.player);
                 this.player.body.gravity.y = 500;
@@ -243,6 +255,7 @@ var player = {
              	break;
 
     		case 'pacman':
+				this.createItemFeedback(this.player.x, this.player.y);
                 this.player.anchor.setTo(0.5);
                 game.physics.arcade.enable(this.player);
                 this.player.body.gravity.y = 500;
