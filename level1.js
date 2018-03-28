@@ -55,11 +55,11 @@ level1 = {
         frogTimer.start();
 
         arrowTimer1 = game.time.create(false);
-        arrowTimer1.loop(2000, this.createArrow, this, 49, 21.5, -1);
+        arrowTimer1.loop(2000, this.createArrow, this, 48, 21.5, -1);
         arrowTimer1.start();
 
         arrowTimer2 = game.time.create(false);
-        arrowTimer2.loop(3000, this.createArrow, this, 50, 20.5, -1);
+        arrowTimer2.loop(3000, this.createArrow, this, 49, 20.5, -1);
         arrowTimer2.start();
 
         // create items
@@ -201,6 +201,18 @@ level1 = {
       this.cranks.add(temp);
     },
 
+    createHendelUp: function (x, y) {
+      x *= 16;
+      y *= 16;
+      var temp = game.add.sprite(x, y, 'atlas-props', 'crank-up');
+      temp.anchor.setTo(0);
+      game.physics.arcade.enable(temp);
+      temp.body.gravity.y = 500;
+      temp.body.moves = false;
+
+      this.cranks.add(temp);
+    },
+
     createObstacle: function (x, y) {
       x *= 16;
       y *= 16;
@@ -219,7 +231,7 @@ level1 = {
       temp.anchor.setTo(0);
       game.physics.arcade.enable(temp);
       temp.body.moves = false;
-      temp.body.setSize(16, 13, 8, 15);
+      temp.body.setSize(35, 35);
       this.obstacles.add(temp);
     },
 
@@ -320,8 +332,8 @@ level1 = {
         game.physics.arcade.overlap(player.player, this.enemies, this.checkAgainstEnemies, null, this);
         game.physics.arcade.overlap(player.player, this.items, this.pickItem, null, this);
         game.physics.arcade.overlap(this.ends, player.player, this.endGame, null, this);
-        game.physics.arcade.collide(this.cranks.children[0], player.player, this.destroyBlock, null, this);
-        game.physics.arcade.collide(this.cranks.children[1], player.player, this.destroyBlockBig, null, this);
+        game.physics.arcade.collide(player.player, this.cranks.children[0], this.destroyBlock, null, this);
+        game.physics.arcade.collide(player.player, this.cranks.children[1], this.destroyBlockBig, null, this);
         game.physics.arcade.collide(this.arrows, this.layer, this.arrowHitWorld, null, this);
         game.physics.arcade.overlap(player.player, this.arrows, this.arrowHitPlayer, null, this);
 
@@ -353,12 +365,18 @@ level1 = {
     },
 
     destroyBlock: function (player, item) {
+      this.createItemFeedback(item.x, item.y);
+      item.kill();
+      this.createHendelUp(21, 5);
       item = this.obstacles.children[0]
       this.createItemFeedback(item.x, item.y);
       item.kill();
     },
 
     destroyBlockBig: function (player, item) {
+      this.createItemFeedback(item.x, item.y);
+      item.kill();
+      this.createHendelUp(53, 21);
       for (var i = 0; i < 5; i++) {
         item = this.obstacles.children[i];
         this.createItemFeedback(item.x, item.y);
