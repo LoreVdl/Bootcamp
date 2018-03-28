@@ -310,6 +310,9 @@ level1 = {
         game.physics.arcade.collide(this.obstacles, this.layer);
         game.physics.arcade.collide(this.cranks, this.layer);
         game.physics.arcade.collide(player.player, this.obstacles);
+        game.physics.arcade.collide(this.enemies, this.obstacles);
+        game.physics.arcade.collide(this.enemies, this.obstaclesBig);
+        game.physics.arcade.collide(player.player, this.obstaclesBig);
         game.physics.arcade.overlap(player.player, this.enemies, this.checkAgainstEnemies, null, this);
         game.physics.arcade.overlap(player.player, this.items, this.pickItem, null, this);
         game.physics.arcade.overlap(this.ends, player.player, this.endGame, null, this);
