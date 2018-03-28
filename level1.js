@@ -16,14 +16,14 @@ level1 = {
     },
 
     decorWorld: function () {
-      /*  game.add.image(31 * 16, 4 * 16 + 3, 'atlas-props', 'tree');
+        game.add.image(31 * 16, 4 * 16 + 3, 'atlas-props', 'tree');
         game.add.image(48 * 16, 3 * 16 + 5, 'atlas-props', 'house');
         game.add.image(10 * 16, 8 * 16 + 4, 'atlas-props', 'bush');
         game.add.image(11 * 16, 19 * 16 - 4, 'atlas-props', 'sign');
         game.add.image(15 * 16, 19 * 16 + 6, 'atlas-props', 'skulls');
         game.add.image(23 * 16, 19 * 16, 'atlas-props', 'face-block');
         game.add.image(28 * 16, 20 * 16, 'atlas-props', 'shrooms');
-    },      */
+    },
 
     populateWorld: function () {
         // groups
