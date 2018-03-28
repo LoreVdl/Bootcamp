@@ -430,7 +430,7 @@ level1 = {
     pickLives: function (player, item) {
         this.createItemFeedback(item.x, item.y);
         item.kill();
-        lives += 10;
+        lives += 1;
         livesText.text = livesString + lives;
     },
 
