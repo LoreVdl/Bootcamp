@@ -12,6 +12,7 @@ var character = 'link';
 var jumpCounter = 0;
 var maxJump = 2;
 
+window.addEventListener("deviceorientation", this.handleOrientation, true);
 
 var player = {
 	create: function () {
@@ -37,7 +38,10 @@ var player = {
         this.switchBtn.fixedToCamera = true;
     },
 
-
+    handleOrientation: function (e) {
+    	var x = e.gamma;
+    	this.player.body.velocity.x = x;
+    },
 
     bindKeys: function () {
         this.wasd = {
@@ -98,7 +102,7 @@ var player = {
             this.player.body.velocity.x = vel;
             this.player.animations.play('run');
             this.player.scale.x = 1;
-        } else if (game.input.pointer1.isDown) {
+        } /*else if (game.input.pointer1.isDown) {
             if (game.input.pointer1.x < game.width/2) {
                 this.player.body.velocity.x = -vel;
                 this.player.animations.play('run');
@@ -111,11 +115,29 @@ var player = {
                 this.player.body.velocity.x = 0;
                 this.player.animations.play('idle');
             }
-        } else {
+        }*/ else {
             this.player.body.velocity.x = 0;
             this.player.animations.play('idle');
         }
 
+
+		gyro.frequency = 10;
+
+		gyro.startTracking(function(o) {
+			if (o.y < 0)
+			{
+				player.player.body.velocity.x = -vel;
+				player.player.animations.play('run');
+            	player.player.scale.x = -1;
+			}
+			else if (o.y > 0)
+			{
+				player.player.body.velocity.x = vel;
+				player.player.animations.play('run');
+            	player.player.scale.x = 1;
+			}
+		});
+		
 
 
         // jump animation
