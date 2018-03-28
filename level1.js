@@ -34,6 +34,9 @@ level1 = {
         this.items = game.add.group();
         this.items.enableBody = true;
 
+        this.lives = game.add.group();
+        this.lives.enableBody = true;
+
         this.ends = game.add.group();
         this.ends.enableBody = true;
 
@@ -93,6 +96,7 @@ level1 = {
         this.createEagle(16, 9);
         this.createOpossum(44, 21);
         this.createOpossum(25, 21);
+        this.createGhost(20, 21);
     },
 
     createArrow: function (x, y, scale) {
@@ -253,6 +257,25 @@ level1 = {
         this.enemies.add(temp);
     },
 
+    createGhost: function (x, y) {
+        x *= 16;
+        y *= 16;
+        var temp = game.add.sprite(x, y, 'characters', 'ghost/run-1');
+        temp.anchor.setTo(0.5);
+        game.physics.arcade.enable(temp);
+        temp.body.gravity.y = 500;
+        temp.body.setSize(16, 18, 0, 0);
+        //add animations
+        temp.animations.add('run', Phaser.Animation.generateFrameNames('ghost/run-', 1, 2, '', 0), 5, true);
+        temp.animations.add('ability', Phaser.Animation.generateFrameNames('ghost/ability-', 1, 2, '', 0), 5, true);
+        temp.animations.play('ability');
+        temp.body.velocity.x = 60 * game.rnd.pick([1, -1]);
+        temp.body.bounce.x = 1;
+        temp.enemyType = 'ghost';
+
+        this.enemies.add(temp);
+    },
+
     createEagle: function (x, y) {
         x *= 16;
         y *= 16;
@@ -302,7 +325,7 @@ level1 = {
         temp.animations.add('idle', Phaser.Animation.generateFrameNames('cherry/cherry-', 1, 7, '', 0), 12, true);
         temp.animations.play('idle');
 
-        this.items.add(temp);
+        this.lives.add(temp);
     },
 
     createGem: function (x, y) {
@@ -331,6 +354,7 @@ level1 = {
         game.physics.arcade.collide(player.player, this.obstaclesBig);
         game.physics.arcade.overlap(player.player, this.enemies, this.checkAgainstEnemies, null, this);
         game.physics.arcade.overlap(player.player, this.items, this.pickItem, null, this);
+        game.physics.arcade.overlap(player.player, this.lives, this.pickLives, null, this);
         game.physics.arcade.overlap(this.ends, player.player, this.endGame, null, this);
         game.physics.arcade.collide(player.player, this.cranks.children[0], this.destroyBlock, null, this);
         game.physics.arcade.collide(player.player, this.cranks.children[1], this.destroyBlockBig, null, this);
@@ -390,7 +414,17 @@ level1 = {
     pickItem: function (player, item) {
         this.createItemFeedback(item.x, item.y);
         item.kill();
+        score += 10;
+        scoreText.text = scoreString + score;
     },
+
+    pickLives: function (player, item) {
+        this.createItemFeedback(item.x, item.y);
+        item.kill();
+        score += 10;
+        scoreText.text = scoreString + score;
+    },
+
 
     enemiesManager: function () {
         for (var i = 0, len = this.enemies.children.length; i < len; i++) {
@@ -446,7 +480,12 @@ level1 = {
 
     checkAgainstEnemies: function (player, enemy) {
 
-        if ((player.y + player.body.height * .5 < enemy.y ) && player.body.velocity.y > 0) {
+        if(pacmanAbility && character==="pacman" && enemy.enemyType==="ghost" ) {
+            //Able to kill ghost
+            this.createEnemyDeath(enemy.x, enemy.y);
+            enemy.kill();
+        }
+        else if ((player.y + player.body.height * .5 < enemy.y ) && player.body.velocity.y > 0 && enemy.enemyType!=="ghost") {
 
             this.createEnemyDeath(enemy.x, enemy.y);
             enemy.kill();

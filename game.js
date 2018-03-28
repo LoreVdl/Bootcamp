@@ -11,7 +11,15 @@ var frogJumpSide = 'left';
 var character = 'link';
 var jumpCounter = 0;
 var maxJump = 2;
+var pacmanAbility = 0;
 
+var scoreString = '';
+var scoreText;
+var score = 0;
+
+var livesString = '';
+var livesText;
+var lives = 3;
 
 var player = {
 	create: function () {
@@ -29,12 +37,22 @@ var player = {
         this.actionBtn.scale.set(0.5);
         this.actionBtn.inputEnabled = true;
         this.actionBtn.fixedToCamera = true;
-				
+
         this.switchBtn = game.add.button(gameWidth-20, gameHeight-20, 'switch', this.switchPlayer, this, 2, 1, 0);
         this.switchBtn.anchor.set(0.5);
         this.switchBtn.scale.set(0.5);
         this.switchBtn.inputEnabled = true;
         this.switchBtn.fixedToCamera = true;
+
+				scoreString = 'Score : ';
+    		scoreText = game.add.text(25, 10, scoreString + score, { font: '10px Arial', fill: '#fff' });
+				scoreText.fixedToCamera = true;
+				scoreText.anchor.setTo(0.5, 0.5);
+
+				livesString = 'Lives : ';
+    		livesText = game.add.text(gameWidth-25, 10, livesString + lives, { font: '10px Arial', fill: '#fff' });
+				livesText.fixedToCamera = true;
+				livesText.anchor.setTo(0.5, 0.5);
     },
 
     bindKeys: function () {
@@ -136,6 +154,7 @@ var player = {
 			}
 		});
 
+
 		if (this.player.body.velocity.x !=0)
 		{
 			this.player.animations.play('run');
@@ -163,20 +182,20 @@ var player = {
     },
 
     action: function (sprite, pointer) {
-				if (character == 'link') {
+		if (character == 'link') {
 	        if (this.player.body.onFloor())
 	        {
 	            this.player.body.velocity.y = -170;
 	        }
-				}
+		}
 
-				if (character == 'mario') {
-					if (jumpCounter < maxJump)
-					{
-							this.player.body.velocity.y = -160;
-							jumpCounter++;
-					}
-				}
+		if (character == 'mario') {
+			if (jumpCounter < maxJump)
+			{
+					this.player.body.velocity.y = -160;
+					jumpCounter++;
+			}
+		}
     },
 
     switchPlayer: function (sprite, pointer) {
@@ -196,7 +215,7 @@ var player = {
                 this.player.animations.play('idle');
                 character = 'mario';
 		        break;
-		        
+
 		    case 'mario':
                 this.player.anchor.setTo(0.5);
                 game.physics.arcade.enable(this.player);
