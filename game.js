@@ -22,24 +22,19 @@ var player = {
         this.bindKeys();
         game.camera.follow(this.player, Phaser.Camera.FOLLOW_PLATFORMER);
 
-
+        
         // create buttons
-        this.jumpBtn = game.add.button(20, gameHeight-20, 'jump', this.jump, this, 2, 1, 0);
-        this.jumpBtn.anchor.set(0.5);
-        this.jumpBtn.scale.set(0.5);
-        this.jumpBtn.inputEnabled = true;
-        this.jumpBtn.fixedToCamera = true;
+        this.actionBtn = game.add.button(20, gameHeight-20, 'action', this.action, this, 2, 1, 0);
+        this.actionBtn.anchor.set(0.5);
+        this.actionBtn.scale.set(0.5);
+        this.actionBtn.inputEnabled = true;
+        this.actionBtn.fixedToCamera = true;
 				
         this.switchBtn = game.add.button(gameWidth-20, gameHeight-20, 'switch', this.switchPlayer, this, 2, 1, 0);
         this.switchBtn.anchor.set(0.5);
         this.switchBtn.scale.set(0.5);
         this.switchBtn.inputEnabled = true;
         this.switchBtn.fixedToCamera = true;
-    },
-
-    handleOrientation: function (e) {
-    	var x = e.gamma;
-    	this.player.body.velocity.x = x;
     },
 
     bindKeys: function () {
@@ -92,7 +87,7 @@ var player = {
         }
 
         var vel = 150;
-
+/*
         if (this.wasd.left.isDown) {
             this.player.body.velocity.x = -vel;
             this.player.animations.play('run');
@@ -101,7 +96,7 @@ var player = {
             this.player.body.velocity.x = vel;
             this.player.animations.play('run');
             this.player.scale.x = 1;
-        } /*else if (game.input.pointer1.isDown) {
+        } *//*else if (game.input.pointer1.isDown) {
             if (game.input.pointer1.x < game.width/2) {
                 this.player.body.velocity.x = -vel;
                 this.player.animations.play('run');
@@ -114,29 +109,41 @@ var player = {
                 this.player.body.velocity.x = 0;
                 this.player.animations.play('idle');
             }
-        }*/ else {
+        }*/ /*else {
             this.player.body.velocity.x = 0;
             this.player.animations.play('idle');
-        }
+        }*/
 
-
-		gyro.frequency = 10;
+		gyro.frequency = 0.5;
 
 		gyro.startTracking(function(o) {
-			if (o.y < 0)
+			if (!hurtFlag)
 			{
-				player.player.body.velocity.x = -vel;
-				player.player.animations.play('run');
-            	player.player.scale.x = -1;
-			}
-			else if (o.y > 0)
-			{
-				player.player.body.velocity.x = vel;
-				player.player.animations.play('run');
-            	player.player.scale.x = 1;
+				if (o.y < -1)
+				{
+					player.player.body.velocity.x = -vel;
+	            	player.player.scale.x = -1;
+				}
+				else if (o.y > 1)
+				{
+					player.player.body.velocity.x = vel;
+	            	player.player.scale.x = 1;
+				}
+				else
+				{
+					player.player.body.velocity.x = 0;
+				}
 			}
 		});
-		
+
+		if (this.player.body.velocity.x !=0)
+		{
+			this.player.animations.play('run');
+		}
+		else
+		{
+			this.player.animations.play('idle');
+		}
 
 
         // jump animation
@@ -155,7 +162,7 @@ var player = {
         }
     },
 
-    jump: function (sprite, pointer) {
+    action: function (sprite, pointer) {
 				if (character == 'link') {
 	        if (this.player.body.onFloor())
 	        {

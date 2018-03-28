@@ -341,7 +341,6 @@ level1 = {
 
         this.enemiesManager();
         this.parallaxBackground();
-
     },
 
     arrowHitWorld: function (arrow) {
