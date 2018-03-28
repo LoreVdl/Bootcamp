@@ -278,6 +278,10 @@ level1 = {
 
     },
 
+    endGame: function () {
+      this.game.state.start('LevelSelect');
+    },
+
     pickItem: function (player, item) {
         this.createItemFeedback(item.x, item.y);
         item.kill();
