@@ -310,17 +310,16 @@ level1 = {
 
     arrowHitPlayer: function (player, arrow) {
         if (character == 'link' && hurtFlag == false) {
-
-            if ((player.x + player.body.width * 0.5 > arrow.x) && player.scale.x == -1) {
+            
+            if (((player.x + player.body.width * 0.5 > arrow.x) && player.scale.x == -1) || ((player.x + player.body.width * 0.5 < arrow.x) && player.scale.x == 1)) {
 
                 arrow.kill()
-            } else if ((player.x + player.body.width * 0.5 < arrow.x) && player.scale.x == 1) {
-
-                arrow.kill();
             } else {
+                arrow.kill();
                 this.hurtPlayer();
             }
         } else {
+            arrow.kill();
             this.hurtPlayer();
         }
     },
