@@ -226,7 +226,7 @@ level1 = {
         temp.anchor.setTo(0.8);
         game.physics.arcade.enable(temp);
         temp.body.gravity.y = 500;
-        temp.body.setSize(16, 13, 8, 15);
+        temp.body.setSize(16, 18, 8, 9);
         //add animations
         temp.animations.add('run', Phaser.Animation.generateFrameNames('opossum/opossum-', 1, 6, '', 0), 12, true);
         temp.animations.play('run');
