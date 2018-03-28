@@ -155,22 +155,33 @@ var player = {
             jumpCounter = 0;
         }
     },
+    
+    pacmanReset : function() {
+        pacmanAbility = !pacmanAbility;
+    },
 
     jump: function (sprite, pointer) {
-				if (character == 'link') {
-	        if (this.player.body.onFloor())
-	        {
+                switch (character) {
+                        case 'link':
+                             if (this.player.body.onFloor())
+	                       {
 	            this.player.body.velocity.y = -170;
-	        }
-				}
-
-				if (character == 'mario') {
-					if (jumpCounter < maxJump)
+                            }
+                            break;
+                        case 'mario':
+                            if (jumpCounter < maxJump)
 					{
 							this.player.body.velocity.y = -160;
 							jumpCounter++;
 					}
-				}
+                            break;
+                        case 'pacman':
+                            this.pacmanReset();
+                            game.time.events.add(Phaser.Timer.SECOND*5, this.pacmanReset);
+                            break;
+                            
+                            
+                    }
     },
 
     switchPlayer: function (sprite, pointer) {
