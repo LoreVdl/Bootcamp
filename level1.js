@@ -34,6 +34,9 @@ level1 = {
         this.items = game.add.group();
         this.items.enableBody = true;
 
+        this.lives = game.add.group();
+        this.lives.enableBody = true;
+
         this.ends = game.add.group();
         this.ends.enableBody = true;
 
@@ -55,11 +58,11 @@ level1 = {
         frogTimer.start();
 
         arrowTimer1 = game.time.create(false);
-        arrowTimer1.loop(2000, this.createArrow, this, 48, 21.5, -1);
+        arrowTimer1.loop(2000, this.createArrow, this, 49, 21.5, -1);
         arrowTimer1.start();
 
         arrowTimer2 = game.time.create(false);
-        arrowTimer2.loop(3000, this.createArrow, this, 49, 20.5, -1);
+        arrowTimer2.loop(3000, this.createArrow, this, 50, 20.5, -1);
         arrowTimer2.start();
 
         // create items
@@ -261,7 +264,7 @@ level1 = {
         temp.anchor.setTo(0.5);
         game.physics.arcade.enable(temp);
         temp.body.gravity.y = 500;
-        temp.body.setSize(16, 16, 0, 0);
+        temp.body.setSize(16, 18, 0, 0);
         //add animations
         temp.animations.add('run', Phaser.Animation.generateFrameNames('ghost/run-', 1, 2, '', 0), 5, true);
         temp.animations.add('ability', Phaser.Animation.generateFrameNames('ghost/ability-', 1, 2, '', 0), 5, true);
@@ -322,7 +325,7 @@ level1 = {
         temp.animations.add('idle', Phaser.Animation.generateFrameNames('cherry/cherry-', 1, 7, '', 0), 12, true);
         temp.animations.play('idle');
 
-        this.items.add(temp);
+        this.lives.add(temp);
     },
 
     createGem: function (x, y) {
@@ -351,6 +354,7 @@ level1 = {
         game.physics.arcade.collide(player.player, this.obstaclesBig);
         game.physics.arcade.overlap(player.player, this.enemies, this.checkAgainstEnemies, null, this);
         game.physics.arcade.overlap(player.player, this.items, this.pickItem, null, this);
+        game.physics.arcade.overlap(player.player, this.lives, this.pickLives, null, this);
         game.physics.arcade.overlap(this.ends, player.player, this.endGame, null, this);
         game.physics.arcade.collide(player.player, this.cranks.children[0], this.destroyBlock, null, this);
         game.physics.arcade.collide(player.player, this.cranks.children[1], this.destroyBlockBig, null, this);
@@ -361,7 +365,6 @@ level1 = {
 
         this.enemiesManager();
         this.parallaxBackground();
-
     },
 
     arrowHitWorld: function (arrow) {
@@ -411,7 +414,17 @@ level1 = {
     pickItem: function (player, item) {
         this.createItemFeedback(item.x, item.y);
         item.kill();
+        score += 10;
+        scoreText.text = scoreString + score;
     },
+
+    pickLives: function (player, item) {
+        this.createItemFeedback(item.x, item.y);
+        item.kill();
+        lives += 10;
+        livesText.text = livesString + lives;
+    },
+
 
     enemiesManager: function () {
         for (var i = 0, len = this.enemies.children.length; i < len; i++) {
@@ -479,6 +492,8 @@ level1 = {
             player.body.velocity.y = -200;
         } else {
             this.hurtPlayer();
+            lives -= 1;
+            livesText.text = livesString + lives;
         }
 
     },

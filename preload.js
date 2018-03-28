@@ -30,7 +30,6 @@ preload = {
         game.load.image("level6", "assets/sprites/Level6.png", game.global.thumbWidth, game.global.thumbHeight);
 
 
-        game.load.image('jump', 'assets/buttons/jump.png');
         game.load.image('action', 'assets/buttons/action.png');
         game.load.image('switch', 'assets/buttons/switch.png');
     },
