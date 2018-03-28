@@ -14,7 +14,7 @@ level1 = {
         this.music.loop = true;
         this.music.play();
         // -----------------------------------------------------------------------------timer
-        game.time.events.repeat(Phaser.Timer.SECOND * 5, 10, createArrow, this);
+        game.time.events.repeat(Phaser.Timer.SECOND * 2, 10, this.createArrow, this, 42, 9, -1);
     },
 
     decorWorld: function () {
@@ -75,21 +75,20 @@ level1 = {
         this.createOpossum(23, 20);
     },
 
-    createArrow: function (x,y) {
+    createArrow: function (x, y, scale) {
         x *= 16;
         y *= 16;
-        var temp = game.add.sprite(x, y, 'arrow');
+        var temp = game.add.sprite(x, y, 'new-atlas' , 'arrow-1');
         temp.anchor.setTo(0.8);
+        temp.scale.setTo(scale);
         game.physics.arcade.enable(temp);
-        //temp.body.setSize(16, 13, 8, 15);
+        temp.body.setSize(16, 13, 8, 15);
         //add animations
-/*
-        temp.animations.add('run', Phaser.Animation.generateFrameNames('opossum/opossum-', 1, 6, '', 0), 12, true);
-        temp.animations.play('run');
-        temp.body.velocity.x = 60 * game.rnd.pick([1, -1]);
-        temp.body.bounce.x = 1;
-        temp.enemyType = 'opossum';
-*/
+
+        temp.animations.add('fly', Phaser.Animation.generateFrameNames('arrow-', 1, 3, 2, '', 0), 12, true);
+        temp.animations.play('fly');
+        temp.body.velocity.x = 100 * -scale;
+
         this.arrows.add(temp);
     },
 
