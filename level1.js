@@ -38,6 +38,9 @@ level1 = {
         this.obstacles = game.add.group();
         this.obstacles.enableBody = true;
 
+        this.obstaclesBig = game.add.group();
+        this.obstaclesBig.enableBody = true;
+
         this.cranks = game.add.group();
         this.cranks.enableBody = true;
 
@@ -50,8 +53,14 @@ level1 = {
         this.createEnd(50, 12);
 
         this.createHendel(21, 5);
+        this.createHendel(31, 12);
 
         this.createObstacle(33, 21);
+
+        this.createObstacleBig(38, 11);
+        this.createObstacleBig(38, 9);
+        this.createObstacleBig(38, 7);
+        this.createObstacleBig(38, 5);
 
         this.createCherry(28, 5);
         this.createCherry(29, 5);
@@ -175,6 +184,17 @@ level1 = {
       this.obstacles.add(temp);
     },
 
+    createObstacleBig: function (x, y) {
+      x *= 16;
+      y *= 16;
+      var temp = game.add.sprite(x, y, 'atlas-props', 'block-big');
+      temp.anchor.setTo(0);
+      game.physics.arcade.enable(temp);
+      temp.body.moves = false;
+
+      this.obstacles.add(temp);
+    },
+
     createOpossum: function (x, y) {
         x *= 16;
         y *= 16;
@@ -269,7 +289,8 @@ level1 = {
         game.physics.arcade.overlap(player.player, this.enemies, this.checkAgainstEnemies, null, this);
         game.physics.arcade.overlap(player.player, this.items, this.pickItem, null, this);
         game.physics.arcade.overlap(this.ends, player.player, this.endGame, null, this);
-        game.physics.arcade.collide(this.cranks, player.player, this.destroyBlock, null, this);
+        game.physics.arcade.collide(this.cranks.children[0], player.player, this.destroyBlock, null, this);
+        game.physics.arcade.collide(this.cranks.children[1], player.player, this.destroyBlockBig, null, this);
 
         player.movePlayer();
 
@@ -282,6 +303,14 @@ level1 = {
       item = this.obstacles.children[0]
       this.createItemFeedback(item.x, item.y);
       item.kill();
+    },
+
+    destroyBlockBig: function (player, item) {
+      for (var i = 0; i < 5; i++) {
+        item = this.obstacles.children[i];
+        this.createItemFeedback(item.x, item.y);
+        item.kill();
+      }
     },
 
     endGame: function () {
