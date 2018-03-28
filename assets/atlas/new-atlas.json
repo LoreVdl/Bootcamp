@@ -2,29 +2,29 @@
 
   {
     "filename": "arrow-1",
-    "frame": {"x":0,"y":0,"w":12,"h":6},
+    "frame": {"x":0,"y":0,"w":13,"h":6},
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": {"x":0,"y":0,"w":12,"h":6},
-    "sourceSize": {"w":12,"h":6},
+    "spriteSourceSize": {"x":0,"y":0,"w":13,"h":6},
+    "sourceSize": {"w":13,"h":6},
     "pivot": {"x":0.5,"y":0.5}
   },
   {
     "filename": "arrow-2",
-    "frame": {"x":24,"y":0,"w":12,"h":6},
+    "frame": {"x":26,"y":0,"w":13,"h":6},
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": {"x":0,"y":0,"w":12,"h":6},
-    "sourceSize": {"w":12,"h":6},
+    "spriteSourceSize": {"x":0,"y":0,"w":13,"h":6},
+    "sourceSize": {"w":13,"h":6},
     "pivot": {"x":0.5,"y":0.5}
   },
   {
     "filename": "arrow-3",
-    "frame": {"x":48,"y":0,"w":12,"h":6},
+    "frame": {"x":52,"y":0,"w":13,"h":6},
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": {"x":0,"y":0,"w":12,"h":6},
-    "sourceSize": {"w":12,"h":6},
+    "spriteSourceSize": {"x":0,"y":0,"w":13,"h":6},
+    "sourceSize": {"w":13,"h":6},
     "pivot": {"x":0.5,"y":0.5}
   }],
   "meta": {
