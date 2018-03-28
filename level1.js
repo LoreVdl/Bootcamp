@@ -13,8 +13,9 @@ level1 = {
         this.music = game.add.audio('music');
         this.music.loop = true;
         this.music.play();
-        // -----------------------------------------------------------------------------timer
-        game.time.events.repeat(Phaser.Timer.SECOND * 2, 10, this.createArrow, this, 42, 9, -1);
+
+        // timer
+        game.time.events.repeat(Phaser.Timer.SECOND * 1, 2000, this.createArrow, this, 42, 12, 1);
     },
 
     decorWorld: function () {
@@ -82,18 +83,12 @@ level1 = {
         temp.anchor.setTo(0.8);
         temp.scale.setTo(scale);
         game.physics.arcade.enable(temp);
-        temp.body.setSize(16, 13, 8, 15);
         //add animations
-
-        temp.animations.add('fly', Phaser.Animation.generateFrameNames('arrow-', 1, 3, 2, '', 0), 12, true);
+        temp.animations.add('fly', Phaser.Animation.generateFrameNames('arrow-', 1, 3, '', 0), 5, true);
         temp.animations.play('fly');
-        temp.body.velocity.x = 100 * -scale;
+        temp.body.velocity.x = 100 * scale;
 
         this.arrows.add(temp);
-    },
-
-    destroyArrow: function (arrow) {
-
     },
 
     switchFrogJump: function () {
@@ -273,12 +268,36 @@ level1 = {
         this.parallaxBackground();
 
 
+        game.physics.arcade.collide(this.arrows, this.layer, this.arrowHitWorld, null, this);
+        game.physics.arcade.overlap(player.player, this.arrows, this.arrowHitPlayer, null, this);
 
 
     },
 
+    arrowHitWorld: function (arrow) {
+        arrow.kill();
+    },
+
+    arrowHitPlayer: function (player, arrow) {
+        if (character == 'link' && hurtFlag == false) {
+
+            if ((player.x + player.body.width * 0.5 > arrow.x) && player.scale.x == -1) {
+
+                arrow.kill()
+            } else if ((player.x + player.body.width * 0.5 < arrow.x) && player.scale.x == 1) {
+
+                arrow.kill();
+            } else {
+                this.hurtPlayer();
+            }
+        } else {
+            this.hurtPlayer();
+        }
+    },
+
     endGame: function () {
-      this.game.state.start('LevelSelect');
+        player.resetHurt();
+        this.game.state.start('LevelSelect');
     },
 
     pickItem: function (player, item) {
@@ -345,20 +364,6 @@ level1 = {
             this.createEnemyDeath(enemy.x, enemy.y);
             enemy.kill();
             player.body.velocity.y = -200;
-        } else if (character == 'link' && hurtFlag == false) {
-
-            if ((player.x + player.body.width * 0.5 > enemy.x) && (player.y + player.body.height * 0.5 > enemy.y) && (player.y - player.body.height * 0.5 < enemy.y) && player.scale.x == -1) {
-
-                this.createEnemyDeath(enemy.x, enemy.y);
-                enemy.kill();
-            } else if ((player.x + player.body.width < enemy.x) && (player.y + player.body.height * 0.5 > enemy.y) && (player.y - player.body.height * 0.5 < enemy.y) && player.scale.x == 1) {
-
-                this.createEnemyDeath(enemy.x, enemy.y);
-                enemy.kill();
-            } else {
-                this.hurtPlayer();
-            }
-
         } else {
             this.hurtPlayer();
         }
