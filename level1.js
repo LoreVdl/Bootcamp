@@ -421,8 +421,8 @@ level1 = {
     pickLives: function (player, item) {
         this.createItemFeedback(item.x, item.y);
         item.kill();
-        score += 10;
-        scoreText.text = scoreString + score;
+        lives += 10;
+        livesText.text = livesString + lives;
     },
 
 
@@ -492,6 +492,8 @@ level1 = {
             player.body.velocity.y = -200;
         } else {
             this.hurtPlayer();
+            lives -= 1;
+            livesText.text = livesString + lives;
         }
 
     },
