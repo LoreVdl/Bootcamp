@@ -17,6 +17,13 @@ level1 = {
         player.resetHurt();
     },
 
+    gameOver: function() {
+      if (lives == 0) {
+        game.state.start("TitleScreen");
+        lives = 3;
+      }
+    },
+
     decorWorld: function () {
         game.add.image(42 * 16, 7 * 16 + 3, 'atlas-props', 'tree');
         game.add.image(7 * 16, 6 * 16 + 5, 'atlas-props', 'house');
@@ -365,6 +372,8 @@ level1 = {
 
         this.enemiesManager();
         this.parallaxBackground();
+
+        this.gameOver();
     },
 
     arrowHitWorld: function (arrow) {
@@ -492,7 +501,7 @@ level1 = {
             player.body.velocity.y = -200;
         } else {
             this.hurtPlayer();
-            
+
         }
 
     },
@@ -506,7 +515,7 @@ level1 = {
         player.player.body.velocity.y = -100;
 
         player.player.body.velocity.x = (player.player.scale.x == 1) ? -100 : 100;
-        
+
         lives -= 1;
         livesText.text = livesString + lives;
     },
