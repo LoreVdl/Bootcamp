@@ -411,6 +411,8 @@ level1 = {
     pickItem: function (player, item) {
         this.createItemFeedback(item.x, item.y);
         item.kill();
+        score += 10;
+        scoreText.text = scoreString + score;
     },
 
     enemiesManager: function () {

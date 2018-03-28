@@ -13,6 +13,13 @@ var jumpCounter = 0;
 var maxJump = 2;
 var pacmanAbility = 0;
 
+var scoreString = '';
+var scoreText;
+var score = 0;
+
+var livesString = '';
+var livesText;
+var lives = 3;
 
 var player = {
 	create: function () {
@@ -30,12 +37,22 @@ var player = {
         this.jumpBtn.scale.set(0.5);
         this.jumpBtn.inputEnabled = true;
         this.jumpBtn.fixedToCamera = true;
-				
+
         this.switchBtn = game.add.button(gameWidth-20, gameHeight-20, 'switch', this.switchPlayer, this, 2, 1, 0);
         this.switchBtn.anchor.set(0.5);
         this.switchBtn.scale.set(0.5);
         this.switchBtn.inputEnabled = true;
         this.switchBtn.fixedToCamera = true;
+
+				scoreString = 'Score : ';
+    		scoreText = game.add.text(25, 10, scoreString + score, { font: '10px Arial', fill: '#fff' });
+				scoreText.fixedToCamera = true;
+				scoreText.anchor.setTo(0.5, 0.5);
+
+				livesString = 'Lives : ';
+    		livesText = game.add.text(gameWidth-25, 10, livesString + lives, { font: '10px Arial', fill: '#fff' });
+				livesText.fixedToCamera = true;
+				livesText.anchor.setTo(0.5, 0.5);
     },
 
     handleOrientation: function (e) {
@@ -137,7 +154,7 @@ var player = {
             	player.player.scale.x = 1;
 			}
 		});
-		
+
 
 
         // jump animation
@@ -190,7 +207,7 @@ var player = {
                 this.player.animations.play('idle');
                 character = 'mario';
 		        break;
-		        
+
 		    case 'mario':
                 this.player.anchor.setTo(0.5);
                 game.physics.arcade.enable(this.player);
