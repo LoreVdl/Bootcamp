@@ -49,9 +49,9 @@ level1 = {
         // create items
         this.createEnd(50, 12);
 
-        this.createHendel(25, 12.8);
+        this.createHendel(21, 5);
 
-        this.createObstacle(31, 12.8);
+        this.createObstacle(33, 21);
 
         this.createCherry(28, 5);
         this.createCherry(29, 5);
@@ -156,7 +156,7 @@ level1 = {
       x *= 16;
       y *= 16;
       var temp = game.add.sprite(x, y, 'atlas-props', 'crank-down');
-      temp.anchor.setTo(0.8);
+      temp.anchor.setTo(0);
       game.physics.arcade.enable(temp);
       temp.body.gravity.y = 500;
       temp.body.moves = false;
@@ -168,7 +168,7 @@ level1 = {
       x *= 16;
       y *= 16;
       var temp = game.add.sprite(x, y, 'atlas-props', 'crate');
-      temp.anchor.setTo(0.8);
+      temp.anchor.setTo(0);
       game.physics.arcade.enable(temp);
       temp.body.moves = false;
 
@@ -279,7 +279,9 @@ level1 = {
     },
 
     destroyBlock: function (player, item) {
-   
+      item = this.obstacles.children[0]
+      this.createItemFeedback(item.x, item.y);
+      item.kill();
     },
 
     endGame: function () {
