@@ -22,12 +22,12 @@ preload = {
 
 		game.load.spritesheet("level_arrows", "assets/level_arrows.png", 48, 48);
 
-        game.load.spritesheet("level1", "assets/sprites/Level1.png", game.global.thumbWidth, game.global.thumbHeight);
-        game.load.spritesheet("level2", "assets/sprites/Level2.png", game.global.thumbWidth, game.global.thumbHeight);
-        game.load.spritesheet("level3", "assets/sprites/Level3.png", game.global.thumbWidth, game.global.thumbHeight);
-        game.load.spritesheet("level4", "assets/sprites/Level4.png", game.global.thumbWidth, game.global.thumbHeight);
-        game.load.spritesheet("level5", "assets/sprites/Level5.png", game.global.thumbWidth, game.global.thumbHeight);
-        game.load.spritesheet("level6", "assets/sprites/Level6.png", game.global.thumbWidth, game.global.thumbHeight);
+        game.load.image("level1", "assets/sprites/Level1.png", game.global.thumbWidth, game.global.thumbHeight);
+        game.load.image("level2", "assets/sprites/Level2.png", game.global.thumbWidth, game.global.thumbHeight);
+        game.load.image("level3", "assets/sprites/Level3.png", game.global.thumbWidth, game.global.thumbHeight);
+        game.load.image("level4", "assets/sprites/Level4.png", game.global.thumbWidth, game.global.thumbHeight);
+        game.load.image("level5", "assets/sprites/Level5.png", game.global.thumbWidth, game.global.thumbHeight);
+        game.load.image("level6", "assets/sprites/Level6.png", game.global.thumbWidth, game.global.thumbHeight);
 
 
         game.load.image('jump', 'assets/buttons/jump.png');

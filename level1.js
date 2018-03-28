@@ -18,7 +18,7 @@ level1 = {
     },
 
     decorWorld: function () {
-        game.add.image(42 * 16, 6 * 16 + 3, 'atlas-props', 'tree');
+        game.add.image(42 * 16, 7 * 16 + 3, 'atlas-props', 'tree');
         game.add.image(7 * 16, 6 * 16 + 5, 'atlas-props', 'house');
         game.add.image(41 * 16, 11 * 16 + 4, 'atlas-props', 'bush');
         game.add.image(25 * 16, 21 * 16 + 6, 'atlas-props', 'skulls');
@@ -66,7 +66,7 @@ level1 = {
         this.createEnd(50, 12);
 
         this.createHendel(21, 5);
-        this.createHendel(31, 12);
+        this.createHendel(54, 21);
 
         this.createObstacle(33, 21);
 
