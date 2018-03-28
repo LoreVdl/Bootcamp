@@ -14,8 +14,7 @@ level1 = {
         this.music.loop = true;
         this.music.play();
 
-        // timer
-        game.time.events.repeat(Phaser.Timer.SECOND * 1, 2000, this.createArrow, this, 42, 12, 1);
+        player.resetHurt();
     },
 
     decorWorld: function () {
@@ -37,7 +36,7 @@ level1 = {
 
         this.ends = game.add.group();
         this.ends.enableBody = true;
-        // -------------------------------------------------------------arrows
+        
         this.arrows = game.add.group();
         this.arrows.enableBody = true;
 
@@ -45,6 +44,10 @@ level1 = {
         frogTimer = game.time.create(false);
         frogTimer.loop(2000, this.switchFrogJump, this);
         frogTimer.start();
+        //
+        arrowTimer = game.time.create(false);
+        arrowTimer.loop(2000, this.createArrow, this, 10, 12.5, 1);
+        arrowTimer.start();
 
         // create items
         this.createEnd(50,12);
@@ -289,7 +292,6 @@ level1 = {
     },
 
     endGame: function () {
-        player.resetHurt();
         this.game.state.start('LevelSelect');
     },
 
