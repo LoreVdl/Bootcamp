@@ -9,7 +9,7 @@ level1 = {
 
         this.populateWorld();
 
-		// music
+        // music
         this.music = game.add.audio('music');
         this.music.loop = true;
         this.music.play();
@@ -36,21 +36,31 @@ level1 = {
 
         this.ends = game.add.group();
         this.ends.enableBody = true;
-        
+
         this.arrows = game.add.group();
         this.arrows.enableBody = true;
+
+        this.obstacles = game.add.group();
+        this.obstacles.enableBody = true;
+
+        this.cranks = game.add.group();
+        this.cranks.enableBody = true;
 
         //timer for frog jumps
         frogTimer = game.time.create(false);
         frogTimer.loop(2000, this.switchFrogJump, this);
         frogTimer.start();
-        //
+
         arrowTimer = game.time.create(false);
         arrowTimer.loop(2000, this.createArrow, this, 10, 12.5, 1);
         arrowTimer.start();
 
         // create items
-        this.createEnd(50,12);
+        this.createEnd(50, 12);
+
+        this.createHendel(25, 12.8);
+
+        this.createObstacle(31, 12.8);
 
         this.createCherry(28, 5);
         this.createCherry(29, 5);
@@ -166,6 +176,29 @@ level1 = {
       this.ends.add(temp);
     },
 
+    createHendel: function (x, y) {
+      x *= 16;
+      y *= 16;
+      var temp = game.add.sprite(x, y, 'atlas-props', 'crank-down');
+      temp.anchor.setTo(0.8);
+      game.physics.arcade.enable(temp);
+      temp.body.gravity.y = 500;
+      temp.body.moves = false;
+
+      this.cranks.add(temp);
+    },
+
+    createObstacle: function (x, y) {
+      x *= 16;
+      y *= 16;
+      var temp = game.add.sprite(x, y, 'atlas-props', 'crate');
+      temp.anchor.setTo(0.8);
+      game.physics.arcade.enable(temp);
+      temp.body.moves = false;
+
+      this.obstacles.add(temp);
+    },
+
     createOpossum: function (x, y) {
         x *= 16;
         y *= 16;
@@ -254,19 +287,20 @@ level1 = {
         game.physics.arcade.collide(player.player, this.layer);
         game.physics.arcade.collide(this.enemies, this.layer);
         game.physics.arcade.collide(this.ends, this.layer);
+        game.physics.arcade.collide(this.obstacles, this.layer);
+        game.physics.arcade.collide(this.cranks, this.layer);
+        game.physics.arcade.collide(player.player, this.obstacles);
         game.physics.arcade.overlap(player.player, this.enemies, this.checkAgainstEnemies, null, this);
         game.physics.arcade.overlap(player.player, this.items, this.pickItem, null, this);
         game.physics.arcade.overlap(this.ends, player.player, this.endGame, null, this);
+        game.physics.arcade.collide(this.cranks, player.player, this.destroyBlock, null, this);
+        game.physics.arcade.collide(this.arrows, this.layer, this.arrowHitWorld, null, this);
+        game.physics.arcade.overlap(player.player, this.arrows, this.arrowHitPlayer, null, this);
 
         player.movePlayer();
 
         this.enemiesManager();
         this.parallaxBackground();
-
-
-        game.physics.arcade.collide(this.arrows, this.layer, this.arrowHitWorld, null, this);
-        game.physics.arcade.overlap(player.player, this.arrows, this.arrowHitPlayer, null, this);
-
 
     },
 
@@ -291,8 +325,13 @@ level1 = {
         }
     },
 
+    destroyBlock: function (player, item) {
+      this.createItemFeedback(item.x, item.y);
+      item.kill();
+    },
+
     endGame: function () {
-        this.game.state.start('LevelSelect');
+      this.game.state.start('LevelSelect');
     },
 
     pickItem: function (player, item) {
@@ -359,6 +398,20 @@ level1 = {
             this.createEnemyDeath(enemy.x, enemy.y);
             enemy.kill();
             player.body.velocity.y = -200;
+        } else if (character == 'link' && hurtFlag == false) {
+
+            if ((player.x + player.body.width * 0.5 > enemy.x) && (player.y + player.body.height * 0.5 > enemy.y) && (player.y - player.body.height * 0.5 < enemy.y) && player.scale.x == -1) {
+
+                this.createEnemyDeath(enemy.x, enemy.y);
+                enemy.kill();
+            } else if ((player.x + player.body.width < enemy.x) && (player.y + player.body.height * 0.5 > enemy.y) && (player.y - player.body.height * 0.5 < enemy.y) && player.scale.x == 1) {
+
+                this.createEnemyDeath(enemy.x, enemy.y);
+                enemy.kill();
+            } else {
+                this.hurtPlayer();
+            }
+
         } else {
             this.hurtPlayer();
         }
