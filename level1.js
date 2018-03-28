@@ -99,7 +99,7 @@ level1 = {
         temp.scale.setTo(scale);
         game.physics.arcade.enable(temp);
         //add animations
-        temp.animations.add('fly', Phaser.Animation.generateFrameNames('arrow-', 1, 3, '', 0), 5, true);
+        temp.animations.add('fly', Phaser.Animation.generateFrameNames('arrow-', 1, 3, '', 0), 1, true);
         temp.animations.play('fly');
         temp.body.velocity.x = 100 * scale;
 
@@ -215,7 +215,7 @@ level1 = {
       temp.anchor.setTo(0);
       game.physics.arcade.enable(temp);
       temp.body.moves = false;
-
+      temp.body.setSize(16, 13, 8, 15);
       this.obstacles.add(temp);
     },
 
