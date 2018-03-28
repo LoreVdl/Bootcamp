@@ -56,11 +56,11 @@ level1 = {
         frogTimer = game.time.create(false);
         frogTimer.loop(2000, this.switchFrogJump, this);
         frogTimer.start();
-
+/*
         arrowTimer1 = game.time.create(false);
         arrowTimer1.loop(2000, this.createArrow, this, 49, 21.5, -1);
         arrowTimer1.start();
-
+*/
         arrowTimer2 = game.time.create(false);
         arrowTimer2.loop(3000, this.createArrow, this, 50, 20.5, -1);
         arrowTimer2.start();
