@@ -34,6 +34,9 @@ level1 = {
         this.items = game.add.group();
         this.items.enableBody = true;
 
+        this.lives = game.add.group();
+        this.lives.enableBody = true;
+
         this.ends = game.add.group();
         this.ends.enableBody = true;
 
@@ -322,7 +325,7 @@ level1 = {
         temp.animations.add('idle', Phaser.Animation.generateFrameNames('cherry/cherry-', 1, 7, '', 0), 12, true);
         temp.animations.play('idle');
 
-        this.items.add(temp);
+        this.lives.add(temp);
     },
 
     createGem: function (x, y) {
@@ -351,6 +354,7 @@ level1 = {
         game.physics.arcade.collide(player.player, this.obstaclesBig);
         game.physics.arcade.overlap(player.player, this.enemies, this.checkAgainstEnemies, null, this);
         game.physics.arcade.overlap(player.player, this.items, this.pickItem, null, this);
+        game.physics.arcade.overlap(player.player, this.lives, this.pickLives, null, this);
         game.physics.arcade.overlap(this.ends, player.player, this.endGame, null, this);
         game.physics.arcade.collide(player.player, this.cranks.children[0], this.destroyBlock, null, this);
         game.physics.arcade.collide(player.player, this.cranks.children[1], this.destroyBlockBig, null, this);
@@ -414,6 +418,14 @@ level1 = {
         score += 10;
         scoreText.text = scoreString + score;
     },
+
+    pickLives: function (player, item) {
+        this.createItemFeedback(item.x, item.y);
+        item.kill();
+        score += 10;
+        scoreText.text = scoreString + score;
+    },
+
 
     enemiesManager: function () {
         for (var i = 0, len = this.enemies.children.length; i < len; i++) {
