@@ -492,8 +492,7 @@ level1 = {
             player.body.velocity.y = -200;
         } else {
             this.hurtPlayer();
-            lives -= 1;
-            livesText.text = livesString + lives;
+            
         }
 
     },
@@ -507,6 +506,9 @@ level1 = {
         player.player.body.velocity.y = -100;
 
         player.player.body.velocity.x = (player.player.scale.x == 1) ? -100 : 100;
+        
+        lives -= 1;
+        livesText.text = livesString + lives;
     },
 
     parallaxBackground: function () {
