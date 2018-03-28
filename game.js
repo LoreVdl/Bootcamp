@@ -30,7 +30,7 @@ var player = {
         this.bindKeys();
         game.camera.follow(this.player, Phaser.Camera.FOLLOW_PLATFORMER);
 
-        
+
         // create buttons
         this.actionBtn = game.add.button(20, gameHeight-20, 'action', this.action, this, 2, 1, 0);
         this.actionBtn.anchor.set(0.5);
@@ -179,11 +179,11 @@ var player = {
             jumpCounter = 0;
         }
     },
-    
+
     pacmanReset : function() {
         pacmanAbility = !pacmanAbility;
     },
-    
+
     jump: function (sprite, pointer) {
                 switch (character) {
                         case 'link':
@@ -203,15 +203,15 @@ var player = {
                             this.pacmanReset();
                             game.time.events.add(Phaser.Timer.SECOND*5, this.pacmanReset);
                             break;
-                            
-                            
+
+
                     }
     },
-    
+
     pacmanReset: function (){
         pacmanAbility = !pacmanAbility;
     },
-                        
+
     action: function (sprite, pointer) {
         switch (character) {
             case 'link':
@@ -231,13 +231,14 @@ var player = {
                 this.pacmanReset();
                 game.time.events.add = (Phaser.Timer.SECOND*5,this.pacmanReset);
                 break;
-                
+
         }
     },
 
     switchPlayer: function (sprite, pointer) {
         switch(character) {
 		    case 'link':
+								this.createItemFeedback(this.player.x, this.player.y);
                 this.player.anchor.setTo(0.5);
                 game.physics.arcade.enable(this.player);
                 this.player.body.gravity.y = 500;
@@ -254,6 +255,7 @@ var player = {
 		        break;
 
 		    case 'mario':
+								this.createItemFeedback(this.player.x, this.player.y);
                 this.player.anchor.setTo(0.5);
                 game.physics.arcade.enable(this.player);
                 this.player.body.gravity.y = 500;
@@ -270,6 +272,7 @@ var player = {
              	break;
 
     		case 'pacman':
+								this.createItemFeedback(this.player.x, this.player.y);
                 this.player.anchor.setTo(0.5);
                 game.physics.arcade.enable(this.player);
                 this.player.body.gravity.y = 500;
