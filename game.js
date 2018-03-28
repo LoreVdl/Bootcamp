@@ -12,7 +12,6 @@ var character = 'link';
 var jumpCounter = 0;
 var maxJump = 2;
 
-window.addEventListener("deviceorientation", this.handleOrientation, true);
 
 var player = {
 	create: function () {
