@@ -33,12 +33,17 @@ level1 = {
         this.items = game.add.group();
         this.items.enableBody = true;
 
+        this.ends = game.add.group();
+        this.ends.enableBody = true;
+
         //timer for frog jumps
         frogTimer = game.time.create(false);
         frogTimer.loop(2000, this.switchFrogJump, this);
         frogTimer.start();
 
         // create items
+        this.createEnd(47,9.4);
+
         this.createCherry(30, 5);
         this.createCherry(31, 5);
         this.createCherry(32, 5);
@@ -133,6 +138,17 @@ level1 = {
         }, this);
     },
 
+    createEnd: function (x, y) {
+      x *= 16;
+      y *= 16;
+      var temp = game.add.sprite(x, y, 'atlas-props', 'sign');
+      temp.anchor.setTo(0.8);
+      game.physics.arcade.enable(temp);
+      temp.body.gravity.y = 500;
+
+      this.ends.add(temp);
+    },
+
     createOpossum: function (x, y) {
         x *= 16;
         y *= 16;
@@ -220,8 +236,10 @@ level1 = {
         //this.debugGame();
         game.physics.arcade.collide(player.player, this.layer);
         game.physics.arcade.collide(this.enemies, this.layer);
+        game.physics.arcade.collide(this.ends, this.layer);
         game.physics.arcade.overlap(player.player, this.enemies, this.checkAgainstEnemies, null, this);
         game.physics.arcade.overlap(player.player, this.items, this.pickItem, null, this);
+        game.physics.arcade.overlap(this.ends, player.player, this.endGame, null, this);
 
         player.movePlayer();
 
