@@ -13,6 +13,8 @@ level1 = {
         this.music = game.add.audio('music');
         this.music.loop = true;
         this.music.play();
+        // -----------------------------------------------------------------------------timer
+        game.time.events.repeat(Phaser.Timer.SECOND * 5, 10, createArrow, this);
     },
 
     decorWorld: function () {
@@ -35,6 +37,9 @@ level1 = {
 
         this.ends = game.add.group();
         this.ends.enableBody = true;
+        // -------------------------------------------------------------arrows
+        this.arrows = game.add.group();
+        this.arrows.enableBody = true;
 
         //timer for frog jumps
         frogTimer = game.time.create(false);
@@ -68,6 +73,28 @@ level1 = {
         this.createEagle(6, 7);
         this.createOpossum(42, 9);
         this.createOpossum(23, 20);
+    },
+
+    createArrow: function (x,y) {
+        x *= 16;
+        y *= 16;
+        var temp = game.add.sprite(x, y, 'arrow');
+        temp.anchor.setTo(0.8);
+        game.physics.arcade.enable(temp);
+        //temp.body.setSize(16, 13, 8, 15);
+        //add animations
+/*
+        temp.animations.add('run', Phaser.Animation.generateFrameNames('opossum/opossum-', 1, 6, '', 0), 12, true);
+        temp.animations.play('run');
+        temp.body.velocity.x = 60 * game.rnd.pick([1, -1]);
+        temp.body.bounce.x = 1;
+        temp.enemyType = 'opossum';
+*/
+        this.arrows.add(temp);
+    },
+
+    destroyArrow: function (arrow) {
+
     },
 
     switchFrogJump: function () {
@@ -245,6 +272,9 @@ level1 = {
 
         this.enemiesManager();
         this.parallaxBackground();
+
+
+
 
     },
 

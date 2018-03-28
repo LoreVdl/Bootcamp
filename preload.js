@@ -16,6 +16,8 @@ preload = {
         // atlas sprites
         game.load.atlasJSONArray('atlas', 'assets/atlas/atlas.png', 'assets/atlas/atlas.json');
         game.load.atlasJSONArray('atlas-props', 'assets/atlas/atlas-props.png', 'assets/atlas/atlas-props.json');
+        // arrow sprites
+        game.load.spritesheet('arrows', 'assets/sprites/new-atlas.png', 12, 6, 3);
         // characters sprites
         game.load.atlasJSONArray('characters', 'assets/characters/characters.png', 'assets/characters/characters.json');
 
