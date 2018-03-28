@@ -30,29 +30,16 @@ var player = {
         this.bindKeys();
         game.camera.follow(this.player, Phaser.Camera.FOLLOW_PLATFORMER);
 
-        
-        // create buttons
-        this.actionBtn = game.add.button(20, gameHeight-20, 'action', this.action, this, 2, 1, 0);
-        this.actionBtn.anchor.set(0.5);
-        this.actionBtn.scale.set(0.5);
-        this.actionBtn.inputEnabled = true;
-        this.actionBtn.fixedToCamera = true;
 
-        this.switchBtn = game.add.button(gameWidth-20, gameHeight-20, 'switch', this.switchPlayer, this, 2, 1, 0);
-        this.switchBtn.anchor.set(0.5);
-        this.switchBtn.scale.set(0.5);
-        this.switchBtn.inputEnabled = true;
-        this.switchBtn.fixedToCamera = true;
+        scoreString = 'Score : ';
+        scoreText = game.add.text(25, 10, scoreString + score, { font: '10px Arial', fill: '#fff' });
+        scoreText.fixedToCamera = true;
+        scoreText.anchor.setTo(0.5, 0.5);
 
-				scoreString = 'Score : ';
-    		scoreText = game.add.text(25, 10, scoreString + score, { font: '10px Arial', fill: '#fff' });
-				scoreText.fixedToCamera = true;
-				scoreText.anchor.setTo(0.5, 0.5);
-
-				livesString = 'Lives : ';
-    		livesText = game.add.text(gameWidth-25, 10, livesString + lives, { font: '10px Arial', fill: '#fff' });
-				livesText.fixedToCamera = true;
-				livesText.anchor.setTo(0.5, 0.5);
+        livesString = 'Lives : ';
+        livesText = game.add.text(gameWidth-25, 10, livesString + lives, { font: '10px Arial', fill: '#fff' });
+        livesText.fixedToCamera = true;
+        livesText.anchor.setTo(0.5, 0.5);
     },
 
     bindKeys: function () {
@@ -179,40 +166,26 @@ var player = {
             jumpCounter = 0;
         }
     },
-    
-    pacmanReset : function() {
-        pacmanAbility = !pacmanAbility;
-    },
-    
-    jump: function (sprite, pointer) {
-                switch (character) {
-                        case 'link':
-                             if (this.player.body.onFloor())
-	                       {
-	            this.player.body.velocity.y = -170;
-                            }
-                            break;
-                        case 'mario':
-                            if (jumpCounter < maxJump)
-					{
-							this.player.body.velocity.y = -160;
-							jumpCounter++;
-					}
-                            break;
-                        case 'pacman':
-                            this.pacmanReset();
-                            game.time.events.add(Phaser.Timer.SECOND*5, this.pacmanReset);
-                            break;
-                            
-                            
-                    }
+
+    useButtons: function () {
+        if (game.input.pointer1.isDown)
+        {
+            if (game.input.pointer1.x < game.width/2)
+            {
+                this.action();
+            }
+            else if (game.input.pointer1.x > game.width/2)
+            {
+                this.switch();
+            }
+        }
     },
     
     pacmanReset: function (){
         pacmanAbility = !pacmanAbility;
     },
                         
-    action: function (sprite, pointer) {
+    action: function () {
         switch (character) {
             case 'link':
                 if (this.player.body.onFloor())
@@ -235,7 +208,7 @@ var player = {
         }
     },
 
-    switchPlayer: function (sprite, pointer) {
+    switchPlayer: function () {
         switch(character) {
 		    case 'link':
                 this.player.anchor.setTo(0.5);
