@@ -93,6 +93,7 @@ level1 = {
         this.createEagle(16, 9);
         this.createOpossum(44, 21);
         this.createOpossum(25, 21);
+        this.createGhost(20, 21);
     },
 
     createArrow: function (x, y, scale) {
@@ -466,7 +467,12 @@ level1 = {
 
     checkAgainstEnemies: function (player, enemy) {
 
-        if ((player.y + player.body.height * .5 < enemy.y ) && player.body.velocity.y > 0) {
+        if(pacmanAbility && character==="pacman" && enemy.enemyType==="ghost" ) {
+            //Able to kill ghost
+            this.createEnemyDeath(enemy.x, enemy.y);
+            enemy.kill();
+        }
+        else if ((player.y + player.body.height * .5 < enemy.y ) && player.body.velocity.y > 0 && enemy.enemyType!=="ghost") {
 
             this.createEnemyDeath(enemy.x, enemy.y);
             enemy.kill();
