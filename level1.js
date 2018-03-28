@@ -9,12 +9,10 @@ level1 = {
 
         this.populateWorld();
 
-        // music
+		// music
         this.music = game.add.audio('music');
         this.music.loop = true;
         this.music.play();
-
-        player.resetHurt();
     },
 
     decorWorld: function () {
@@ -37,9 +35,6 @@ level1 = {
         this.ends = game.add.group();
         this.ends.enableBody = true;
 
-        this.arrows = game.add.group();
-        this.arrows.enableBody = true;
-
         this.obstacles = game.add.group();
         this.obstacles.enableBody = true;
 
@@ -51,16 +46,12 @@ level1 = {
         frogTimer.loop(2000, this.switchFrogJump, this);
         frogTimer.start();
 
-        arrowTimer = game.time.create(false);
-        arrowTimer.loop(2000, this.createArrow, this, 10, 12.5, 1);
-        arrowTimer.start();
-
         // create items
         this.createEnd(50, 12);
 
-        this.createHendel(25, 12.8);
+        this.createHendel(21, 5);
 
-        this.createObstacle(31, 12.8);
+        this.createObstacle(33, 21);
 
         this.createCherry(28, 5);
         this.createCherry(29, 5);
@@ -80,21 +71,6 @@ level1 = {
         this.createEagle(16, 9);
         this.createOpossum(44, 21);
         this.createOpossum(25, 21);
-    },
-
-    createArrow: function (x, y, scale) {
-        x *= 16;
-        y *= 16;
-        var temp = game.add.sprite(x, y, 'new-atlas' , 'arrow-1');
-        temp.anchor.setTo(0.8);
-        temp.scale.setTo(scale);
-        game.physics.arcade.enable(temp);
-        //add animations
-        temp.animations.add('fly', Phaser.Animation.generateFrameNames('arrow-', 1, 3, '', 0), 5, true);
-        temp.animations.play('fly');
-        temp.body.velocity.x = 100 * scale;
-
-        this.arrows.add(temp);
     },
 
     switchFrogJump: function () {
@@ -180,7 +156,7 @@ level1 = {
       x *= 16;
       y *= 16;
       var temp = game.add.sprite(x, y, 'atlas-props', 'crank-down');
-      temp.anchor.setTo(0.8);
+      temp.anchor.setTo(0);
       game.physics.arcade.enable(temp);
       temp.body.gravity.y = 500;
       temp.body.moves = false;
@@ -192,7 +168,7 @@ level1 = {
       x *= 16;
       y *= 16;
       var temp = game.add.sprite(x, y, 'atlas-props', 'crate');
-      temp.anchor.setTo(0.8);
+      temp.anchor.setTo(0);
       game.physics.arcade.enable(temp);
       temp.body.moves = false;
 
@@ -294,8 +270,6 @@ level1 = {
         game.physics.arcade.overlap(player.player, this.items, this.pickItem, null, this);
         game.physics.arcade.overlap(this.ends, player.player, this.endGame, null, this);
         game.physics.arcade.collide(this.cranks, player.player, this.destroyBlock, null, this);
-        game.physics.arcade.collide(this.arrows, this.layer, this.arrowHitWorld, null, this);
-        game.physics.arcade.overlap(player.player, this.arrows, this.arrowHitPlayer, null, this);
 
         player.movePlayer();
 
@@ -304,28 +278,8 @@ level1 = {
 
     },
 
-    arrowHitWorld: function (arrow) {
-        arrow.kill();
-    },
-
-    arrowHitPlayer: function (player, arrow) {
-        if (character == 'link' && hurtFlag == false) {
-
-            if ((player.x + player.body.width * 0.5 > arrow.x) && player.scale.x == -1) {
-
-                arrow.kill()
-            } else if ((player.x + player.body.width * 0.5 < arrow.x) && player.scale.x == 1) {
-
-                arrow.kill();
-            } else {
-                this.hurtPlayer();
-            }
-        } else {
-            this.hurtPlayer();
-        }
-    },
-
     destroyBlock: function (player, item) {
+      item = this.obstacles.children[0]
       this.createItemFeedback(item.x, item.y);
       item.kill();
     },
