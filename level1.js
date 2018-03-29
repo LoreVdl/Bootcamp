@@ -29,7 +29,7 @@ level1 = {
       },
 
     gameOver: function() {
-      if (lives == 0) {
+      if (lives === 0) {
         Pacman_Run.stop();
         game.paused = true;
 
@@ -94,7 +94,7 @@ level1 = {
         arrowTimer1.loop(2000, this.createArrow, this, 49, 21.5, -1);
         arrowTimer1.start();
 */
-        arrowTimer2 = game.time.create(false);
+        let arrowTimer2 = game.time.create(false);
         arrowTimer2.loop(1500, this.createArrow, this, 50, 22.5, -1);
         arrowTimer2.start();
 
@@ -134,7 +134,7 @@ level1 = {
     createArrow: function (x, y, scale) {
         x *= 16;
         y *= 16;
-        var temp = game.add.sprite(x, y, 'new-atlas' , 'arrow-1');
+        let temp = game.add.sprite(x, y, 'new-atlas' , 'arrow-1');
         temp.anchor.setTo(0.5);
         temp.scale.setTo(scale);
         game.physics.arcade.enable(temp);
@@ -147,7 +147,7 @@ level1 = {
     },
 
     switchFrogJump: function () {
-        frogJumpSide = (frogJumpSide == 'left') ? 'right' : 'left';
+        frogJumpSide = (frogJumpSide === 'left') ? 'right' : 'left';
     },
 
     createBackgrounds: function () {
@@ -180,12 +180,12 @@ level1 = {
     },
 
     setTopCollisionTiles: function (tileIndex) {
-        var x, y, tile;
+        let x, y, tile;
         for (x = 0; x < this.map.width; x++) {
             for (y = 1; y < this.map.height; y++) {
                 tile = this.map.getTile(x, y);
                 if (tile !== null) {
-                    if (tile.index == tileIndex) {
+                    if (tile.index === tileIndex) {
                         tile.setCollision(false, false, true, false);
                     }
 
@@ -208,9 +208,9 @@ level1 = {
     },
 
     createItemFeedback: function (x, y) {
-        var itemFeedback = game.add.sprite(x, y, 'atlas');
+        let itemFeedback = game.add.sprite(x, y, 'atlas');
         itemFeedback.anchor.setTo(0.5);
-        var animFeedback = itemFeedback.animations.add('feedback', Phaser.Animation.generateFrameNames('item-feedback/item-feedback-', 1, 4, '', 0), 16, false);
+        let animFeedback = itemFeedback.animations.add('feedback', Phaser.Animation.generateFrameNames('item-feedback/item-feedback-', 1, 4, '', 0), 16, false);
         itemFeedback.animations.play('feedback');
         animFeedback.onComplete.add(function () {
             itemFeedback.kill();
@@ -220,7 +220,7 @@ level1 = {
     createEnd: function (x, y) {
       x *= 16;
       y *= 16;
-      var temp = game.add.sprite(x, y, 'atlas-props', 'sign');
+      let temp = game.add.sprite(x, y, 'atlas-props', 'sign');
       temp.anchor.setTo(0.8);
       game.physics.arcade.enable(temp);
       temp.body.gravity.y = 500;
@@ -231,7 +231,7 @@ level1 = {
     createHendel: function (x, y) {
       x *= 16;
       y *= 16;
-      var temp = game.add.sprite(x, y, 'atlas-props', 'crank-down');
+      let temp = game.add.sprite(x, y, 'atlas-props', 'crank-down');
       temp.anchor.setTo(0);
       game.physics.arcade.enable(temp);
       temp.body.gravity.y = 500;
@@ -243,7 +243,7 @@ level1 = {
     createHendelUp: function (x, y) {
       x *= 16;
       y *= 16;
-      var temp = game.add.sprite(x, y, 'atlas-props', 'crank-up');
+      let temp = game.add.sprite(x, y, 'atlas-props', 'crank-up');
       temp.anchor.setTo(0);
       game.physics.arcade.enable(temp);
       temp.body.gravity.y = 500;
@@ -257,7 +257,7 @@ level1 = {
     createObstacle: function (x, y) {
       x *= 16;
       y *= 16;
-      var temp = game.add.sprite(x, y, 'atlas-props', 'crate');
+      let temp = game.add.sprite(x, y, 'atlas-props', 'crate');
       temp.anchor.setTo(0);
       game.physics.arcade.enable(temp);
       temp.body.moves = false;
@@ -268,7 +268,7 @@ level1 = {
     createObstacleBig: function (x, y) {
       x *= 16;
       y *= 16;
-      var temp = game.add.sprite(x, y, 'atlas-props', 'block-big');
+      let temp = game.add.sprite(x, y, 'atlas-props', 'block-big');
       temp.anchor.setTo(0);
       game.physics.arcade.enable(temp);
       temp.body.moves = false;
@@ -279,7 +279,7 @@ level1 = {
     createOpossum: function (x, y) {
         x *= 16;
         y *= 16;
-        var temp = game.add.sprite(x, y, 'atlas', 'opossum/opossum-1');
+        let temp = game.add.sprite(x, y, 'atlas', 'opossum/opossum-1');
         temp.anchor.setTo(0.8);
         game.physics.arcade.enable(temp);
         temp.body.gravity.y = 500;
@@ -297,7 +297,7 @@ level1 = {
     createGhost: function (x, y) {
         x *= 16;
         y *= 16;
-        var temp = game.add.sprite(x, y, 'characters', 'ghost/run-1');
+        let temp = game.add.sprite(x, y, 'characters', 'ghost/run-1');
         temp.anchor.setTo(0.5);
         game.physics.arcade.enable(temp);
         temp.body.gravity.y = 500;
@@ -316,7 +316,7 @@ level1 = {
     createEagle: function (x, y) {
         x *= 16;
         y *= 16;
-        var temp = game.add.sprite(x, y, 'atlas', 'eagle/eagle-attack-1');
+        let temp = game.add.sprite(x, y, 'atlas', 'eagle/eagle-attack-1');
         temp.anchor.setTo(0.5);
         game.physics.arcade.enable(temp);
         temp.body.setSize(16, 13, 8, 20);
@@ -324,7 +324,7 @@ level1 = {
         temp.animations.add('attack', Phaser.Animation.generateFrameNames('eagle/eagle-attack-', 1, 4, '', 0), 12, true);
         temp.animations.play('attack');
         // tweens
-        var VTween = game.add.tween(temp).to({
+        let VTween = game.add.tween(temp).to({
             y: y + 50
         }, 1000, Phaser.Easing.Linear.None, true, 0, -1);
         VTween.yoyo(true);
@@ -336,7 +336,7 @@ level1 = {
     createFrog: function (x, y) {
         x *= 16;
         y *= 16;
-        var temp = game.add.sprite(x, y, 'atlas', 'frog/idle/frog-idle-1');
+        let temp = game.add.sprite(x, y, 'atlas', 'frog/idle/frog-idle-1');
         temp.anchor.setTo(0.5);
         game.physics.arcade.enable(temp);
         temp.body.gravity.y = 500;
@@ -355,7 +355,7 @@ level1 = {
     createCherry: function (x, y) {
         x *= 16;
         y *= 16;
-        var temp = game.add.sprite(x, y, 'atlas', 'cherry/cherry-1');
+        let temp = game.add.sprite(x, y, 'atlas', 'cherry/cherry-1');
         temp.anchor.setTo(0.5);
         game.physics.arcade.enable(temp);
         //add animations
@@ -368,7 +368,7 @@ level1 = {
     createGem: function (x, y) {
         x *= 16;
         y *= 16;
-        var temp = game.add.sprite(x, y, 'atlas', 'gem/gem-1');
+        let temp = game.add.sprite(x, y, 'atlas', 'gem/gem-1');
         temp.anchor.setTo(0.5);
         game.physics.arcade.enable(temp);
         //add animations
@@ -411,9 +411,9 @@ level1 = {
     },
 
     arrowHitPlayer: function (player, arrow) {
-        if (character == 'link' && linkAbility && hurtFlag == false) {
+        if (character === 'link' && linkAbility && hurtFlag === false) {
 
-            if (((player.x + player.body.width * 0.5 > arrow.x) && player.scale.x == -1) || ((player.x + player.body.width * 0.5 < arrow.x) && player.scale.x == 1)) {
+            if (((player.x + player.body.width * 0.5 > arrow.x) && player.scale.x === -1) || ((player.x + player.body.width * 0.5 < arrow.x) && player.scale.x === 1)) {
 
                 arrow.kill()
             } else {
@@ -430,7 +430,7 @@ level1 = {
       this.createItemFeedback(item.x, item.y);
       item.kill();
       this.createHendelUp(33, 19);
-      item = this.obstacles.children[0]
+      item = this.obstacles.children[0];
       this.createItemFeedback(item.x, item.y);
       item.kill();
     },
@@ -439,7 +439,7 @@ level1 = {
       this.createItemFeedback(item.x, item.y);
       item.kill();
       this.createHendelUp(53, 21);
-      for (var i = 0; i < 4; i++) {
+      for (let i = 0; i < 4; i++) {
         item = this.obstacles.children[i];
         this.createItemFeedback(item.x, item.y);
         item.kill();
@@ -447,7 +447,7 @@ level1 = {
     },
 
     endGame: function () {
-        game.sound.play('Winning_Sound')
+        game.sound.play('Winning_Sound');
         game.paused = true;
 
         player.button.inputEnabled = false;
@@ -491,12 +491,12 @@ level1 = {
 
 
     enemiesManager: function () {
-        for (var i = 0, len = this.enemies.children.length; i < len; i++) {
+        for (let i = 0, len = this.enemies.children.length; i < len; i++) {
 
-            var tempEnemy = this.enemies.children[i];
+            let tempEnemy = this.enemies.children[i];
 
             // opossum
-            if (tempEnemy.enemyType == 'opossum') {
+            if (tempEnemy.enemyType === 'opossum') {
                 if (tempEnemy.body.velocity.x < 0) {
                     tempEnemy.scale.x = 1;
                 } else {
@@ -514,7 +514,7 @@ level1 = {
             }
 
             // eagle
-            if (tempEnemy.enemyType == 'eagle') {
+            if (tempEnemy.enemyType === 'eagle') {
                 if (tempEnemy.x > player.player.x) {
                     tempEnemy.scale.x = 1;
                 } else {
@@ -523,13 +523,13 @@ level1 = {
             }
 
             // frog
-            if (tempEnemy.enemyType == 'frog') {
-                if (tempEnemy.side == 'left' && frogJumpSide == 'right') {
+            if (tempEnemy.enemyType === 'frog') {
+                if (tempEnemy.side === 'left' && frogJumpSide === 'right') {
                     tempEnemy.scale.x = 1;
                     tempEnemy.side = 'right';
                     tempEnemy.body.velocity.y = -200;
                     tempEnemy.body.velocity.x = -100;
-                } else if (tempEnemy.side == 'right' && frogJumpSide == 'left') {
+                } else if (tempEnemy.side === 'right' && frogJumpSide === 'left') {
                     tempEnemy.scale.x = -1;
                     tempEnemy.side = 'left';
                     tempEnemy.body.velocity.y = -200;
@@ -578,7 +578,7 @@ level1 = {
         hurtTimer.start();
         player.player.body.velocity.y = -100;
 
-        player.player.body.velocity.x = (player.player.scale.x == 1) ? -100 : 100;
+        player.player.body.velocity.x = (player.player.scale.x === 1) ? -100 : 100;
 
         lives -= 1;
         livesText.text = livesString + lives;
@@ -601,4 +601,4 @@ level1 = {
         game.debug.body(member);
     },
 
-}
+};
