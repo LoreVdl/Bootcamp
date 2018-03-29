@@ -452,6 +452,7 @@ level1 = {
     endGame: function () {
         Pacman_Run.stop();
         game.sound.play('Winning_Sound')
+
         game.paused = true;
 
         character = 'link';
