@@ -1,8 +1,6 @@
-var pages;
-var levelThumbsGroup;
-var currentPage;
-var leftArrow;
-var rightArrow;
+let pages;
+let levelThumbsGroup;
+let currentPage;
 
 levelSelect = {
   create: function() {
@@ -14,19 +12,19 @@ levelSelect = {
 
   	levelThumbsGroup = game.add.group();
 
-  	var levelLength = game.global.thumbWidth*game.global.thumbCols+game.global.thumbSpacing*(game.global.thumbCols-1);
-  	var levelHeight = game.global.thumbWidth*game.global.thumbRows+game.global.thumbSpacing*(game.global.thumbRows-1);
+  	const levelLength = game.global.thumbWidth*game.global.thumbCols+game.global.thumbSpacing*(game.global.thumbCols-1);
+  	const levelHeight = game.global.thumbWidth*game.global.thumbRows+game.global.thumbSpacing*(game.global.thumbRows-1);
 
-  	for(var l = 0; l < pages; l++) {
+  	for(let l = 0; l < pages; l++) {
 
-  	   var offsetX = (game.width-levelLength)/2+game.width*l;
-       var offsetY = 20;
-       var level = 1;
+  	   const offsetX = (game.global.width-levelLength)/2+game.global.width*l;
+       const offsetY = 20;
+       let level = 1;
 
-  		 for(var i = 0; i < game.global.thumbRows; i ++) {
-         for(var j = 0; j < game.global.thumbCols; j ++) {
-           var levelNumber = i*game.global.thumbCols+j+l*(game.global.thumbRows*game.global.thumbCols);
-           var levelThumb = game.add.button(offsetX+j*(game.global.thumbWidth+game.global.thumbSpacing), offsetY+i*(game.global.thumbHeight+game.global.thumbSpacing), "level"+(level), this.thumbClicked, this);
+  		 for(let i = 0; i < game.global.thumbRows; i ++) {
+         for(let j = 0; j < game.global.thumbCols; j ++) {
+           let levelNumber = i*game.global.thumbCols+j+l*(game.global.thumbRows*game.global.thumbCols);
+           let levelThumb = game.add.button(offsetX+j*(game.global.thumbWidth+game.global.thumbSpacing), offsetY+i*(game.global.thumbHeight+game.global.thumbSpacing), "level"+(level), this.thumbClicked, this);
 
            levelThumb.frame=game.global.starsArray[levelNumber];
            levelThumb.levelNumber = levelNumber+1;
@@ -37,12 +35,12 @@ levelSelect = {
        }
      }
 
-     levelThumbsGroup.x = currentPage * game.width * -1
+     levelThumbsGroup.x = currentPage * game.global.width * -1
  },
 
   thumbClicked:function(button) {
 
-    if(button.levelNumber == 1) {
+    if(button.levelNumber === 1) {
       game.global.level = button.levelNumber;
       game.state.start("Level1");
 		}
@@ -53,4 +51,4 @@ levelSelect = {
         middleground.tilePosition.x -= .6;
 
     }
-}
+};
