@@ -151,7 +151,7 @@ let player = {
         });
 
 
-		if (this.player.body.velocity.x !== 0)
+		if (this.player.body.velocity.x)
 		{
 		    if  (character === 'link' && linkAbility) {
 		        this.player.animations.play('block');
@@ -211,7 +211,7 @@ let player = {
     },
 
     ghostAbility: function (ghost){
-        if (pacmanAbility == 1) {
+        if (pacmanAbility) {
             ghost.animations.play('ability')
         } else {
             ghost.animations.play('run')
