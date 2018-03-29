@@ -129,11 +129,6 @@ var player = {
             this.player.animations.play('idle');
         }*/
 
-        if (this.wasd.jump.isDown)
-        {
-            this.switchPlayer();
-        }
-
 
         gyro.startTracking(function(o) {
             if (!hurtFlag)
