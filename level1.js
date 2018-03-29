@@ -94,8 +94,9 @@ level1 = {
         arrowTimer1.loop(2000, this.createArrow, this, 49, 21.5, -1);
         arrowTimer1.start();
 */
+
         let arrowTimer2 = game.time.create(false);
-        arrowTimer2.loop(1500, this.createArrow, this, 50, 22.5, -1);
+        arrowTimer2.loop(1500, this.createArrow, this, 51, 22.5, -1);
         arrowTimer2.start();
 
         // create items
@@ -447,7 +448,12 @@ level1 = {
     },
 
     endGame: function () {
+<<<<<<< HEAD
+        Pacman_Run.stop();
+        game.sound.play('Winning_Sound')
+=======
         game.sound.play('Winning_Sound');
+>>>>>>> aad841b3c20114c6fe0d0e5e920fa9b8302d9cde
         game.paused = true;
 
         player.button.inputEnabled = false;
