@@ -26,6 +26,7 @@ let ghosts = [];
 
 let hearts = [];
 let heartCounter = 10;
+let abilityMeter;
 
 let Pacman_Run;
 let Pacman_Ability;
@@ -36,11 +37,11 @@ let player = {
         
         game.time.events.loop(Phaser.Timer.SECOND * 2, this.abUp);
         game.time.events.loop(Phaser.Timer.SECOND, this.abDown);
-        
-        abilityString = 'Ability : ';
-        abilityText = game.add.text(gameWidth/2, 10, abilityString + abPoints, { font: '10px Arial', fill: '#fff' });
-        abilityText.fixedToCamera = true;
-        abilityText.anchor.setTo(0.5, 0.5);
+
+        abilityMeter = game.add.image(gameWidth/2,5, "");
+        abilityMeter.anchor.setTo(0.5, 0);
+        abilityMeter.loadTexture("ability", "ability-5", true);
+        abilityMeter.fixedToCamera = true;
 
         this.bindKeys();
         game.camera.follow(this.player, Phaser.Camera.FOLLOW_PLATFORMER);
@@ -100,17 +101,17 @@ let player = {
     
     abUp: function() {
      
-          if (abPoints < 5 && ability === 0){
+          if (abPoints < 5 && ability == 0){
               abPoints++;
-              abilityText.text = abilityString + abPoints;
+              abilityMeter.loadTexture("ability", "ability-" + abPoints, true);
           }
     },
     
     abDown: function() {
        
-        if (abPoints > 0 && ability === 1) {
+        if (abPoints > 0 && ability == 1) {
             abPoints--;
-            abilityText.text = abilityString + abPoints;
+            abilityMeter.loadTexture("ability", "ability-" + abPoints, true);
         }
     },
 
