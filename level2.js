@@ -136,7 +136,7 @@ level2 = {
 
         // create enemies
         this.createFrog(23, 8);
-        this.createOpossum(38, 17);
+        this.createOpossum(39, 17);
         this.createGhost(7, 12);
         this.createGhost(46, 20);
     },
