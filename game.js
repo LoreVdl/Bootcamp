@@ -234,6 +234,7 @@ var player = {
                 {
 					this.player.body.velocity.y = -160;
 					jumpCounter++;
+                    game.sound.play('Mario_Jump');
                 }
                 break;
             case 'pacman':
