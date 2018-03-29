@@ -28,6 +28,8 @@ preload = {
 
         game.load.image('heart', 'assets/sprites/heart.png');
 
+        game.load.image('gameOver', 'assets/sprites/gameOver.png');
+
 
         game.load.image("level1", "assets/sprites/level1.png", game.global.thumbWidth, game.global.thumbHeight);
         game.load.image("level2", "assets/sprites/level2.png", game.global.thumbWidth, game.global.thumbHeight);
