@@ -17,24 +17,36 @@ level1 = {
         player.resetHurt();
     },
 
-    unpause: function (event) {
-      if (game.paused) {
+    restart: function () {
+          game.paused = false;
+          this.game.state.start('Level1');
+
+      },
+
+      menu: function() {
         game.paused = false;
-        this.game.state.start('Level1');
-      }
-    },
+        this.game.state.start('TitleScreen');
+      },
 
     gameOver: function() {
       if (lives == 0) {
         Pacman_Run.stop();
-
-        game.state.start("TitleScreen");
-        
         game.paused = true;
+
+        player.button.inputEnabled = false;
         lives = 3;
-        game.input.onDown.add(this.unpause, self);
-        menu = game.add.image(20, 140, 'enter');
-        menu.fixedToCamera = true;
+
+        this.button2 = game.add.button(100, 30, 'action', this.restart, this, 2, 1, 0);
+        this.button2.anchor.set(0.5);
+        this.button2.scale.set(0.25);
+        this.button2.inputEnabled = true;
+        this.button2.fixedToCamera = true;
+
+        this.button3 = game.add.button(200, 30, 'switch', this.menu, this, 2, 1, 0);
+        this.button3.anchor.set(0.5);
+        this.button3.scale.set(0.25);
+        this.button3.inputEnabled = true;
+        this.button3.fixedToCamera = true;
       }
     },
 
