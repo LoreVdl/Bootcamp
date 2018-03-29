@@ -209,8 +209,6 @@ level1 = {
         this.animDeath = this.enemyDeath.animations.add('dead', Phaser.Animation.generateFrameNames('enemy-death/enemy-death-', 1, 6, '', 0), 16, false);
         this.enemyDeath.animations.play('dead');
 
-        score += 10;
-
         game.sound.play('Enemy_Die');
 
         this.animDeath.onComplete.add(function () {
@@ -583,11 +581,13 @@ level1 = {
             //Able to kill ghost
             this.createEnemyDeath(enemy.x, enemy.y);
             enemy.kill();
+            score += 10;
         }
         else if ((player.y + player.body.height * .5 < enemy.y ) && player.body.velocity.y > 0 && enemy.enemyType!=="ghost") {
 
             this.createEnemyDeath(enemy.x, enemy.y);
             enemy.kill();
+            score += 10;
             player.body.velocity.y = -200;
         } else {
             this.hurtPlayer();
