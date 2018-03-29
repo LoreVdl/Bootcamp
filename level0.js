@@ -426,11 +426,11 @@ level0 = {
 
         if (!freezeGame) {
             game.physics.arcade.collide(player.player, this.layer);
-            
+
             player.movePlayer();
 
             this.enemiesManager();
-        
+
             this.parallaxBackground();
 
             this.gameOver();
@@ -500,7 +500,7 @@ level0 = {
         this.gameO.anchor.setTo(0.5, 1);
         this.gameO.fixedToCamera = true;
 
-        this.button2 = game.add.button(100, 130, 'nextLevel', this.restart, this, 2, 1, 0);
+        this.button2 = game.add.button(100, 130, 'nextLevel', this.nextLevel, this, 2, 1, 0);
         this.button2.anchor.set(0.5);
         this.button2.scale.set(0.15);
         this.button2.inputEnabled = true;
@@ -515,7 +515,7 @@ level0 = {
 
     nextLevel: function() {
       game.paused = false;
-      this.game.state.start('Level0.js');
+      this.game.state.start('Level1');
     },
 
     pickItem: function (player, item) {
