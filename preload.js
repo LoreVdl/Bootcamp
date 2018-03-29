@@ -31,6 +31,8 @@ preload = {
         game.load.image('menu', 'assets/sprites/menu.png');
         game.load.image('gameOver', 'assets/sprites/GameOver.png');
         game.load.image('playAgain', 'assets/sprites/playAgain.png');
+        game.load.image('youWin', 'assets/sprites/youWin.png');
+        game.load.image('nextLevel', 'assets/sprites/nextLevel.png');
 
 
         game.load.image("level1", "assets/sprites/level1.png", game.global.thumbWidth, game.global.thumbHeight);
