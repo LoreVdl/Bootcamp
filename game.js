@@ -126,7 +126,7 @@ var player = {
             this.player.animations.play('idle');
         }*/
 
-		
+
         gyro.startTracking(function(o) {
             if (!hurtFlag)
             {
@@ -146,7 +146,7 @@ var player = {
                 }
             }
         });
-		
+
 
 		if (this.player.body.velocity.x !=0)
 		{
@@ -298,6 +298,7 @@ game.state.add('Preload', preload);
 game.state.add('TitleScreen', titleScreen);
 game.state.add('LevelSelect', levelSelect);
 game.state.add('Level1', level1);
+game.state.add('GameOver', gameOverScreen);
 
 
 game.state.start("Boot");
