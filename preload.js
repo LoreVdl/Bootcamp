@@ -20,7 +20,7 @@ preload = {
         // characters sprites
         game.load.atlasJSONArray('characters', 'assets/characters/characters.png', 'assets/characters/characters.json');
 
-		    game.load.spritesheet("level_arrows", "assets/level_arrows.png", 48, 48);
+		game.load.spritesheet("level_arrows", "assets/level_arrows.png", 48, 48);
 
         game.load.spritesheet('button', 'assets/buttons/button.png');
         game.load.spritesheet('action', 'assets/buttons/action.png');

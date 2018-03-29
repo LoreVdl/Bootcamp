@@ -66,6 +66,20 @@ let player = {
         this.button.fixedToCamera = true;
 
 
+        this.actionBtn = game.add.sprite(20, gameHeight-20, 'action');
+        this.actionBtn.anchor.set(0.5);
+        this.actionBtn.scale.set(0.5);
+        this.actionBtn.inputEnabled = false;
+        this.actionBtn.fixedToCamera = true;
+
+
+        this.switchBtn = game.add.sprite(gameWidth-20, gameHeight-20, 'switch');
+        this.switchBtn.anchor.set(0.5);
+        this.switchBtn.scale.set(0.5);
+        this.switchBtn.inputEnabled = false;
+        this.switchBtn.fixedToCamera = true;
+
+
         Pacman_Run = game.add.audio('Pacman_Run', 0.6, true);
         Pacman_Ability = game.add.audio('Pacman_Ability', 1, false);
 
@@ -283,7 +297,6 @@ let player = {
     },
 
     action: function () {
-        
         switch (character) {
             case 'link':
                 this.abilityReset();
