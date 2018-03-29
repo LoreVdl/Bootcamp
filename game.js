@@ -211,7 +211,7 @@ let player = {
     },
 
     ghostAbility: function (ghost){
-        if (pacmanAbility === 1) {
+        if (pacmanAbility == 1) {
             ghost.animations.play('ability')
         } else {
             ghost.animations.play('run')

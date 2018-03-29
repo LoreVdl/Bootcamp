@@ -95,7 +95,7 @@ level1 = {
         arrowTimer1.start();
 */
         arrowTimer2 = game.time.create(false);
-        arrowTimer2.loop(3000, this.createArrow, this, 50, 20.5, -1);
+        arrowTimer2.loop(1500, this.createArrow, this, 50, 22.5, -1);
         arrowTimer2.start();
 
         // create items
