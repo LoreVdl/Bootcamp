@@ -213,7 +213,6 @@ level1 = {
 
         this.animDeath.onComplete.add(function () {
             this.enemyDeath.kill();
-            score += 10; 
         }, this);
     },
 
@@ -582,11 +581,13 @@ level1 = {
             //Able to kill ghost
             this.createEnemyDeath(enemy.x, enemy.y);
             enemy.kill();
+            score += 10;
         }
         else if ((player.y + player.body.height * .5 < enemy.y ) && player.body.velocity.y > 0 && enemy.enemyType!=="ghost") {
 
             this.createEnemyDeath(enemy.x, enemy.y);
             enemy.kill();
+            score += 10;
             player.body.velocity.y = -200;
         } else {
             this.hurtPlayer();
