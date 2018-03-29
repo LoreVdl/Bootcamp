@@ -12,6 +12,7 @@ var character = 'link';
 var jumpCounter = 0;
 var maxJump = 2;
 var pacmanAbility = 0;
+var linkAbility = 0;
 
 var scoreString = '';
 var scoreText;
@@ -78,16 +79,9 @@ var player = {
         x *= 16;
         y *= 16;
 		this.player = game.add.sprite(x, y, 'characters', 'player-3/run-1');
-		this.player.anchor.setTo(0.5);
 		game.physics.arcade.enable(this.player);
-		this.player.body.gravity.y = 500;
-		this.player.body.setSize(18, 18, 0, 0);
-		//add animations
-		var animVel = 15;
-		this.player.animations.add('idle', ['player-3/run-1'], 1, false);
-		this.player.animations.add('run', Phaser.Animation.generateFrameNames('player-3/run-', 1, 2, '', 0), 10, true);
-		this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player-3/hurt-', 1, 2, '', 0), animVel, true);
-		this.player.animations.play('idle');
+		this.switchPlayer();
+
         // timer
         hurtTimer = game.time.create(false);
         hurtTimer.loop(500, this.resetHurt, this);
@@ -166,11 +160,21 @@ var player = {
 
 		if (this.player.body.velocity.x !=0)
 		{
-			this.player.animations.play('run');
+		    if  (character === 'link' && linkAbility) {
+		        this.player.animations.play('block');
+            }
+            else {
+                this.player.animations.play('run');
+            }
 		}
 		else
 		{
-			this.player.animations.play('idle');
+		    if  (character === 'link' && linkAbility) {
+                this.player.animations.play('idle_block');
+            }
+            else {
+                this.player.animations.play('idle');
+            }
 		}
 
 
@@ -200,11 +204,17 @@ var player = {
             this.switchPlayer();
         }
     },
-    
+
+    linkReset : function () {
+
+        linkAbility = !linkAbility;
+
+    },
+
     pacmanReset : function () {
 
         pacmanAbility = !pacmanAbility;
-        
+
     },
 
     ghostAbility: function (ghost){
@@ -219,10 +229,7 @@ var player = {
     action: function () {
         switch (character) {
             case 'link':
-                if (this.player.body.onFloor())
-                {
-	               this.player.body.velocity.y = -170;
-                }
+                this.linkReset();
                 break;
             case 'mario':
                 if (jumpCounter < maxJump)
@@ -302,6 +309,7 @@ var player = {
                 this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player-3/hurt-', 1, 2, '', 0), animVel, true);
                 this.player.animations.add('jump', ['player-3/run-2'], 1, false);
                 this.player.animations.add('block', Phaser.Animation.generateFrameNames('player-3/block-', 1, 2, '', 0), animVel, true);
+                this.player.animations.add('idle_block', ['player-3/block-1'], 1, false);
                 this.player.animations.play('idle');
 
                 character = 'link';
