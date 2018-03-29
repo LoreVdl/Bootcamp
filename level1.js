@@ -410,7 +410,6 @@ level1 = {
 
     update: function () {
         //this.debugGame();
-
         game.physics.arcade.collide(this.enemies, this.layer);
         game.physics.arcade.collide(this.ends, this.layer);
         game.physics.arcade.collide(this.obstacles, this.layer);
@@ -484,9 +483,14 @@ level1 = {
 
     endGame: function () {
         Pacman_Run.stop();
-        game.sound.play('Winning_Sound')
 
-        game.paused = true;
+        if (!hasReachedEnd) {
+            game.sound.play('Winning_Sound');
+        }
+        
+        hasReachedEnd = true;
+
+        game.time.events.add(Phaser.Timer.SECOND*6, this.pauseGame);
 
         character = 'link';
 

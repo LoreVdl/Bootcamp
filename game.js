@@ -32,6 +32,7 @@ let abilityMeter;
 let Pacman_Run;
 let Pacman_Ability;
 
+let hasReachedEnd = 0;
 let deathTime = 0;
 let freezeGame = false;
 
@@ -39,6 +40,7 @@ let freezeGame = false;
 let player = {
 	create: function (x, y) {
         freezeGame = false;
+        hasReachedEnd = false;
 
         this.createPlayer(x, y);
 
