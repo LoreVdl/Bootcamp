@@ -40,41 +40,6 @@ levelSelect = {
      levelThumbsGroup.x = currentPage * game.width * -1
  },
 
- arrowClicked:function(button) {
-
-   if(button.frame==1 && currentPage<pages-1) {
-     leftArrow.alpha = 1;
-     currentPage++;
-
-     if(currentPage == pages-1) {
-       button.alpha = 0.3;
-      }
-
-      var buttonsTween = game.add.tween(levelThumbsGroup);
-
-      buttonsTween.to({
-        x: currentPage * game.width * -1
-      }, 500, Phaser.Easing.Cubic.None);
-
-      buttonsTween.start();
-    }
-
-    if(button.frame==0 && currentPage>0){
-      rightArrow.alpha = 1;
-      currentPage--;
-
-      if(currentPage == 0) {
-        button.alpha = 0.3;
-      }
-
-      var buttonsTween = game.add.tween(levelThumbsGroup);
-      buttonsTween.to({
-        x: currentPage * game.width * -1
-      }, 400, Phaser.Easing.Cubic.None);
-      buttonsTween.start();
-    }
-	},
-
   thumbClicked:function(button) {
 
     if(button.levelNumber == 1) {
