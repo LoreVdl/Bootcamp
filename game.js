@@ -252,8 +252,6 @@ var player = {
     switchPlayer: function () {
         switch(character) {
 		    case 'link':
-                Pacman_Run.stop();
-
 				this.createItemFeedback(this.player.x, this.player.y);
                 this.player.anchor.setTo(0.5);
                 game.physics.arcade.enable(this.player);
@@ -284,10 +282,14 @@ var player = {
                 this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player-2/hurt-', 1, 4, '', 0), animVel, true);
                 this.player.animations.play('idle');
 
+                Pacman_Run.loopFull();
+
                 character = 'pacman';
              	break;
 
     		case 'pacman':
+                Pacman_Run.stop();
+
 				this.createItemFeedback(this.player.x, this.player.y);
                 this.player.anchor.setTo(0.5);
                 game.physics.arcade.enable(this.player);
@@ -301,8 +303,6 @@ var player = {
                 this.player.animations.add('jump', ['player-3/run-2'], 1, false);
                 this.player.animations.add('block', Phaser.Animation.generateFrameNames('player-3/block-', 1, 2, '', 0), animVel, true);
                 this.player.animations.play('idle');
-
-                Pacman_Run.loopFull();
 
                 character = 'link';
 		        break;
