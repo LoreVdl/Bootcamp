@@ -90,7 +90,10 @@ var player = {
             this.player.body.velocity.y = -170;
         }
 
+
         var vel = 150;
+        gyro.frequency = 0.5;
+/*
         if (this.wasd.left.isDown) {
             this.player.body.velocity.x = -vel;
             this.player.animations.play('run');
@@ -99,7 +102,7 @@ var player = {
             this.player.body.velocity.x = vel;
             this.player.animations.play('run');
             this.player.scale.x = 1;
-        } /*else if (game.input.pointer1.isDown) {
+        } else if (game.input.pointer1.isDown) {
             if (game.input.pointer1.x < game.width/2) {
                 this.player.body.velocity.x = -vel;
                 this.player.animations.play('run');
@@ -112,34 +115,32 @@ var player = {
                 this.player.body.velocity.x = 0;
                 this.player.animations.play('idle');
             }
-        }*/ else {
+        } else {
             this.player.body.velocity.x = 0;
             this.player.animations.play('idle');
-        }
-/*
-		gyro.frequency = 0.5;
+        }*/
 
-		gyro.startTracking(function(o) {
-			if (!hurtFlag)
-			{
-				if (o.y < -1)
-				{
-					player.player.body.velocity.x = -vel;
-	            	player.player.scale.x = -1;
-				}
-				else if (o.y > 1)
-				{
-					player.player.body.velocity.x = vel;
-	            	player.player.scale.x = 1;
-				}
-				else
-				{
-					player.player.body.velocity.x = 0;
-				}
-			}
-		});
-*/
-
+		
+        gyro.startTracking(function(o) {
+            if (!hurtFlag)
+            {
+                if (o.y < -1 || player.wasd.left.isDown)
+                {
+                    player.player.body.velocity.x = -vel;
+                    player.player.scale.x = -1;
+                }
+                else if (o.y > 1 || player.wasd.right.isDown)
+                {
+                    player.player.body.velocity.x = vel;
+                    player.player.scale.x = 1;
+                }
+                else
+                {
+                    player.player.body.velocity.x = 0;
+                }
+            }
+        });
+		
 
 		if (this.player.body.velocity.x !=0)
 		{
@@ -184,25 +185,25 @@ var player = {
     pacmanReset : function () {
         pacmanAbility = !pacmanAbility;
     },
-                        
+
     action: function () {
         switch (character) {
             case 'link':
                 if (this.player.body.onFloor())
-	        {
-	            this.player.body.velocity.y = -170;
-	        }
+                {
+	               this.player.body.velocity.y = -170;
+                }
                 break;
             case 'mario':
                 if (jumpCounter < maxJump)
-			{
+                {
 					this.player.body.velocity.y = -160;
 					jumpCounter++;
-			}
+                }
                 break;
             case 'pacman':
                 this.pacmanReset();
-                game.time.events.add = (Phaser.Timer.SECOND*5,this.pacmanReset);
+                game.time.events.add = (Phaser.Timer.SECOND*5, this.pacmanReset);
                 break;
 
         }
