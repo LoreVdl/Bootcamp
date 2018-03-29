@@ -29,7 +29,7 @@ preload = {
         game.load.image('heart', 'assets/sprites/heart.png');
 
         game.load.image('menu', 'assets/sprites/menu.png');
-        game.load.image('gameOver', 'assets/sprites/gameOver.png');
+        game.load.image('gameOver', 'assets/sprites/GameOver.png');
         game.load.image('playAgain', 'assets/sprites/playAgain.png');
         game.load.image('youWin', 'assets/sprites/youWin.png');
         game.load.image('nextLevel', 'assets/sprites/nextLevel.png');
