@@ -80,8 +80,8 @@ level0 = {
     },
 
     decorWorld: function () {
-        game.add.image(34 * 16, 9 * 16 + 3, 'atlas-props', 'tree');
-        game.add.image(3 * 16, 7 * 16 + 5, 'atlas-props', 'house');
+        game.add.image(34 * 16, 9 * 12.5 + 3, 'atlas-props', 'tree');
+        game.add.image(3 * 16, 7 * 9 + 5, 'atlas-props', 'house');
         game.add.image(15 * 16, 14 * 16 + 4, 'atlas-props', 'bush');
         game.add.image(50 * 16, 18 * 16 + 6, 'atlas-props', 'skulls');
         game.add.image(39 * 16, 20 * 16 + 6, 'atlas-props', 'skulls');
