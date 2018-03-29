@@ -33,6 +33,8 @@ level1 = {
         Pacman_Run.stop();
         game.paused = true;
 
+        character = 'link';
+
         player.button.inputEnabled = false;
         lives = 3;
 
@@ -448,13 +450,11 @@ level1 = {
     },
 
     endGame: function () {
-<<<<<<< HEAD
         Pacman_Run.stop();
         game.sound.play('Winning_Sound')
-=======
-        game.sound.play('Winning_Sound');
->>>>>>> aad841b3c20114c6fe0d0e5e920fa9b8302d9cde
         game.paused = true;
+
+        character = 'link';
 
         player.button.inputEnabled = false;
         lives = 3;

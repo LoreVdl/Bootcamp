@@ -32,7 +32,6 @@ let Pacman_Ability;
 
 let player = {
 	create: function () {
-
         this.createPlayer(7, 12);
 
 
@@ -137,23 +136,32 @@ let player = {
         }*/
 
 
+
+
         gyro.startTracking(function(o) {
-            if (!hurtFlag)
-            {
-                if (o.y < -1 || player.wasd.left.isDown)
-                {
-                    player.player.body.velocity.x = -vel;
-                    player.player.scale.x = -1;
+            if (!hurtFlag) {
+                if (game.device.android) {
+                    if (o.y < -1 || player.wasd.left.isDown) {
+                        player.player.body.velocity.x = -vel;
+                        player.player.scale.x = -1;
+                    } else if (o.y > 1 || player.wasd.right.isDown) {
+                        player.player.body.velocity.x = vel;
+                        player.player.scale.x = 1;
+                    } else {
+                        player.player.body.velocity.x = 0;
+                    }
+                } else {
+                    if (o.y < 1 || player.wasd.left.isDown) {
+                        player.player.body.velocity.x = -vel;
+                        player.player.scale.x = -1;
+                    } else if (o.y > -1 || player.wasd.right.isDown) {
+                        player.player.body.velocity.x = vel;
+                        player.player.scale.x = 1;
+                    } else {
+                        player.player.body.velocity.x = 0;
+                    }
                 }
-                else if (o.y > 1 || player.wasd.right.isDown)
-                {
-                    player.player.body.velocity.x = vel;
-                    player.player.scale.x = 1;
-                }
-                else
-                {
-                    player.player.body.velocity.x = 0;
-                }
+                
             }
         });
 
