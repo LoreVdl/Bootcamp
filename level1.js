@@ -400,7 +400,7 @@ level1 = {
     },
 
     arrowHitPlayer: function (player, arrow) {
-        if (character == 'link' && hurtFlag == false) {
+        if (character == 'link' && linkAbility && hurtFlag == false) {
 
             if (((player.x + player.body.width * 0.5 > arrow.x) && player.scale.x == -1) || ((player.x + player.body.width * 0.5 < arrow.x) && player.scale.x == 1)) {
 
