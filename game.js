@@ -161,7 +161,7 @@ let player = {
                         player.player.body.velocity.x = 0;
                     }
                 }
-                
+
             }
         });
 

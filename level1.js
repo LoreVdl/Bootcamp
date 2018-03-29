@@ -492,6 +492,11 @@ level1 = {
         item.kill();
         lives += 1;
 
+        hearts[lives-1] = game.add.image(gameWidth-heartCounter, gameHeight-(gameHeight-10), "heart");
+        hearts[lives-1].fixedToCamera = true;
+        hearts[lives-1].anchor.setTo(0.5, 0.5);
+        heartCounter += 10;
+
         game.sound.play('pickup');
     },
 
@@ -577,17 +582,21 @@ level1 = {
     },
 
     hurtPlayer: function () {
-        if (hurtFlag) {
-            return;
-        }
-        hurtFlag = true;
-        hurtTimer.start();
-        player.player.body.velocity.y = -100;
+          if (hurtFlag) {
+              return;
+          }
+          hurtFlag = true;
+          hurtTimer.start();
+          player.player.body.velocity.y = -100;
 
-        player.player.body.velocity.x = (player.player.scale.x === 1) ? -100 : 100;
+          player.player.body.velocity.x = (player.player.scale.x === 1) ? -100 : 100;
 
-        lives -= 1;
-    },
+          hearts[lives-1].kill();
+
+          heartCounter -= 10;
+
+          lives -= 1
+      },
 
     parallaxBackground: function () {
         this.background.tilePosition.x = this.layer.x * -0.1;
