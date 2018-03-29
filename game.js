@@ -24,6 +24,9 @@ let lives = 3;
 
 let ghosts = [];
 
+var hearts = [];
+var heartCounter = 10;
+
 let Pacman_Run;
 let Pacman_Ability;
 
@@ -41,10 +44,12 @@ let player = {
         scoreText.fixedToCamera = true;
         scoreText.anchor.setTo(0.5, 0.5);
 
-        livesString = 'Lives : ';
-        livesText = game.add.text(gameWidth-25, 10, livesString + lives, { font: '10px Arial', fill: '#fff' });
-        livesText.fixedToCamera = true;
-        livesText.anchor.setTo(0.5, 0.5);
+				for (i = 0; i < lives; i++) {
+					hearts[i] = game.add.image(gameWidth-heartCounter, gameHeight-(gameHeight-10), "heart");
+					hearts[i].fixedToCamera = true;
+	        hearts[i].anchor.setTo(0.5, 0.5);
+					heartCounter += 10;
+				}
 
         this.button = game.add.button(gameWidth/2, gameHeight/2, 'button', this.useButtons, this, 2, 1, 0);
         this.button.anchor.set(0.5);
@@ -89,9 +94,9 @@ let player = {
 
     movePlayer: function () {
 
-        
+
         ghosts.forEach(this.ghostAbility);
-        
+
         if (hurtFlag) {
             this.player.animations.play('hurt');
             return;
@@ -218,7 +223,7 @@ let player = {
         } else {
             ghost.animations.play('run');
         }
-        
+
     },
 
     action: function () {
