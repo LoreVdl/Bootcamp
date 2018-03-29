@@ -101,19 +101,19 @@ level1 = {
         // create items
         this.createEnd(50, 12);
 
-        this.createHendel(21, 5);
+        this.createHendel(33, 19);
         this.createHendel(53, 21);
 
         this.createObstacle(33, 21);
 
-        this.createObstacleBig(38, 11);
-        this.createObstacleBig(38, 9);
-        this.createObstacleBig(38, 7);
-        this.createObstacleBig(38, 5);
 
-        this.createCherry(28, 5);
-        this.createCherry(29, 5);
-        this.createCherry(30, 5);
+        this.createObstacleBig(38, 3);
+        this.createObstacleBig(38, 5);
+        this.createObstacleBig(38, 1);
+
+        this.createCherry(55, 20);
+        this.createCherry(21, 17);
+        this.createCherry(31, 5);
 
         //
         this.createGem(28, 21);
@@ -127,8 +127,7 @@ level1 = {
         this.createFrog(31, 12);
         this.createFrog(44, 12);
         this.createEagle(16, 9);
-        this.createOpossum(44, 21);
-        this.createOpossum(25, 21);
+        this.createOpossum(22, 18);
         this.createGhost(20, 21);
     },
 
@@ -430,7 +429,7 @@ level1 = {
     destroyBlock: function (player, item) {
       this.createItemFeedback(item.x, item.y);
       item.kill();
-      this.createHendelUp(21, 5);
+      this.createHendelUp(33, 19);
       item = this.obstacles.children[0]
       this.createItemFeedback(item.x, item.y);
       item.kill();
@@ -440,7 +439,7 @@ level1 = {
       this.createItemFeedback(item.x, item.y);
       item.kill();
       this.createHendelUp(53, 21);
-      for (var i = 0; i < 5; i++) {
+      for (var i = 0; i < 4; i++) {
         item = this.obstacles.children[i];
         this.createItemFeedback(item.x, item.y);
         item.kill();
