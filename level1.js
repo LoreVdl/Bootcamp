@@ -505,6 +505,15 @@ level1 = {
                 }
             }
 
+            // ghost
+            if (tempEnemy.enemyType === 'ghost') {
+                if (tempEnemy.body.velocity.x > 0) {
+                    tempEnemy.scale.x = 1;
+                } else {
+                    tempEnemy.scale.x = -1;
+                }
+            }
+
             // eagle
             if (tempEnemy.enemyType == 'eagle') {
                 if (tempEnemy.x > player.player.x) {
