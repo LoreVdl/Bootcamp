@@ -298,7 +298,7 @@ level1 = {
         temp.body.velocity.x = 60 * game.rnd.pick([1, -1]);
         temp.body.bounce.x = 1;
         temp.enemyType = 'ghost';
-
+        ghosts.push(temp);
         this.enemies.add(temp);
     },
 

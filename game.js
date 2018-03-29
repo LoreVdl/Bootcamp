@@ -21,9 +21,10 @@ var livesString = '';
 var livesText;
 var lives = 3;
 
+var ghosts = [];
+
 var Pacman_Run;
 var Winning_Sound;
-
 
 var player = {
 	create: function () {
@@ -94,6 +95,9 @@ var player = {
 
     movePlayer: function () {
 
+        
+        ghosts.forEach(this.ghostAbility);
+        
         if (hurtFlag) {
             this.player.animations.play('hurt');
             return;
@@ -196,28 +200,40 @@ var player = {
             this.switchPlayer();
         }
     },
-
+    
     pacmanReset : function () {
+
         pacmanAbility = !pacmanAbility;
+        
+    },
+
+    ghostAbility: function (ghost){
+        if (pacmanAbility == 1) {
+            ghost.animations.play('ability')
+        } else {
+            ghost.animations.play('run')
+        }
+        
     },
 
     action: function () {
         switch (character) {
             case 'link':
-                this.player.animations.play('block');
+                if (this.player.body.onFloor())
+                {
+	               this.player.body.velocity.y = -170;
+                }
                 break;
             case 'mario':
                 if (jumpCounter < maxJump)
                 {
 					this.player.body.velocity.y = -160;
 					jumpCounter++;
-
-                    game.sound.play('Mario_Jump');
                 }
                 break;
             case 'pacman':
                 this.pacmanReset();
-                game.time.events.add = (Phaser.Timer.SECOND*5, this.pacmanReset);
+                game.time.events.add(Phaser.Timer.SECOND*5, this.pacmanReset);
                 break;
 
         }
