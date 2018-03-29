@@ -484,7 +484,6 @@ level1 = {
         this.createItemFeedback(item.x, item.y);
         item.kill();
         lives += 1;
-        livesText.text = livesString + lives;
 
         game.sound.play('pickup');
     },
@@ -581,7 +580,6 @@ level1 = {
         player.player.body.velocity.x = (player.player.scale.x === 1) ? -100 : 100;
 
         lives -= 1;
-        livesText.text = livesString + lives;
     },
 
     parallaxBackground: function () {
