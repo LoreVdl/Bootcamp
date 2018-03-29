@@ -448,12 +448,9 @@ level1 = {
     },
 
     endGame: function () {
-<<<<<<< HEAD
         Pacman_Run.stop();
         game.sound.play('Winning_Sound')
-=======
         game.sound.play('Winning_Sound');
->>>>>>> aad841b3c20114c6fe0d0e5e920fa9b8302d9cde
         game.paused = true;
 
         player.button.inputEnabled = false;
