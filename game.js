@@ -260,7 +260,7 @@ let player = {
                 this.player.anchor.setTo(0.5);
                 game.physics.arcade.enable(this.player);
                 this.player.body.gravity.y = 500;
-                this.player.body.setSize(10, 24, 10, 0);
+                this.player.body.setSize(16, 24, 2, 0);
                 //add animations
                 this.player.animations.add('idle', ['player-1/idle'], 1, false);
                 this.player.animations.add('run', Phaser.Animation.generateFrameNames('player-1/run-', 1, 4, '', 0), animVel, true);
