@@ -190,8 +190,26 @@
     "pivot": {"x":0.5,"y":0.5}
   },
   {
+    "filename": "player-3/block-1",
+    "frame": {"x":0,"y":110,"w":18,"h":18},
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {"x":0,"y":0,"w":18,"h":18},
+    "sourceSize": {"w":18,"h":18},
+    "pivot": {"x":0.5,"y":0.5}
+  },
+  {
+    "filename": "player-3/block-2",
+    "frame": {"x":36,"y":110,"w":18,"h":18},
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {"x":0,"y":0,"w":18,"h":18},
+    "sourceSize": {"w":18,"h":18},
+    "pivot": {"x":0.5,"y":0.5}
+  },
+  {
     "filename": "ghost/run-1",
-    "frame": {"x":0,"y":108,"w":16,"h":16},
+    "frame": {"x":0,"y":144,"w":16,"h":16},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -200,7 +218,7 @@
   },
   {
     "filename": "ghost/run-2",
-    "frame": {"x":30,"y":108,"w":16,"h":16},
+    "frame": {"x":30,"y":144,"w":16,"h":16},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -209,7 +227,7 @@
   },
   {
     "filename": "ghost/ability-1",
-    "frame": {"x":60,"y":108,"w":16,"h":16},
+    "frame": {"x":60,"y":144,"w":16,"h":16},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -218,7 +236,7 @@
   },
   {
     "filename": "ghost/ability-2",
-    "frame": {"x":90,"y":108,"w":16,"h":16},
+    "frame": {"x":90,"y":144,"w":16,"h":16},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
