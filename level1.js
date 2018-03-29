@@ -209,11 +209,12 @@ level1 = {
         this.animDeath = this.enemyDeath.animations.add('dead', Phaser.Animation.generateFrameNames('enemy-death/enemy-death-', 1, 6, '', 0), 16, false);
         this.enemyDeath.animations.play('dead');
 
+        score += 10;
+
         game.sound.play('Enemy_Die');
 
         this.animDeath.onComplete.add(function () {
             this.enemyDeath.kill();
-            score += 10; 
         }, this);
     },
 
