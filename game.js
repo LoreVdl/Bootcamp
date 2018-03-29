@@ -1,32 +1,32 @@
-var game;
-var background;
-var middleground;
-var gameWidth = 288;
-var gameHeight = 192;
-var hurtFlag = false;
-var hurtTimer;
-var frogTimer;
-var frogJumpSide = 'left';
+let background;
+let middleground;
+const gameWidth = 288;
+const gameHeight = 192;
+let hurtFlag = false;
+let hurtTimer;
+let frogTimer;
+let frogJumpSide = 'left';
+const animVel = 10;
 
-var character = 'link';
-var jumpCounter = 0;
-var maxJump = 2;
-var pacmanAbility = 0;
-var linkAbility = 0;
+let character = 'link';
+let jumpCounter = 0;
+const maxJump = 2;
+let pacmanAbility = 0;
+let linkAbility = 0;
 
-var scoreString = '';
-var scoreText;
-var score = 0;
+let scoreString = '';
+let scoreText;
+let score = 0;
 
-var livesString = '';
-var livesText;
-var lives = 3;
+let livesString = '';
+let livesText;
+let lives = 3;
 
-var ghosts = [];
+let ghosts = [];
 
-var Pacman_Run;
+let Pacman_Run;
 
-var player = {
+let player = {
 	create: function () {
 
         this.createPlayer(7, 12);
@@ -60,7 +60,7 @@ var player = {
             left: game.input.keyboard.addKey(Phaser.Keyboard.LEFT),
             right: game.input.keyboard.addKey(Phaser.Keyboard.RIGHT),
             crouch: game.input.keyboard.addKey(Phaser.Keyboard.DOWN)
-        },
+        };
         game.input.keyboard.addKeyCapture(
             [Phaser.Keyboard.SPACEBAR,
                 Phaser.Keyboard.LEFT,
@@ -100,7 +100,7 @@ var player = {
         }
 
 
-        var vel = 150;
+        const vel = 150;
         gyro.frequency = 0.5;
 /*
         if (this.wasd.left.isDown) {
@@ -129,11 +129,6 @@ var player = {
             this.player.animations.play('idle');
         }*/
 
-        if (this.wasd.jump.isDown)
-        {
-            this.switchPlayer();
-        }
-
 
         gyro.startTracking(function(o) {
             if (!hurtFlag)
@@ -156,7 +151,7 @@ var player = {
         });
 
 
-		if (this.player.body.velocity.x !=0)
+		if (this.player.body.velocity.x !== 0)
 		{
 		    if  (character === 'link' && linkAbility) {
 		        this.player.animations.play('block');
@@ -216,7 +211,7 @@ var player = {
     },
 
     ghostAbility: function (ghost){
-        if (pacmanAbility == 1) {
+        if (pacmanAbility === 1) {
             ghost.animations.play('ability')
         } else {
             ghost.animations.play('run')
@@ -249,9 +244,9 @@ var player = {
     },
 
     createItemFeedback: function (x, y) {
-        var itemFeedback = game.add.sprite(x, y, 'atlas');
+        const itemFeedback = game.add.sprite(x, y, 'atlas');
         itemFeedback.anchor.setTo(0.5);
-        var animFeedback = itemFeedback.animations.add('feedback', Phaser.Animation.generateFrameNames('item-feedback/item-feedback-', 1, 4, '', 0), 16, false);
+        const animFeedback = itemFeedback.animations.add('feedback', Phaser.Animation.generateFrameNames('item-feedback/item-feedback-', 1, 4, '', 0), 16, false);
         itemFeedback.animations.play('feedback');
         animFeedback.onComplete.add(function () {
             itemFeedback.kill();
@@ -267,11 +262,9 @@ var player = {
                 this.player.body.gravity.y = 500;
                 this.player.body.setSize(10, 24, 10, 0);
                 //add animations
-                var animVel = 15;
                 this.player.animations.add('idle', ['player-1/idle'], 1, false);
                 this.player.animations.add('run', Phaser.Animation.generateFrameNames('player-1/run-', 1, 4, '', 0), animVel, true);
                 this.player.animations.add('jump', ['player-1/jump-1'], 1, false);
-
                 this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player-1/hurt-', 1, 2, '', 0), animVel, true);
                 this.player.animations.play('idle');
                 character = 'mario';
@@ -284,7 +277,6 @@ var player = {
                 this.player.body.gravity.y = 500;
                 this.player.body.setSize(15, 15, 0, 0);
                 //add animations
-                var animVel = 15;
                 this.player.animations.add('idle', Phaser.Animation.generateFrameNames('player-2/run-', 1, 4, '', 0), animVel, true);
                 this.player.animations.add('run', Phaser.Animation.generateFrameNames('player-2/run-', 1, 2, '', 0), 10, true);
                 this.player.animations.add('jump', Phaser.Animation.generateFrameNames('player-2/run-', 1, 4, '', 0), animVel, true);
@@ -305,7 +297,6 @@ var player = {
                 this.player.body.gravity.y = 500;
                 this.player.body.setSize(18, 18, 0, 0);
                 //add animations
-                var animVel = 15;
                 this.player.animations.add('idle', ['player-3/run-1'], 1, false);
                 this.player.animations.add('run', Phaser.Animation.generateFrameNames('player-3/run-', 1, 2, '', 0), 10, true);
                 this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player-3/hurt-', 1, 2, '', 0), animVel, true);
@@ -321,7 +312,7 @@ var player = {
 }
 
 
-var game = new Phaser.Game(gameWidth, gameHeight, Phaser.AUTO, "");
+const game = new Phaser.Game(gameWidth, gameHeight, Phaser.AUTO, "");
 
 game.global = {
   thumbRows: 2,
