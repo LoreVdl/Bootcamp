@@ -24,7 +24,6 @@ var lives = 3;
 var ghosts = [];
 
 var Pacman_Run;
-var Winning_Sound;
 
 var player = {
 	create: function () {
@@ -51,8 +50,7 @@ var player = {
         this.button.inputEnabled = true;
         this.button.fixedToCamera = true;
 
-        Pacman_Run = game.add.audio('Pacman_Run');
-        Winning_Sound = game.add.audio('Winning_Sound');
+        Pacman_Run = game.add.audio('Pacman_Run', 0.6);
     },
 
     bindKeys: function () {
@@ -233,6 +231,9 @@ var player = {
                 break;
             case 'pacman':
                 this.pacmanReset();
+
+                game.sound.play('Pacman_Ability');
+
                 game.time.events.add(Phaser.Timer.SECOND*5, this.pacmanReset);
                 break;
 

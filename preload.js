@@ -36,9 +36,10 @@ preload = {
         game.load.audio('Enemy_Die', 'assets/sound/Enemy_Die.mp3');
         game.load.audio('lever', 'assets/sound/lever.wav');
         game.load.audio('Mario_Jump', 'assets/sound/Mario_Jump.wav');
+        game.load.audio('Pacman_Ability', 'assets/sound/Pacman_Ability.wav');
         game.load.audio('Pacman_Run', 'assets/sound/Pacman_Run.wav');
         game.load.audio('pickup', 'assets/sound/pickup.wav');
-        game.load.audio('Winning_Sound', 'assets/sound/Winning_Sound.mp3');
+        game.load.audio('Winning_Sound', 'assets/sound/Winning_Sound.wav');
         game.load.audio('Zelda_Block', 'assets/sound/Zelda_Block.wav');
     },
     create: function () {

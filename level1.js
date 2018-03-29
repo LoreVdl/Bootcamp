@@ -436,7 +436,8 @@ level1 = {
     },
 
     endGame: function () {
-      this.game.state.start('GameOver');
+        game.sound.play('Winning_Sound')
+        this.game.state.start('GameOver');
     },
 
     pickItem: function (player, item) {
