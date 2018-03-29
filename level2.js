@@ -59,12 +59,12 @@ level2 = {
     },
 
     decorWorld: function () {
-        game.add.image(42 * 16, 7 * 16 + 3, 'atlas-props', 'tree');
-        game.add.image(7 * 16, 6 * 16 + 5, 'atlas-props', 'house');
-        game.add.image(41 * 16, 11 * 16 + 4, 'atlas-props', 'bush');
-        game.add.image(25 * 16, 21 * 16 + 6, 'atlas-props', 'skulls');
-        game.add.image(44 * 16, 21 * 16 + 6, 'atlas-props', 'skulls');
-        game.add.image(16 * 16, 21 * 16, 'atlas-props', 'shrooms');
+        // game.add.image(42 * 16, 7 * 16 + 3, 'atlas-props', 'tree');
+        // game.add.image(7 * 16, 6 * 16 + 5, 'atlas-props', 'house');
+        // game.add.image(41 * 16, 11 * 16 + 4, 'atlas-props', 'bush');
+        // game.add.image(25 * 16, 21 * 16 + 6, 'atlas-props', 'skulls');
+        // game.add.image(44 * 16, 21 * 16 + 6, 'atlas-props', 'skulls');
+        // game.add.image(16 * 16, 21 * 16, 'atlas-props', 'shrooms');
     },
 
     populateWorld: function () {
@@ -103,41 +103,42 @@ level2 = {
         arrowTimer1.start();
 */
 
+        let arrowTimer1 = game.time.create(false);
+        arrowTimer1.loop(1500, this.createArrow, this, 40, 6.5, -1);
+        arrowTimer1.start();
         let arrowTimer2 = game.time.create(false);
-        arrowTimer2.loop(1500, this.createArrow, this, 51, 22.5, -1);
+        arrowTimer2.loop(1500, this.createArrow, this, 40, 10.5, -1);
         arrowTimer2.start();
+        let arrowTimer3 = game.time.create(false);
+        arrowTimer3.loop(1500, this.createArrow, this, 37, 8.5, 1);
+        arrowTimer3.start();
 
         // create items
-        this.createEnd(50, 12);
+        this.createEnd(50, 9);
 
-        // this.createHendel(33, 19);
-        // this.createHendel(53, 21);
-        //
-        // this.createObstacle(33, 21);
-        //
-        //
-        // this.createObstacleBig(38, 3);
-        // this.createObstacleBig(38, 5);
-        // this.createObstacleBig(38, 1);
-        //
+        this.createHendel(1, 12);
+        this.createHendel(27, 14);
+        this.createObstacle(6, 8);
+        this.createObstacle(6, 7);
+        this.createObstacle(6, 6);
+        this.createObstacle(6, 5);
+        this.createObstacleBig(24, 0);
+        this.createObstacleBig(24, 2);
+
         // this.createCherry(55, 20);
         // this.createCherry(21, 17);
         // this.createCherry(31, 5);
-        //
-        // //
+
         // this.createGem(28, 21);
         // this.createGem(37, 20);
         // this.createGem(38, 20);
         // this.createGem(39, 20);
-        //
-        //
-        // // create enemies
-        //
-        // this.createFrog(31, 12);
-        // this.createFrog(44, 12);
-        // this.createEagle(16, 9);
-        // this.createOpossum(22, 18);
-        // this.createGhost(20, 21);
+
+        // create enemies
+        this.createFrog(23, 8);
+        this.createOpossum(38, 17);
+        this.createGhost(7, 12);
+        this.createGhost(46, 20);
     },
 
     createArrow: function (x, y, scale) {
@@ -439,17 +440,19 @@ level2 = {
     destroyBlock: function (player, item) {
       this.createItemFeedback(item.x, item.y);
       item.kill();
-      this.createHendelUp(33, 19);
-      item = this.obstacles.children[0];
-      this.createItemFeedback(item.x, item.y);
-      item.kill();
+      this.createHendelUp(1, 12);
+        for (let i = 0; i < 4; i++) {
+            item = this.obstacles.children[i];
+            this.createItemFeedback(item.x, item.y);
+            item.kill();
+        }
     },
 
     destroyBlockBig: function (player, item) {
       this.createItemFeedback(item.x, item.y);
       item.kill();
-      this.createHendelUp(53, 21);
-      for (let i = 0; i < 4; i++) {
+      this.createHendelUp(27, 14);
+      for (let i = 4; i < 6; i++) {
         item = this.obstacles.children[i];
         this.createItemFeedback(item.x, item.y);
         item.kill();
