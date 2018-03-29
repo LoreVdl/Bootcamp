@@ -412,7 +412,7 @@ level1 = {
     },
 
     arrowHitPlayer: function (player, arrow) {
-        if (character == 'link' && hurtFlag == false) {
+        if (character == 'link' && linkAbility && hurtFlag == false) {
 
             if (((player.x + player.body.width * 0.5 > arrow.x) && player.scale.x == -1) || ((player.x + player.body.width * 0.5 < arrow.x) && player.scale.x == 1)) {
 
@@ -449,7 +449,27 @@ level1 = {
 
     endGame: function () {
         game.sound.play('Winning_Sound')
-        this.game.state.start('GameOver');
+        game.paused = true;
+
+        player.button.inputEnabled = false;
+        lives = 3;
+
+        this.button2 = game.add.button(100, 30, 'action', this.nextLevel, this, 2, 1, 0);
+        this.button2.anchor.set(0.5);
+        this.button2.scale.set(0.25);
+        this.button2.inputEnabled = true;
+        this.button2.fixedToCamera = true;
+
+        this.button3 = game.add.button(200, 30, 'switch', this.menu, this, 2, 1, 0);
+        this.button3.anchor.set(0.5);
+        this.button3.scale.set(0.25);
+        this.button3.inputEnabled = true;
+        this.button3.fixedToCamera = true;
+    },
+
+    nextLevel: function() {
+      game.paused = false;
+      this.game.state.start('level1.js');
     },
 
     pickItem: function (player, item) {
