@@ -131,7 +131,7 @@ level2 = {
         arrowTimer2.loop(1500, this.createArrow, this, 40, 10.5, -1);
         arrowTimer2.start();
         let arrowTimer3 = game.time.create(false);
-        arrowTimer3.loop(1500, this.createArrow, this, 37, 8.5, 1);
+        arrowTimer3.loop(1500, this.createArrow, this, 36, 8.5, 1);
         arrowTimer3.start();
 
         // create items
