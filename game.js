@@ -27,8 +27,10 @@ let ghosts = [];
 var hearts = [];
 var heartCounter = 10;
 
+
 let Pacman_Run;
 let Pacman_Ability;
+
 
 let player = {
 	create: function () {
@@ -56,8 +58,10 @@ let player = {
         this.button.inputEnabled = true;
         this.button.fixedToCamera = true;
 
-        Pacman_Run = game.add.audio('Pacman_Run', 0.6);
+
+        Pacman_Run = game.add.audio('Pacman_Run', 0.6, true);
         Pacman_Ability = game.add.audio('Pacman_Ability', 1, false);
+
     },
 
     bindKeys: function () {
@@ -218,7 +222,8 @@ let player = {
         linkAbility = !linkAbility;
 
     },
-
+// Pacman_Sound = game.add.audio('Pacman_Run', 0.6);
+// Pacman_Ability = game.add.audio('Pacman_Ability', 1, false);
     pacmanReset : function () {
 
         pacmanAbility = !pacmanAbility;
@@ -249,9 +254,6 @@ let player = {
                 break;
             case 'pacman':
                 this.pacmanReset();
-
-                Pacman_Ability.stop();
-                Pacman_Ability.play();
 
                 game.time.events.add(Phaser.Timer.SECOND*5, this.pacmanReset);
                 break;
@@ -299,7 +301,7 @@ let player = {
                 this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player-2/hurt-', 1, 4, '', 0), animVel, true);
                 this.player.animations.play('idle');
 
-                Pacman_Run.loopFull();
+                Pacman_Run.play();
 
                 character = 'pacman';
              	break;

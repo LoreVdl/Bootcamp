@@ -419,6 +419,7 @@ level1 = {
             if (((player.x + player.body.width * 0.5 > arrow.x) && player.scale.x === -1) || ((player.x + player.body.width * 0.5 < arrow.x) && player.scale.x === 1)) {
 
                 arrow.kill()
+                game.sound.play('Zelda_Block');
             } else {
                 arrow.kill();
                 this.hurtPlayer();
