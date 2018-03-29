@@ -627,8 +627,6 @@ level0 = {
     },
     renderGroup: function (member) {
         game.debug.body(member);
-    },
-
-};
+    }
 
 };

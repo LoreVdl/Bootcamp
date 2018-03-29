@@ -5,7 +5,7 @@ level1 = {
         this.createWorld();
         this.decorWorld();
 
-        player.create();
+        player.create(7,12);
 
         this.populateWorld();
 

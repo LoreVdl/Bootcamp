@@ -37,10 +37,10 @@ let freezeGame = false;
 
 
 let player = {
-	create: function () {
+	create: function (x, y) {
         freezeGame = false;
 
-        this.createPlayer(7, 12);
+        this.createPlayer(x, y);
 
         game.time.events.loop(Phaser.Timer.SECOND * 2, this.abUp);
         game.time.events.loop(Phaser.Timer.SECOND, this.abDown);
@@ -416,5 +416,6 @@ game.state.add('TitleScreen', titleScreen);
 game.state.add('LevelSelect', levelSelect);
 game.state.add('Level1', level1);
 game.state.add('Level0', level0);
+game.state.add('Level2', level2);
 
 game.state.start("Boot");
