@@ -312,7 +312,7 @@ let player = {
             case 'mario':
                 if (jumpCounter < maxJump)
                 {
-					this.player.body.velocity.y = -160;
+					this.player.body.velocity.y = -180;
 					jumpCounter++;
 
                     game.sound.play('Mario_Jump');
