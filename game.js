@@ -24,11 +24,14 @@ let lives = 3;
 let abPoints = 5;
 let ghosts = [];
 
+var hearts = [];
+var heartCounter = 10;
+
 let Pacman_Run;
+let Pacman_Ability;
 
 let player = {
 	create: function () {
-
         this.createPlayer(7, 12);
         
         game.time.events.loop(Phaser.Timer.SECOND * 2, this.abUp);
@@ -47,10 +50,12 @@ let player = {
         scoreText.fixedToCamera = true;
         scoreText.anchor.setTo(0.5, 0.5);
 
-        livesString = 'Lives : ';
-        livesText = game.add.text(gameWidth-25, 10, livesString + lives, { font: '10px Arial', fill: '#fff' });
-        livesText.fixedToCamera = true;
-        livesText.anchor.setTo(0.5, 0.5);
+				for (i = 0; i < lives; i++) {
+					hearts[i] = game.add.image(gameWidth-heartCounter, gameHeight-(gameHeight-10), "heart");
+					hearts[i].fixedToCamera = true;
+	        hearts[i].anchor.setTo(0.5, 0.5);
+					heartCounter += 10;
+				}
 
         this.button = game.add.button(gameWidth/2, gameHeight/2, 'button', this.useButtons, this, 2, 1, 0);
         this.button.anchor.set(0.5);
@@ -59,6 +64,7 @@ let player = {
         this.button.fixedToCamera = true;
 
         Pacman_Run = game.add.audio('Pacman_Run', 0.6);
+        Pacman_Ability = game.add.audio('Pacman_Ability', 1, false);
     },
 
     bindKeys: function () {
@@ -116,8 +122,11 @@ let player = {
             ability = 0;
             pacmanAbility = 0;
             linkAbility = 0;
-        }
-        
+        };
+    
+
+        ghosts.forEach(this.ghostAbility);
+
         if (hurtFlag) {
             this.player.animations.play('hurt');
             return;
@@ -158,28 +167,37 @@ let player = {
         }*/
 
 
+
+
         gyro.startTracking(function(o) {
-            if (!hurtFlag)
-            {
-                if (o.y < -1 || player.wasd.left.isDown)
-                {
-                    player.player.body.velocity.x = -vel;
-                    player.player.scale.x = -1;
+            if (!hurtFlag) {
+                if (game.device.android) {
+                    if (o.y < -1 || player.wasd.left.isDown) {
+                        player.player.body.velocity.x = -vel;
+                        player.player.scale.x = -1;
+                    } else if (o.y > 1 || player.wasd.right.isDown) {
+                        player.player.body.velocity.x = vel;
+                        player.player.scale.x = 1;
+                    } else {
+                        player.player.body.velocity.x = 0;
+                    }
+                } else {
+                    if (o.y > 1 || player.wasd.left.isDown) {
+                        player.player.body.velocity.x = -vel;
+                        player.player.scale.x = -1;
+                    } else if (o.y < -1 || player.wasd.right.isDown) {
+                        player.player.body.velocity.x = vel;
+                        player.player.scale.x = 1;
+                    } else {
+                        player.player.body.velocity.x = 0;
+                    }
                 }
-                else if (o.y > 1 || player.wasd.right.isDown)
-                {
-                    player.player.body.velocity.x = vel;
-                    player.player.scale.x = 1;
-                }
-                else
-                {
-                    player.player.body.velocity.x = 0;
-                }
+
             }
         });
 
 
-		if (this.player.body.velocity.x !== 0)
+		if (this.player.body.velocity.x)
 		{
 		    if  (character === 'link' && linkAbility) {
 		        this.player.animations.play('block');
@@ -239,12 +257,12 @@ let player = {
     },
 
     ghostAbility: function (ghost){
-        if (pacmanAbility == 1) {
-            ghost.animations.play('ability')
+        if (pacmanAbility) {
+            ghost.animations.play('ability');
         } else {
-            ghost.animations.play('run')
+            ghost.animations.play('run');
         }
-        
+
     },
         
         abilityReset: function() {
@@ -270,8 +288,12 @@ let player = {
                 break;
             case 'pacman':
                 this.pacmanReset();
+
                 this.abilityReset();
                 game.sound.play('Pacman_Ability');
+
+                Pacman_Ability.stop();
+                Pacman_Ability.play();
 
             //    game.time.events.add(Phaser.Timer.SECOND*abPoints, this.pacmanReset);
                 break;
@@ -296,7 +318,7 @@ let player = {
                 this.player.anchor.setTo(0.5);
                 game.physics.arcade.enable(this.player);
                 this.player.body.gravity.y = 500;
-                this.player.body.setSize(10, 24, 10, 0);
+                this.player.body.setSize(16, 24, 2, 0);
                 //add animations
                 this.player.animations.add('idle', ['player-1/idle'], 1, false);
                 this.player.animations.add('run', Phaser.Animation.generateFrameNames('player-1/run-', 1, 4, '', 0), animVel, true);

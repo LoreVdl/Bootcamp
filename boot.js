@@ -9,4 +9,4 @@ boot = {
         game.renderer.renderSession.roundPixels = true;
         this.game.state.start('Preload');
     }
-}
+};
