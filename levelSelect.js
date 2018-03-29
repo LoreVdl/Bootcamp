@@ -40,11 +40,15 @@ levelSelect = {
 
   thumbClicked:function(button) {
 
-    if(button.levelNumber === 1) {
-      game.global.level = button.levelNumber;
-      game.state.start("Level1");
-		}
-	},
+      if(button.levelNumber === 1) {
+          game.global.level = button.levelNumber;
+          game.state.start("Level1");
+      }
+      if(button.levelNumber === 2) {
+          game.global.level = button.levelNumber;
+          game.state.start("Level2");
+      }
+  },
 
   update: function () {
         background.tilePosition.x -= .3;
