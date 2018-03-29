@@ -104,7 +104,7 @@ let player = {
     
     abUp: function() {
      
-          if (abPoints < 5 && ability === 0){
+          if (abPoints < 5 && ability == 0){
               abPoints++;
               abilityText.text = abilityString + abPoints;
           }
@@ -112,7 +112,7 @@ let player = {
     
     abDown: function() {
        
-        if (abPoints > 0 && ability === 1) {
+        if (abPoints > 0 && ability == 1) {
             abPoints--;
             abilityText.text = abilityString + abPoints;
         }
@@ -145,7 +145,7 @@ let player = {
 
 
         const vel = 150;
-        gyro.frequency = 0.5;
+        gyro.frequency = 10;
 /*
         if (this.wasd.left.isDown) {
             this.player.body.velocity.x = -vel;
