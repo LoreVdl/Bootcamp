@@ -23,6 +23,9 @@ var lives = 3;
 
 var ghosts = [];
 
+var Pacman_Run;
+var Winning_Sound;
+
 var player = {
 	create: function () {
 
@@ -47,6 +50,9 @@ var player = {
         this.button.scale.set(0.25);
         this.button.inputEnabled = true;
         this.button.fixedToCamera = true;
+
+        Pacman_Run = game.add.audio('Pacman_Run');
+        Winning_Sound = game.add.audio('Winning_Sound');
     },
 
     bindKeys: function () {
@@ -89,6 +95,9 @@ var player = {
 
     movePlayer: function () {
 
+        
+        ghosts.forEach(this.ghostAbility);
+        
         if (hurtFlag) {
             this.player.animations.play('hurt');
             return;
@@ -127,6 +136,11 @@ var player = {
             this.player.body.velocity.x = 0;
             this.player.animations.play('idle');
         }*/
+
+        if (this.wasd.jump.isDown)
+        {
+            this.switchPlayer();
+        }
 
 
         gyro.startTracking(function(o) {
@@ -186,15 +200,29 @@ var player = {
             this.switchPlayer();
         }
     },
-
+    
     pacmanReset : function () {
+
         pacmanAbility = !pacmanAbility;
+        
+    },
+
+    ghostAbility: function (ghost){
+        if (pacmanAbility == 1) {
+            ghost.animations.play('ability')
+        } else {
+            ghost.animations.play('run')
+        }
+        
     },
 
     action: function () {
         switch (character) {
             case 'link':
-                this.player.animations.play('block');
+                if (this.player.body.onFloor())
+                {
+	               this.player.body.velocity.y = -170;
+                }
                 break;
             case 'mario':
                 if (jumpCounter < maxJump)
@@ -205,7 +233,7 @@ var player = {
                 break;
             case 'pacman':
                 this.pacmanReset();
-                game.time.events.add = (Phaser.Timer.SECOND*5, this.pacmanReset);
+                game.time.events.add(Phaser.Timer.SECOND*5, this.pacmanReset);
                 break;
 
         }
@@ -224,6 +252,8 @@ var player = {
     switchPlayer: function () {
         switch(character) {
 		    case 'link':
+                Pacman_Run.stop();
+
 				this.createItemFeedback(this.player.x, this.player.y);
                 this.player.anchor.setTo(0.5);
                 game.physics.arcade.enable(this.player);
@@ -271,6 +301,8 @@ var player = {
                 this.player.animations.add('jump', ['player-3/run-2'], 1, false);
                 this.player.animations.add('block', Phaser.Animation.generateFrameNames('player-3/block-', 1, 2, '', 0), animVel, true);
                 this.player.animations.play('idle');
+
+                Pacman_Run.loopFull();
 
                 character = 'link';
 		        break;
