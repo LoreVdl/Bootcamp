@@ -37,24 +37,26 @@ level1 = {
 
           player.button.inputEnabled = false;
           lives = 3;
+          score = 0;
+          abPoints = 5;
 
           this.gameO = game.add.image(145, 200, 'gameOver');
           this.gameO.anchor.setTo(0.5, 1);
           this.gameO.fixedToCamera = true;
 
-          this.button2 = game.add.button(100, 30, 'action', this.restart, this, 2, 1, 0);
+          this.button2 = game.add.button(100, 130, 'playAgain', this.restart, this, 2, 1, 0);
           this.button2.anchor.set(0.5);
-          this.button2.scale.set(0.25);
+          this.button2.scale.set(0.15);
           this.button2.inputEnabled = true;
           this.button2.fixedToCamera = true;
 
-          this.button3 = game.add.button(200, 30, 'switch', this.menu, this, 2, 1, 0);
+          this.button3 = game.add.button(190, 130, 'menu', this.menu, this, 2, 1, 0);
           this.button3.anchor.set(0.5);
-          this.button3.scale.set(0.25);
+          this.button3.scale.set(0.15);
           this.button3.inputEnabled = true;
           this.button3.fixedToCamera = true;
-        }
-      },
+      }
+    },
 
     decorWorld: function () {
         game.add.image(42 * 16, 7 * 16 + 3, 'atlas-props', 'tree');
