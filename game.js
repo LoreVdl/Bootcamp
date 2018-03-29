@@ -32,11 +32,16 @@ let abilityMeter;
 let Pacman_Run;
 let Pacman_Ability;
 
+let deathTime = 0;
+let freezeGame = false;
+
 
 let player = {
-	create: function (x,y) {
-        this.createPlayer(x, y);
-        
+	create: function () {
+        freezeGame = false;
+
+        this.createPlayer(7, 12);
+
         game.time.events.loop(Phaser.Timer.SECOND * 2, this.abUp);
         game.time.events.loop(Phaser.Timer.SECOND, this.abDown);
 
@@ -116,17 +121,17 @@ let player = {
         hurtTimer = game.time.create(false);
         hurtTimer.loop(500, this.resetHurt, this);
     },
-    
+
     abUp: function() {
-     
+
           if (abPoints < 5 && ability == 0){
               abPoints++;
               abilityMeter.loadTexture("ability", "ability-" + abPoints, true);
           }
     },
-    
+
     abDown: function() {
-       
+
         if (abPoints > 0 && ability == 1) {
             abPoints--;
             abilityMeter.loadTexture("ability", "ability-" + abPoints, true);
@@ -136,7 +141,7 @@ let player = {
     movePlayer: function () {
 
         ghosts.forEach(this.ghostAbility);
-        
+
         if (abPoints <= 0) {
             ability = 0;
             pacmanAbility = 0;
@@ -192,7 +197,7 @@ let player = {
 
 
         gyro.startTracking(function(o) {
-            if (!hurtFlag) {
+            if (!hurtFlag && !freezeGame) {
                 if (game.device.android) {
                     if (o.y < -1 || player.wasd.left.isDown) {
                         player.player.body.velocity.x = -vel;
@@ -291,7 +296,7 @@ let player = {
         }
 
     },
-        
+
     abilityReset: function() {
 
         ability = !ability;
@@ -309,7 +314,7 @@ let player = {
                 {
 					this.player.body.velocity.y = -160;
 					jumpCounter++;
-                   
+
                     game.sound.play('Mario_Jump');
                 }
                 break;
@@ -410,7 +415,6 @@ game.state.add('Preload', preload);
 game.state.add('TitleScreen', titleScreen);
 game.state.add('LevelSelect', levelSelect);
 game.state.add('Level1', level1);
-game.state.add('Level2', level2);
-
+game.state.add('Level0', level0);
 
 game.state.start("Boot");

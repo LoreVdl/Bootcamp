@@ -54,6 +54,9 @@ preload = {
         game.load.audio('pickup', 'assets/sound/pickup.wav');
         game.load.audio('Winning_Sound', 'assets/sound/Winning_Sound.wav');
         game.load.audio('Zelda_Block', 'assets/sound/Zelda_Block.wav');
+        game.load.audio('Mario_Death', 'assets/sound/Mario_Death.mp3');
+        game.load.audio('Link_Death', 'assets/sound/Link_Death.mp3');
+        game.load.audio('Pacman_Death', 'assets/sound/Pacman_Death.mp3');
     },
     create: function () {
         this.game.state.start('TitleScreen');

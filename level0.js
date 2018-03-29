@@ -1,11 +1,11 @@
-level1 = {
+level0 = {
     create: function () {
         this.createBackgrounds();
 
         this.createWorld();
         this.decorWorld();
 
-        player.create();
+        player.create(4,10);
 
         this.populateWorld();
 
@@ -18,74 +18,53 @@ level1 = {
     },
 
     restart: function () {
-        game.paused = false;
-        this.game.state.start('Level1');
-    },
+          game.paused = false;
+          this.game.state.start('Level0');
 
-    menu: function() {
+      },
+
+      menu: function() {
         game.paused = false;
         this.game.state.start('TitleScreen');
-    },
+      },
 
-    gameOver: function() {
+      gameOver: function() {
         if (lives === 0) {
-            switch (character) {
-                case 'link':
-                    deathTime = 5;
-                    game.sound.play('Link_Death');
-                    break;
-                case 'mario':
-                    deathTime = 3;
-                    game.sound.play('Mario_Death');
-                    break;
-                case 'pacman':
-                    deathTime = 2;
-                    Pacman_Run.stop();
-                    game.sound.play('Pacman_Death');
-                    break;
-            }
+          Pacman_Run.stop();
+          game.paused = true;
 
-            freezeGame = true;
+          character = 'link';
 
-            game.time.events.add(Phaser.Timer.SECOND*deathTime, this.pauseGame);
-  
+          player.button.inputEnabled = false;
+          lives = 3;
+          score = 0;
+          abPoints = 5;
 
-            character = 'link';
+          this.gameO = game.add.image(145, 200, 'gameOver');
+          this.gameO.anchor.setTo(0.5, 1);
+          this.gameO.fixedToCamera = true;
 
-            player.button.inputEnabled = false;
-            lives = 3;
-            score = 0;
-            abPoints = 5;
+          this.button2 = game.add.button(100, 130, 'playAgain', this.restart, this, 2, 1, 0);
+          this.button2.anchor.set(0.5);
+          this.button2.scale.set(0.15);
+          this.button2.inputEnabled = true;
+          this.button2.fixedToCamera = true;
 
-            this.gameO = game.add.image(145, 200, 'gameOver');
-            this.gameO.anchor.setTo(0.5, 1);
-            this.gameO.fixedToCamera = true;
-
-            this.button2 = game.add.button(100, 130, 'playAgain', this.restart, this, 2, 1, 0);
-            this.button2.anchor.set(0.5);
-            this.button2.scale.set(0.15);
-            this.button2.inputEnabled = true;
-            this.button2.fixedToCamera = true;
-
-            this.button3 = game.add.button(190, 130, 'menu', this.menu, this, 2, 1, 0);
-            this.button3.anchor.set(0.5);
-            this.button3.scale.set(0.15);
-            this.button3.inputEnabled = true;
-            this.button3.fixedToCamera = true;
+          this.button3 = game.add.button(190, 130, 'menu', this.menu, this, 2, 1, 0);
+          this.button3.anchor.set(0.5);
+          this.button3.scale.set(0.15);
+          this.button3.inputEnabled = true;
+          this.button3.fixedToCamera = true;
       }
     },
 
-    pauseGame: function () {
-        game.paused = true;
-    },
-
     decorWorld: function () {
-        game.add.image(42 * 16, 7 * 16 + 3, 'atlas-props', 'tree');
-        game.add.image(7 * 16, 6 * 16 + 5, 'atlas-props', 'house');
-        game.add.image(41 * 16, 11 * 16 + 4, 'atlas-props', 'bush');
-        game.add.image(25 * 16, 21 * 16 + 6, 'atlas-props', 'skulls');
-        game.add.image(44 * 16, 21 * 16 + 6, 'atlas-props', 'skulls');
-        game.add.image(16 * 16, 21 * 16, 'atlas-props', 'shrooms');
+        game.add.image(34 * 16, 9 * 16 + 3, 'atlas-props', 'tree');
+        game.add.image(3 * 16, 7 * 16 + 5, 'atlas-props', 'house');
+        game.add.image(15 * 16, 14 * 16 + 4, 'atlas-props', 'bush');
+        game.add.image(50 * 16, 18 * 16 + 6, 'atlas-props', 'skulls');
+        game.add.image(39 * 16, 20 * 16 + 6, 'atlas-props', 'skulls');
+        game.add.image(29 * 16, 17 * 16, 'atlas-props', 'shrooms');
     },
 
     populateWorld: function () {
@@ -125,40 +104,37 @@ level1 = {
 */
 
         let arrowTimer2 = game.time.create(false);
-        arrowTimer2.loop(1500, this.createArrow, this, 51, 22.5, -1);
+        arrowTimer2.loop(1500, this.createArrow, this, 20, 15.5, -1);
         arrowTimer2.start();
 
         // create items
-        this.createEnd(50, 12);
+        this.createEnd(54, 12);
 
-        this.createHendel(33, 19);
-        this.createHendel(53, 21);
+        this.createHendel(37, 20);
+        this.createHendel(48, 18);
 
-        this.createObstacle(33, 21);
+        this.createObstacle(43, 18);
 
 
-        this.createObstacleBig(38, 3);
-        this.createObstacleBig(38, 5);
-        this.createObstacleBig(38, 1);
+        this.createObstacleBig(49, 5);
+        this.createObstacleBig(49, 3);
+        this.createObstacleBig(49, 1);
 
-        this.createCherry(55, 20);
-        this.createCherry(21, 17);
-        this.createCherry(31, 5);
+        this.createCherry(41, 17);
+        this.createCherry(16, 13);
+        this.createCherry(42, 7);
 
         //
-        this.createGem(28, 21);
-        this.createGem(37, 20);
-        this.createGem(38, 20);
-        this.createGem(39, 20);
-
+        this.createGem(15, 13);
+        this.createGem(17, 13);
+        this.createGem(47, 17);
 
         // create enemies
 
-        this.createFrog(31, 12);
-        this.createFrog(44, 12);
-        this.createEagle(16, 9);
-        this.createOpossum(22, 18);
-        this.createGhost(20, 21);
+        this.createFrog(37, 12);
+        this.createEagle(53, 9);
+        this.createOpossum(35, 20);
+        this.createGhost(46, 18);
     },
 
     createArrow: function (x, y, scale) {
@@ -189,7 +165,7 @@ level1 = {
 
     createWorld: function () {
         // tilemap
-        this.map = game.add.tilemap('map');
+        this.map = game.add.tilemap('map0');
         this.map.addTilesetImage('tileset');
         this.layer = this.map.createLayer('Tile Layer 1');
         this.layer.resizeWorld();
@@ -410,7 +386,7 @@ level1 = {
 
     update: function () {
         //this.debugGame();
-
+        game.physics.arcade.collide(player.player, this.layer);
         game.physics.arcade.collide(this.enemies, this.layer);
         game.physics.arcade.collide(this.ends, this.layer);
         game.physics.arcade.collide(this.obstacles, this.layer);
@@ -428,17 +404,12 @@ level1 = {
         game.physics.arcade.collide(this.arrows, this.layer, this.arrowHitWorld, null, this);
         game.physics.arcade.overlap(player.player, this.arrows, this.arrowHitPlayer, null, this);
 
-        if (!freezeGame) {
-            game.physics.arcade.collide(player.player, this.layer);
-            
-            player.movePlayer();
+        player.movePlayer();
 
-            this.enemiesManager();
-        
-            this.parallaxBackground();
+        this.enemiesManager();
+        this.parallaxBackground();
 
-            this.gameOver();
-        }
+        this.gameOver();
     },
 
     arrowHitWorld: function (arrow) {
@@ -465,7 +436,7 @@ level1 = {
     destroyBlock: function (player, item) {
       this.createItemFeedback(item.x, item.y);
       item.kill();
-      this.createHendelUp(33, 19);
+      this.createHendelUp(37, 20);
       item = this.obstacles.children[0];
       this.createItemFeedback(item.x, item.y);
       item.kill();
@@ -474,7 +445,7 @@ level1 = {
     destroyBlockBig: function (player, item) {
       this.createItemFeedback(item.x, item.y);
       item.kill();
-      this.createHendelUp(53, 21);
+      this.createHendelUp(48, 18);
       for (let i = 0; i < 4; i++) {
         item = this.obstacles.children[i];
         this.createItemFeedback(item.x, item.y);
@@ -499,7 +470,7 @@ level1 = {
         this.gameO.anchor.setTo(0.5, 1);
         this.gameO.fixedToCamera = true;
 
-        this.button2 = game.add.button(100, 130, 'nextLevel', this.nextLevel, this, 2, 1, 0);
+        this.button2 = game.add.button(100, 130, 'nextLevel', this.restart, this, 2, 1, 0);
         this.button2.anchor.set(0.5);
         this.button2.scale.set(0.15);
         this.button2.inputEnabled = true;
@@ -514,7 +485,7 @@ level1 = {
 
     nextLevel: function() {
       game.paused = false;
-      this.game.state.start('Level2');
+      this.game.state.start('Level0.js');
     },
 
     pickItem: function (player, item) {
@@ -608,12 +579,14 @@ level1 = {
             this.createEnemyDeath(enemy.x, enemy.y);
             enemy.kill();
             score += 10;
+            scoreText.text = scoreString + score;
         }
         else if ((player.y + player.body.height * .5 < enemy.y ) && player.body.velocity.y > 0 && enemy.enemyType!=="ghost") {
 
             this.createEnemyDeath(enemy.x, enemy.y);
             enemy.kill();
             score += 10;
+            scoreText.text = scoreString + score;
             player.body.velocity.y = -200;
         } else {
             this.hurtPlayer();
@@ -655,5 +628,7 @@ level1 = {
     renderGroup: function (member) {
         game.debug.body(member);
     },
+
+};
 
 };
