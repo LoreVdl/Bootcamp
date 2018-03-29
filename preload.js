@@ -26,6 +26,8 @@ preload = {
         game.load.spritesheet('action', 'assets/buttons/action.png');
         game.load.spritesheet('switch', 'assets/buttons/switch.png');
 
+        game.load.image('heart', 'assets/sprites/heart.png');
+
 
         game.load.image("level1", "assets/sprites/level1.png", game.global.thumbWidth, game.global.thumbHeight);
         game.load.image("level2", "assets/sprites/level2.png", game.global.thumbWidth, game.global.thumbHeight);
