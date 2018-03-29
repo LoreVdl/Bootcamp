@@ -42,6 +42,7 @@ level2 = {
                 case 'pacman':
                     deathTime = 2;
                     Pacman_Run.stop();
+                    Pacman_Ability.stop();
                     game.sound.play('Pacman_Death');
                     break;
             }
@@ -486,6 +487,7 @@ level2 = {
 
     endGame: function () {
         Pacman_Run.stop();
+        Pacman_Ability.stop();
 
         if (!hasReachedEnd) {
             game.sound.play('Winning_Sound');

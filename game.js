@@ -378,6 +378,7 @@ let player = {
 
     		case 'pacman':
                 Pacman_Run.stop();
+                Pacman_Ability.stop();
 
 				this.createItemFeedback(this.player.x, this.player.y);
                 this.player.anchor.setTo(0.5);
