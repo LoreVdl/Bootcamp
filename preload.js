@@ -28,10 +28,6 @@ preload = {
         game.load.image("level4", "assets/sprites/Level4.png", game.global.thumbWidth, game.global.thumbHeight);
         game.load.image("level5", "assets/sprites/Level5.png", game.global.thumbWidth, game.global.thumbHeight);
         game.load.image("level6", "assets/sprites/Level6.png", game.global.thumbWidth, game.global.thumbHeight);
-
-
-        game.load.image('action', 'assets/buttons/action.png');
-        game.load.image('switch', 'assets/buttons/switch.png');
     },
     create: function () {
         this.game.state.start('TitleScreen');
