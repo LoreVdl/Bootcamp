@@ -32,10 +32,14 @@ let abilityMeter;
 let Pacman_Run;
 let Pacman_Ability;
 
+let deathTime = 0;
+let freezeGame = false;
+
 
 let player = {
 	create: function () {
-		
+        freezeGame = false;
+
         this.createPlayer(7, 12);
 
         game.time.events.loop(Phaser.Timer.SECOND * 2, this.abUp);
@@ -193,7 +197,7 @@ let player = {
 
 
         gyro.startTracking(function(o) {
-            if (!hurtFlag) {
+            if (!hurtFlag && !freezeGame) {
                 if (game.device.android) {
                     if (o.y < -1 || player.wasd.left.isDown) {
                         player.player.body.velocity.x = -vel;
