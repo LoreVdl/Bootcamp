@@ -46,23 +46,6 @@ levelSelect = {
       game.global.level = button.levelNumber;
       game.state.start("Level1");
 		}
-
-		else{
-			var buttonTween = game.add.tween(button)
-			buttonTween.to({
-				alpha: 0.5
-			}, 20, Phaser.Easing.Cubic.None);
-			buttonTween.to({
-				alpha: 1
-			}, 20, Phaser.Easing.Cubic.None);
-			buttonTween.to({
-				alpha: 0.5
-			}, 20, Phaser.Easing.Cubic.None);
-			buttonTween.to({
-				alpha: 1
-			}, 20, Phaser.Easing.Cubic.None);
-			buttonTween.start();
-		}
 	},
 
   update: function () {
