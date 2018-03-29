@@ -6,7 +6,7 @@ let hurtFlag = false;
 let hurtTimer;
 let frogTimer;
 let frogJumpSide = 'left';
-const animVel = 15;
+const animVel = 10;
 
 let character = 'link';
 let jumpCounter = 0;
@@ -60,7 +60,7 @@ let player = {
             left: game.input.keyboard.addKey(Phaser.Keyboard.LEFT),
             right: game.input.keyboard.addKey(Phaser.Keyboard.RIGHT),
             crouch: game.input.keyboard.addKey(Phaser.Keyboard.DOWN)
-        }
+        };
         game.input.keyboard.addKeyCapture(
             [Phaser.Keyboard.SPACEBAR,
                 Phaser.Keyboard.LEFT,
@@ -263,9 +263,9 @@ let player = {
                 this.player.body.setSize(10, 24, 10, 0);
                 //add animations
                 this.player.animations.add('idle', ['player-1/idle'], 1, false);
-                this.player.animations.add('run', Phaser.Animation.generateFrameNames('player-1/run-', 1, 4, '', 0), this.animVel, true);
+                this.player.animations.add('run', Phaser.Animation.generateFrameNames('player-1/run-', 1, 4, '', 0), animVel, true);
                 this.player.animations.add('jump', ['player-1/jump-1'], 1, false);
-                this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player-1/hurt-', 1, 2, '', 0), this.animVel, true);
+                this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player-1/hurt-', 1, 2, '', 0), animVel, true);
                 this.player.animations.play('idle');
                 character = 'mario';
 		        break;
@@ -277,10 +277,10 @@ let player = {
                 this.player.body.gravity.y = 500;
                 this.player.body.setSize(15, 15, 0, 0);
                 //add animations
-                this.player.animations.add('idle', Phaser.Animation.generateFrameNames('player-2/run-', 1, 4, '', 0), this.animVel, true);
+                this.player.animations.add('idle', Phaser.Animation.generateFrameNames('player-2/run-', 1, 4, '', 0), animVel, true);
                 this.player.animations.add('run', Phaser.Animation.generateFrameNames('player-2/run-', 1, 2, '', 0), 10, true);
-                this.player.animations.add('jump', Phaser.Animation.generateFrameNames('player-2/run-', 1, 4, '', 0), this.animVel, true);
-                this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player-2/hurt-', 1, 4, '', 0), this.animVel, true);
+                this.player.animations.add('jump', Phaser.Animation.generateFrameNames('player-2/run-', 1, 4, '', 0), animVel, true);
+                this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player-2/hurt-', 1, 4, '', 0), animVel, true);
                 this.player.animations.play('idle');
 
                 Pacman_Run.loopFull();
@@ -299,9 +299,9 @@ let player = {
                 //add animations
                 this.player.animations.add('idle', ['player-3/run-1'], 1, false);
                 this.player.animations.add('run', Phaser.Animation.generateFrameNames('player-3/run-', 1, 2, '', 0), 10, true);
-                this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player-3/hurt-', 1, 2, '', 0), this.animVel, true);
+                this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player-3/hurt-', 1, 2, '', 0), animVel, true);
                 this.player.animations.add('jump', ['player-3/run-2'], 1, false);
-                this.player.animations.add('block', Phaser.Animation.generateFrameNames('player-3/block-', 1, 2, '', 0), this.animVel, true);
+                this.player.animations.add('block', Phaser.Animation.generateFrameNames('player-3/block-', 1, 2, '', 0), animVel, true);
                 this.player.animations.add('idle_block', ['player-3/block-1'], 1, false);
                 this.player.animations.play('idle');
 
