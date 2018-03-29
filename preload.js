@@ -22,6 +22,12 @@ preload = {
 
 		game.load.spritesheet("level_arrows", "assets/level_arrows.png", 48, 48);
 
+
+
+        game.load.spritesheet('button', 'assets/buttons/button.png');
+
+
+
         game.load.image("level1", "assets/sprites/Level1.png", game.global.thumbWidth, game.global.thumbHeight);
         game.load.image("level2", "assets/sprites/Level2.png", game.global.thumbWidth, game.global.thumbHeight);
         game.load.image("level3", "assets/sprites/Level3.png", game.global.thumbWidth, game.global.thumbHeight);

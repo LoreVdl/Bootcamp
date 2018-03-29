@@ -370,8 +370,6 @@ level1 = {
 
         player.movePlayer();
 
-        player.useButtons();
-
         this.enemiesManager();
         this.parallaxBackground();
 
@@ -419,7 +417,7 @@ level1 = {
     },
 
     endGame: function () {
-      this.game.state.start('LevelSelect');
+      this.game.state.start('GameOver');
     },
 
     pickItem: function (player, item) {
