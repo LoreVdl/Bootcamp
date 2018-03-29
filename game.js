@@ -21,6 +21,8 @@ var livesString = '';
 var livesText;
 var lives = 3;
 
+var ghosts = [];
+
 var player = {
 	create: function () {
 
