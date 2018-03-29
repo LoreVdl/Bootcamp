@@ -22,10 +22,7 @@ preload = {
 
 		game.load.spritesheet("level_arrows", "assets/level_arrows.png", 48, 48);
 
-
-
         game.load.spritesheet('button', 'assets/buttons/button.png');
-
 
 
         game.load.image("level1", "assets/sprites/Level1.png", game.global.thumbWidth, game.global.thumbHeight);
@@ -34,6 +31,15 @@ preload = {
         game.load.image("level4", "assets/sprites/Level4.png", game.global.thumbWidth, game.global.thumbHeight);
         game.load.image("level5", "assets/sprites/Level5.png", game.global.thumbWidth, game.global.thumbHeight);
         game.load.image("level6", "assets/sprites/Level6.png", game.global.thumbWidth, game.global.thumbHeight);
+
+        // sounds
+        game.load.audio('Enemy_Die', 'assets/sound/Enemy_Die.mp3');
+        game.load.audio('lever', 'assets/sound/lever.mp3');
+        game.load.audio('Mario_Jump', 'assets/sound/Mario_Jump.mp3');
+        game.load.audio('Pacman_Run', 'assets/sound/Pacman_Run.mp3');
+        game.load.audio('pickup', 'assets/sound/pickup.mp3');
+        game.load.audio('Winning_Sound', 'assets/sound/Winning_Sound.mp3');
+        game.load.audio('Zelda_Block', 'assets/sound/Zelda_Block.mp3');
     },
     create: function () {
         this.game.state.start('TitleScreen');

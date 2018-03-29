@@ -40,11 +40,11 @@ var player = {
         livesText.fixedToCamera = true;
         livesText.anchor.setTo(0.5, 0.5);
 
-        this.leftButton = game.add.button(gameWidth/2, gameHeight/2, 'button', this.useButtons, this, 2, 1, 0);
-        this.leftButton.anchor.set(0.5);
-        this.leftButton.scale.set(0.25);
-        this.leftButton.inputEnabled = true;
-        this.leftButton.fixedToCamera = true;
+        this.button = game.add.button(gameWidth/2, gameHeight/2, 'button', this.useButtons, this, 2, 1, 0);
+        this.button.anchor.set(0.5);
+        this.button.scale.set(0.25);
+        this.button.inputEnabled = true;
+        this.button.fixedToCamera = true;
     },
 
     bindKeys: function () {
