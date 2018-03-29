@@ -12,6 +12,7 @@ preload = {
         //tileSet
         game.load.image('tileset', 'assets/environment/tileset.png');
         game.load.tilemap('map', 'assets/maps/map2.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.tilemap('map2', 'assets/maps/map4.json', null, Phaser.Tilemap.TILED_JSON);
         // atlas sprites
         game.load.atlasJSONArray('atlas', 'assets/atlas/atlas.png', 'assets/atlas/atlas.json');
         game.load.atlasJSONArray('atlas-props', 'assets/atlas/atlas-props.png', 'assets/atlas/atlas-props.json');

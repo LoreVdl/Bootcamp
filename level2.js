@@ -1,11 +1,11 @@
-level1 = {
+level2 = {
     create: function () {
         this.createBackgrounds();
 
         this.createWorld();
         this.decorWorld();
 
-        player.create(7,12);
+        player.create(2,20);
 
         this.populateWorld();
 
@@ -110,34 +110,34 @@ level1 = {
         // create items
         this.createEnd(50, 12);
 
-        this.createHendel(33, 19);
-        this.createHendel(53, 21);
-
-        this.createObstacle(33, 21);
-
-
-        this.createObstacleBig(38, 3);
-        this.createObstacleBig(38, 5);
-        this.createObstacleBig(38, 1);
-
-        this.createCherry(55, 20);
-        this.createCherry(21, 17);
-        this.createCherry(31, 5);
-
+        // this.createHendel(33, 19);
+        // this.createHendel(53, 21);
         //
-        this.createGem(28, 21);
-        this.createGem(37, 20);
-        this.createGem(38, 20);
-        this.createGem(39, 20);
-
-
-        // create enemies
-
-        this.createFrog(31, 12);
-        this.createFrog(44, 12);
-        this.createEagle(16, 9);
-        this.createOpossum(22, 18);
-        this.createGhost(20, 21);
+        // this.createObstacle(33, 21);
+        //
+        //
+        // this.createObstacleBig(38, 3);
+        // this.createObstacleBig(38, 5);
+        // this.createObstacleBig(38, 1);
+        //
+        // this.createCherry(55, 20);
+        // this.createCherry(21, 17);
+        // this.createCherry(31, 5);
+        //
+        // //
+        // this.createGem(28, 21);
+        // this.createGem(37, 20);
+        // this.createGem(38, 20);
+        // this.createGem(39, 20);
+        //
+        //
+        // // create enemies
+        //
+        // this.createFrog(31, 12);
+        // this.createFrog(44, 12);
+        // this.createEagle(16, 9);
+        // this.createOpossum(22, 18);
+        // this.createGhost(20, 21);
     },
 
     createArrow: function (x, y, scale) {
@@ -168,7 +168,7 @@ level1 = {
 
     createWorld: function () {
         // tilemap
-        this.map = game.add.tilemap('map');
+        this.map = game.add.tilemap('map2');
         this.map.addTilesetImage('tileset');
         this.layer = this.map.createLayer('Tile Layer 1');
         this.layer.resizeWorld();
