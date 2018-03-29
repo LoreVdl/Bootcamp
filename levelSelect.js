@@ -12,26 +12,6 @@ levelSelect = {
     pages = game.global.starsArray.length/(game.global.thumbRows*game.global.thumbCols);
   	currentPage = Math.floor(game.global.level/(game.global.thumbRows*game.global.thumbCols));
 
-  	if(currentPage>pages-1) {
-  	   currentPage = pages-1;
-  	}
-
-    leftArrow = game.add.button(50,420,"level_arrows",this.arrowClicked,this);
-  	leftArrow.anchor.setTo(0.5);
-  	leftArrow.frame = 0;
-
-  	if(currentPage==0) {
-  	   leftArrow.alpha = 0.3;
-  	}
-
-  	rightArrow = game.add.button(270,420,"level_arrows",this.arrowClicked,this);
-  	rightArrow.anchor.setTo(0.5);
-  	rightArrow.frame = 1;
-
-  	if(currentPage==pages-1) {
-  	   rightArrow.alpha = 0.3;
-  	}
-
   	levelThumbsGroup = game.add.group();
 
   	var levelLength = game.global.thumbWidth*game.global.thumbCols+game.global.thumbSpacing*(game.global.thumbCols-1);
@@ -60,63 +40,11 @@ levelSelect = {
      levelThumbsGroup.x = currentPage * game.width * -1
  },
 
- arrowClicked:function(button) {
-
-   if(button.frame==1 && currentPage<pages-1) {
-     leftArrow.alpha = 1;
-     currentPage++;
-
-     if(currentPage == pages-1) {
-       button.alpha = 0.3;
-      }
-
-      var buttonsTween = game.add.tween(levelThumbsGroup);
-
-      buttonsTween.to({
-        x: currentPage * game.width * -1
-      }, 500, Phaser.Easing.Cubic.None);
-
-      buttonsTween.start();
-    }
-
-    if(button.frame==0 && currentPage>0){
-      rightArrow.alpha = 1;
-      currentPage--;
-
-      if(currentPage == 0) {
-        button.alpha = 0.3;
-      }
-
-      var buttonsTween = game.add.tween(levelThumbsGroup);
-      buttonsTween.to({
-        x: currentPage * game.width * -1
-      }, 400, Phaser.Easing.Cubic.None);
-      buttonsTween.start();
-    }
-	},
-
   thumbClicked:function(button) {
 
     if(button.levelNumber == 1) {
       game.global.level = button.levelNumber;
       game.state.start("Level1");
-		}
-
-		else{
-			var buttonTween = game.add.tween(button)
-			buttonTween.to({
-				alpha: 0.5
-			}, 20, Phaser.Easing.Cubic.None);
-			buttonTween.to({
-				alpha: 1
-			}, 20, Phaser.Easing.Cubic.None);
-			buttonTween.to({
-				alpha: 0.5
-			}, 20, Phaser.Easing.Cubic.None);
-			buttonTween.to({
-				alpha: 1
-			}, 20, Phaser.Easing.Cubic.None);
-			buttonTween.start();
 		}
 	},
 
