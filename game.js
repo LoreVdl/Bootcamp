@@ -17,11 +17,11 @@ let linkAbility = 0;
 let scoreString = '';
 let scoreText;
 let score = 0;
-
+let ability = 0;
 let livesString = '';
 let livesText;
 let lives = 3;
-
+let abPoints = 5;
 let ghosts = [];
 
 let Pacman_Run;
@@ -30,7 +30,14 @@ let player = {
 	create: function () {
 
         this.createPlayer(7, 12);
-
+        
+        game.time.events.loop(Phaser.Timer.SECOND * 2, this.abUp);
+        game.time.events.loop(Phaser.Timer.SECOND * 1, this.abDown);
+        
+        abilityString = 'Ability : ';
+        abilityText = game.add.text(gameWidth/2, 10, abilityString + abPoints, { font: '10px Arial', fill: '#fff' });
+        abilityText.fixedToCamera = true;
+        abilityText.anchor.setTo(0.5, 0.5);
 
         this.bindKeys();
         game.camera.follow(this.player, Phaser.Camera.FOLLOW_PLATFORMER);
@@ -84,11 +91,32 @@ let player = {
         hurtTimer = game.time.create(false);
         hurtTimer.loop(500, this.resetHurt, this);
     },
+    
+    abUp: function() {
+     
+          if (abPoints < 5 && ability == 0){
+              abPoints++;
+              abilityText.text = abilityString + abPoints;
+          }
+    },
+    
+    abDown: function() {
+       
+        if (abPoints > 0 && ability == 1) {
+            abPoints--;
+            abilityText.text = abilityString + abPoints;
+        }
+    },
 
     movePlayer: function () {
 
-        
         ghosts.forEach(this.ghostAbility);
+        
+        if (abPoints <= 0) {
+            ability = 0;
+            pacmanAbility = 0;
+            linkAbility = 0;
+        }
         
         if (hurtFlag) {
             this.player.animations.play('hurt');
@@ -218,26 +246,34 @@ let player = {
         }
         
     },
+        
+        abilityReset: function() {
+            ability = !ability;
+        },
 
     action: function () {
+        
         switch (character) {
             case 'link':
+                this.abilityReset();
                 this.linkReset();
+            //    game.time.events.add(Phaser.Timer.SECOND*abPoints, this.linkReset);
                 break;
             case 'mario':
                 if (jumpCounter < maxJump)
                 {
 					this.player.body.velocity.y = -160;
 					jumpCounter++;
+                   
                     game.sound.play('Mario_Jump');
                 }
                 break;
             case 'pacman':
                 this.pacmanReset();
-
+                this.abilityReset();
                 game.sound.play('Pacman_Ability');
 
-                game.time.events.add(Phaser.Timer.SECOND*5, this.pacmanReset);
+            //    game.time.events.add(Phaser.Timer.SECOND*abPoints, this.pacmanReset);
                 break;
 
         }
