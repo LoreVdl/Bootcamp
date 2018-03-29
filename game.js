@@ -39,6 +39,12 @@ var player = {
         livesText = game.add.text(gameWidth-25, 10, livesString + lives, { font: '10px Arial', fill: '#fff' });
         livesText.fixedToCamera = true;
         livesText.anchor.setTo(0.5, 0.5);
+
+        this.leftButton = game.add.button(gameWidth/2, gameHeight/2, 'button', this.useButtons, this, 2, 1, 0);
+        this.leftButton.anchor.set(0.5);
+        this.leftButton.scale.set(0.25);
+        this.leftButton.inputEnabled = true;
+        this.leftButton.fixedToCamera = true;
     },
 
     bindKeys: function () {
@@ -169,8 +175,7 @@ var player = {
     },
 
     useButtons: function () {
-        if (game.input.pointer1.isDown)
-        {
+
             if (game.input.pointer1.x < game.width/2)
             {
                 this.action();
@@ -179,7 +184,7 @@ var player = {
             {
                 this.switchPlayer();
             }
-        }
+        
     },
 
     pacmanReset : function () {
