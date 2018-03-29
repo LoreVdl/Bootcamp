@@ -296,7 +296,6 @@ game.state.add('Preload', preload);
 game.state.add('TitleScreen', titleScreen);
 game.state.add('LevelSelect', levelSelect);
 game.state.add('Level1', level1);
-game.state.add('GameOver', gameOverScreen);
 
 
 game.state.start("Boot");
