@@ -1,11 +1,11 @@
-level1 = {
+level0 = {
     create: function () {
         this.createBackgrounds();
 
         this.createWorld();
         this.decorWorld();
 
-        player.create();
+        player.create(7,12);
 
         this.populateWorld();
 
@@ -18,65 +18,44 @@ level1 = {
     },
 
     restart: function () {
-        game.paused = false;
-        this.game.state.start('Level1');
-    },
+          game.paused = false;
+          this.game.state.start('Level1');
 
-    menu: function() {
+      },
+
+      menu: function() {
         game.paused = false;
         this.game.state.start('TitleScreen');
-    },
+      },
 
-    gameOver: function() {
+      gameOver: function() {
         if (lives === 0) {
-            switch (character) {
-                case 'link':
-                    deathTime = 5;
-                    game.sound.play('Link_Death');
-                    break;
-                case 'mario':
-                    deathTime = 3;
-                    game.sound.play('Mario_Death');
-                    break;
-                case 'pacman':
-                    deathTime = 2;
-                    Pacman_Run.stop();
-                    game.sound.play('Pacman_Death');
-                    break;
-            }
+          Pacman_Run.stop();
+          game.paused = true;
 
-            freezeGame = true;
+          character = 'link';
 
-            game.time.events.add(Phaser.Timer.SECOND*deathTime, this.pauseGame);
-  
+          player.button.inputEnabled = false;
+          lives = 3;
+          score = 0;
+          abPoints = 5;
 
-            character = 'link';
+          this.gameO = game.add.image(145, 200, 'gameOver');
+          this.gameO.anchor.setTo(0.5, 1);
+          this.gameO.fixedToCamera = true;
 
-            player.button.inputEnabled = false;
-            lives = 3;
-            score = 0;
-            abPoints = 5;
+          this.button2 = game.add.button(100, 130, 'playAgain', this.restart, this, 2, 1, 0);
+          this.button2.anchor.set(0.5);
+          this.button2.scale.set(0.15);
+          this.button2.inputEnabled = true;
+          this.button2.fixedToCamera = true;
 
-            this.gameO = game.add.image(145, 200, 'gameOver');
-            this.gameO.anchor.setTo(0.5, 1);
-            this.gameO.fixedToCamera = true;
-
-            this.button2 = game.add.button(100, 130, 'playAgain', this.restart, this, 2, 1, 0);
-            this.button2.anchor.set(0.5);
-            this.button2.scale.set(0.15);
-            this.button2.inputEnabled = true;
-            this.button2.fixedToCamera = true;
-
-            this.button3 = game.add.button(190, 130, 'menu', this.menu, this, 2, 1, 0);
-            this.button3.anchor.set(0.5);
-            this.button3.scale.set(0.15);
-            this.button3.inputEnabled = true;
-            this.button3.fixedToCamera = true;
+          this.button3 = game.add.button(190, 130, 'menu', this.menu, this, 2, 1, 0);
+          this.button3.anchor.set(0.5);
+          this.button3.scale.set(0.15);
+          this.button3.inputEnabled = true;
+          this.button3.fixedToCamera = true;
       }
-    },
-
-    pauseGame: function () {
-        game.paused = true;
     },
 
     decorWorld: function () {
@@ -155,7 +134,6 @@ level1 = {
         // create enemies
 
         this.createFrog(31, 12);
-        this.createFrog(44, 12);
         this.createEagle(16, 9);
         this.createOpossum(22, 18);
         this.createGhost(20, 21);
@@ -410,7 +388,7 @@ level1 = {
 
     update: function () {
         //this.debugGame();
-
+        game.physics.arcade.collide(player.player, this.layer);
         game.physics.arcade.collide(this.enemies, this.layer);
         game.physics.arcade.collide(this.ends, this.layer);
         game.physics.arcade.collide(this.obstacles, this.layer);
@@ -428,17 +406,12 @@ level1 = {
         game.physics.arcade.collide(this.arrows, this.layer, this.arrowHitWorld, null, this);
         game.physics.arcade.overlap(player.player, this.arrows, this.arrowHitPlayer, null, this);
 
-        if (!freezeGame) {
-            game.physics.arcade.collide(player.player, this.layer);
-            
-            player.movePlayer();
+        player.movePlayer();
 
-            this.enemiesManager();
-        
-            this.parallaxBackground();
+        this.enemiesManager();
+        this.parallaxBackground();
 
-            this.gameOver();
-        }
+        this.gameOver();
     },
 
     arrowHitWorld: function (arrow) {
@@ -608,12 +581,14 @@ level1 = {
             this.createEnemyDeath(enemy.x, enemy.y);
             enemy.kill();
             score += 10;
+            scoreText.text = scoreString + score;
         }
         else if ((player.y + player.body.height * .5 < enemy.y ) && player.body.velocity.y > 0 && enemy.enemyType!=="ghost") {
 
             this.createEnemyDeath(enemy.x, enemy.y);
             enemy.kill();
             score += 10;
+            scoreText.text = scoreString + score;
             player.body.velocity.y = -200;
         } else {
             this.hurtPlayer();
