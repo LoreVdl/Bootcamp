@@ -19,7 +19,7 @@ level2 = {
 
     restart: function () {
           game.paused = false;
-          this.game.state.start('Level1');
+          this.game.state.start('Level2');
 
       },
 
@@ -521,7 +521,7 @@ level2 = {
 
     nextLevel: function() {
       game.paused = false;
-      this.game.state.start('level1.js');
+      this.game.state.start('level2');
     },
 
     pickItem: function (player, item) {
