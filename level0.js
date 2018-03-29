@@ -134,7 +134,6 @@ level0 = {
         // create enemies
 
         this.createFrog(31, 12);
-        this.createFrog(44, 12);
         this.createEagle(16, 9);
         this.createOpossum(22, 18);
         this.createGhost(20, 21);
