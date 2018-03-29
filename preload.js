@@ -21,7 +21,7 @@ preload = {
         // characters sprites
         game.load.atlasJSONArray('characters', 'assets/characters/characters.png', 'assets/characters/characters.json');
 
-		    game.load.spritesheet("level_arrows", "assets/level_arrows.png", 48, 48);
+		game.load.spritesheet("level_arrows", "assets/level_arrows.png", 48, 48);
 
         game.load.spritesheet('button', 'assets/buttons/button.png');
         game.load.spritesheet('action', 'assets/buttons/action.png');
@@ -29,7 +29,11 @@ preload = {
 
         game.load.image('heart', 'assets/sprites/heart.png');
 
-        game.load.image('gameOver', 'assets/sprites/gameOver.png');
+        game.load.image('menu', 'assets/sprites/menu.png');
+        game.load.image('gameOver', 'assets/sprites/GameOver.png');
+        game.load.image('playAgain', 'assets/sprites/playAgain.png');
+        game.load.image('youWin', 'assets/sprites/youWin.png');
+        game.load.image('nextLevel', 'assets/sprites/nextLevel.png');
 
 
         game.load.image("level1", "assets/sprites/level1.png", game.global.thumbWidth, game.global.thumbHeight);

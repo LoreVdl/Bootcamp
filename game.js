@@ -28,8 +28,10 @@ let hearts = [];
 let heartCounter = 10;
 let abilityMeter;
 
+
 let Pacman_Run;
 let Pacman_Ability;
+
 
 let player = {
 	create: function () {
@@ -51,12 +53,12 @@ let player = {
         scoreText.fixedToCamera = true;
         scoreText.anchor.setTo(0.5, 0.5);
 
-				for (i = 0; i < lives; i++) {
-					hearts[i] = game.add.image(gameWidth-heartCounter, gameHeight-(gameHeight-10), "heart");
-					hearts[i].fixedToCamera = true;
-	        hearts[i].anchor.setTo(0.5, 0.5);
-					heartCounter += 10;
-				}
+		for (i = 0; i < lives; i++) {
+			hearts[i] = game.add.image(gameWidth-heartCounter, gameHeight-(gameHeight-10), "heart");
+			hearts[i].fixedToCamera = true;
+            hearts[i].anchor.setTo(0.5, 0.5);
+			heartCounter += 10;
+		}
 
         this.button = game.add.button(gameWidth/2, gameHeight/2, 'button', this.useButtons, this, 2, 1, 0);
         this.button.anchor.set(0.5);
@@ -64,8 +66,24 @@ let player = {
         this.button.inputEnabled = true;
         this.button.fixedToCamera = true;
 
-        Pacman_Run = game.add.audio('Pacman_Run', 0.6);
+
+        this.actionBtn = game.add.sprite(20, gameHeight-20, 'action');
+        this.actionBtn.anchor.set(0.5);
+        this.actionBtn.scale.set(0.5);
+        this.actionBtn.inputEnabled = false;
+        this.actionBtn.fixedToCamera = true;
+
+
+        this.switchBtn = game.add.sprite(gameWidth-20, gameHeight-20, 'switch');
+        this.switchBtn.anchor.set(0.5);
+        this.switchBtn.scale.set(0.5);
+        this.switchBtn.inputEnabled = false;
+        this.switchBtn.fixedToCamera = true;
+
+
+        Pacman_Run = game.add.audio('Pacman_Run', 0.6, true);
         Pacman_Ability = game.add.audio('Pacman_Ability', 1, false);
+
     },
 
     bindKeys: function () {
@@ -124,9 +142,12 @@ let player = {
             pacmanAbility = 0;
             linkAbility = 0;
         }
-    
 
-        ghosts.forEach(this.ghostAbility);
+
+        if (abPoints == 0) {
+            Pacman_Ability.stop();
+        }
+
 
         if (hurtFlag) {
             this.player.animations.play('hurt');
@@ -139,7 +160,7 @@ let player = {
 
 
         const vel = 150;
-        gyro.frequency = 0.5;
+        gyro.frequency = 10;
 /*
         if (this.wasd.left.isDown) {
             this.player.body.velocity.x = -vel;
@@ -252,6 +273,11 @@ let player = {
     },
 
     pacmanReset : function () {
+        if (pacmanAbility) {
+            Pacman_Ability.stop();
+        } else {
+            Pacman_Ability.play();
+        }
 
         pacmanAbility = !pacmanAbility;
 
@@ -266,12 +292,12 @@ let player = {
 
     },
         
-        abilityReset: function() {
-            ability = !ability;
-        },
+    abilityReset: function() {
+
+        ability = !ability;
+    },
 
     action: function () {
-        
         switch (character) {
             case 'link':
                 this.abilityReset();
@@ -291,10 +317,6 @@ let player = {
                 this.pacmanReset();
 
                 this.abilityReset();
-                game.sound.play('Pacman_Ability');
-
-                Pacman_Ability.stop();
-                Pacman_Ability.play();
 
             //    game.time.events.add(Phaser.Timer.SECOND*abPoints, this.pacmanReset);
                 break;
@@ -342,7 +364,7 @@ let player = {
                 this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player-2/hurt-', 1, 4, '', 0), animVel, true);
                 this.player.animations.play('idle');
 
-                Pacman_Run.loopFull();
+                Pacman_Run.play();
 
                 character = 'pacman';
              	break;
