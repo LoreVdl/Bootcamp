@@ -6,6 +6,7 @@ preload = {
         // environment
         game.load.image('background', 'assets/environment/back.png');
         game.load.image('middleground', 'assets/environment/middle.png');
+        game.load.image('title', 'assets/sprites/titlescreen2.png');
 
         game.load.image('enter', 'assets/sprites/tapTheScreen.png');
         game.load.image('credits', 'assets/sprites/credits-text.png');
