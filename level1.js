@@ -213,6 +213,7 @@ level1 = {
 
         this.animDeath.onComplete.add(function () {
             this.enemyDeath.kill();
+            score += 10; 
         }, this);
     },
 
