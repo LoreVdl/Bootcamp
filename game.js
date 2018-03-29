@@ -151,10 +151,10 @@ let player = {
                         player.player.body.velocity.x = 0;
                     }
                 } else {
-                    if (o.y < 1 || player.wasd.left.isDown) {
+                    if (o.y > 1 || player.wasd.left.isDown) {
                         player.player.body.velocity.x = -vel;
                         player.player.scale.x = -1;
-                    } else if (o.y > -1 || player.wasd.right.isDown) {
+                    } else if (o.y < -1 || player.wasd.right.isDown) {
                         player.player.body.velocity.x = vel;
                         player.player.scale.x = 1;
                     } else {
