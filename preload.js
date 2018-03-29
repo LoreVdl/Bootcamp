@@ -27,12 +27,12 @@ preload = {
         game.load.spritesheet('switch', 'assets/buttons/switch.png');
 
 
-        game.load.image("level1", "assets/sprites/Level1.png", game.global.thumbWidth, game.global.thumbHeight);
-        game.load.image("level2", "assets/sprites/Level2.png", game.global.thumbWidth, game.global.thumbHeight);
-        game.load.image("level3", "assets/sprites/Level3.png", game.global.thumbWidth, game.global.thumbHeight);
-        game.load.image("level4", "assets/sprites/Level4.png", game.global.thumbWidth, game.global.thumbHeight);
-        game.load.image("level5", "assets/sprites/Level5.png", game.global.thumbWidth, game.global.thumbHeight);
-        game.load.image("level6", "assets/sprites/Level6.png", game.global.thumbWidth, game.global.thumbHeight);
+        game.load.image("level1", "assets/sprites/level1.png", game.global.thumbWidth, game.global.thumbHeight);
+        game.load.image("level2", "assets/sprites/level2.png", game.global.thumbWidth, game.global.thumbHeight);
+        game.load.image("level3", "assets/sprites/level3.png", game.global.thumbWidth, game.global.thumbHeight);
+        game.load.image("level4", "assets/sprites/level4.png", game.global.thumbWidth, game.global.thumbHeight);
+        game.load.image("level5", "assets/sprites/level5.png", game.global.thumbWidth, game.global.thumbHeight);
+        game.load.image("level6", "assets/sprites/level6.png", game.global.thumbWidth, game.global.thumbHeight);
 
         // sounds
         game.load.audio('Enemy_Die', 'assets/sound/Enemy_Die.mp3');
