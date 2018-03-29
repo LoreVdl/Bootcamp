@@ -1,6 +1,6 @@
 preload = {
     preload: function () {
-        var loadingBar = this.add.sprite(game.width / 2, game.height / 2, 'loading');
+        let loadingBar = this.add.sprite(game.width / 2, game.height / 2, 'loading');
         loadingBar.anchor.setTo(0.5);
         game.load.setPreloadSprite(loadingBar);
         // environment
@@ -9,7 +9,7 @@ preload = {
 
         game.load.image('enter', 'assets/sprites/tapTheScreen.png');
         game.load.image('credits', 'assets/sprites/credits-text.png');
-        //tileset
+        //tileSet
         game.load.image('tileset', 'assets/environment/tileset.png');
         game.load.tilemap('map', 'assets/maps/map2.json', null, Phaser.Tilemap.TILED_JSON);
         // atlas sprites
@@ -49,4 +49,4 @@ preload = {
     create: function () {
         this.game.state.start('TitleScreen');
     }
-}
+};

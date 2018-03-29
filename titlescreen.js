@@ -8,7 +8,7 @@ titleScreen =  {
         this.pressEnter = game.add.image(game.width / 2, game.height - 35, 'enter');
         this.pressEnter.anchor.setTo(0.5, 1);
 
-        var startKey = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+        let startKey = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
         startKey.onDown.add(this.startGame, this);
 
         game.input.onDown.add(this.startGame, this);
@@ -34,4 +34,4 @@ titleScreen =  {
     startGame: function () {
         this.game.state.start('LevelSelect');
     }
-}
+};
