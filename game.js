@@ -21,6 +21,10 @@ var livesString = '';
 var livesText;
 var lives = 3;
 
+var Pacman_Run;
+var Winning_Sound;
+
+
 var player = {
 	create: function () {
 
@@ -45,6 +49,9 @@ var player = {
         this.button.scale.set(0.25);
         this.button.inputEnabled = true;
         this.button.fixedToCamera = true;
+
+        Pacman_Run = game.add.audio('Pacman_Run');
+        Winning_Sound = game.add.audio('Winning_Sound');
     },
 
     bindKeys: function () {
@@ -126,6 +133,11 @@ var player = {
             this.player.animations.play('idle');
         }*/
 
+        if (this.wasd.jump.isDown)
+        {
+            this.switchPlayer();
+        }
+
 
         gyro.startTracking(function(o) {
             if (!hurtFlag)
@@ -202,6 +214,8 @@ var player = {
                 {
 					this.player.body.velocity.y = -160;
 					jumpCounter++;
+
+                    game.sound.play('Mario_Jump');
                 }
                 break;
             case 'pacman':
@@ -225,6 +239,8 @@ var player = {
     switchPlayer: function () {
         switch(character) {
 		    case 'link':
+                Pacman_Run.stop();
+
 				this.createItemFeedback(this.player.x, this.player.y);
                 this.player.anchor.setTo(0.5);
                 game.physics.arcade.enable(this.player);
@@ -271,6 +287,8 @@ var player = {
                 this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player-3/hurt-', 1, 2, '', 0), animVel, true);
                 this.player.animations.add('jump', ['player-3/run-2'], 1, false);
                 this.player.animations.play('idle');
+
+                Pacman_Run.loopFull();
 
                 character = 'link';
 		        break;

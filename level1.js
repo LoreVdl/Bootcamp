@@ -19,6 +19,7 @@ level1 = {
 
     gameOver: function() {
       if (lives == 0) {
+        Pacman_Run.stop();
         game.state.start("TitleScreen");
         lives = 3;
       }
@@ -174,6 +175,9 @@ level1 = {
         this.enemyDeath.anchor.setTo(0.5);
         this.animDeath = this.enemyDeath.animations.add('dead', Phaser.Animation.generateFrameNames('enemy-death/enemy-death-', 1, 6, '', 0), 16, false);
         this.enemyDeath.animations.play('dead');
+
+        game.sound.play('Enemy_Die');
+
         this.animDeath.onComplete.add(function () {
             this.enemyDeath.kill();
         }, this);
@@ -220,6 +224,8 @@ level1 = {
       game.physics.arcade.enable(temp);
       temp.body.gravity.y = 500;
       temp.body.moves = false;
+
+      game.sound.play('lever');
 
       this.cranks.add(temp);
     },
@@ -425,6 +431,8 @@ level1 = {
         item.kill();
         score += 10;
         scoreText.text = scoreString + score;
+
+        game.sound.play('pickup');
     },
 
     pickLives: function (player, item) {
@@ -432,6 +440,8 @@ level1 = {
         item.kill();
         lives += 1;
         livesText.text = livesString + lives;
+
+        game.sound.play('pickup');
     },
 
 
