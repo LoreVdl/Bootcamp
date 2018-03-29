@@ -4,6 +4,8 @@ let currentPage;
 
 levelSelect = {
   create: function() {
+    Menu_Music.destroy();
+    
     background = game.add.tileSprite(0, 0, gameWidth, gameHeight, 'background');
     middleground = game.add.tileSprite(0, 80, gameWidth, gameHeight, 'middleground');
 

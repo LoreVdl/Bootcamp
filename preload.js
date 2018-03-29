@@ -58,6 +58,7 @@ preload = {
         game.load.audio('Mario_Death', 'assets/sound/Mario_Death.mp3');
         game.load.audio('Link_Death', 'assets/sound/Link_Death.mp3');
         game.load.audio('Pacman_Death', 'assets/sound/Pacman_Death.mp3');
+        game.load.audio('Menu_Music', 'assets/sound/Menu_Music.mp3');
     },
     create: function () {
         this.game.state.start('TitleScreen');
