@@ -18,14 +18,14 @@ let scoreString = '';
 let scoreText;
 let score = 0;
 let ability = 0;
-let livesString = '';
-let livesText;
+let abilityString = '';
+let abilityText;
 let lives = 3;
 let abPoints = 5;
 let ghosts = [];
 
-var hearts = [];
-var heartCounter = 10;
+let hearts = [];
+let heartCounter = 10;
 
 let Pacman_Run;
 let Pacman_Ability;
@@ -35,7 +35,7 @@ let player = {
         this.createPlayer(7, 12);
         
         game.time.events.loop(Phaser.Timer.SECOND * 2, this.abUp);
-        game.time.events.loop(Phaser.Timer.SECOND * 1, this.abDown);
+        game.time.events.loop(Phaser.Timer.SECOND, this.abDown);
         
         abilityString = 'Ability : ';
         abilityText = game.add.text(gameWidth/2, 10, abilityString + abPoints, { font: '10px Arial', fill: '#fff' });
@@ -100,7 +100,7 @@ let player = {
     
     abUp: function() {
      
-          if (abPoints < 5 && ability == 0){
+          if (abPoints < 5 && ability === 0){
               abPoints++;
               abilityText.text = abilityString + abPoints;
           }
@@ -108,7 +108,7 @@ let player = {
     
     abDown: function() {
        
-        if (abPoints > 0 && ability == 1) {
+        if (abPoints > 0 && ability === 1) {
             abPoints--;
             abilityText.text = abilityString + abPoints;
         }
@@ -122,7 +122,7 @@ let player = {
             ability = 0;
             pacmanAbility = 0;
             linkAbility = 0;
-        };
+        }
     
 
         ghosts.forEach(this.ghostAbility);
@@ -367,7 +367,7 @@ let player = {
 		        break;
         }
     }
-}
+};
 
 
 const game = new Phaser.Game(gameWidth, gameHeight, Phaser.AUTO, "");
@@ -380,7 +380,7 @@ game.global = {
   thumbSpacing : 8,
   starsArray : [0,4,4,4,4,4],
   level : 1
-}
+};
 
 game.state.add('Boot', boot);
 game.state.add('Preload', preload);
