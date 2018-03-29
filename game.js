@@ -175,16 +175,14 @@ var player = {
     },
 
     useButtons: function () {
-
-            if (game.input.pointer1.x < game.width/2)
-            {
-                this.action();
-            }
-            else if (game.input.pointer1.x > game.width/2)
-            {
-                this.switchPlayer();
-            }
-        
+        if (game.input.pointer1.x < game.width/2)
+        {
+            this.action();
+        }
+        else if (game.input.pointer1.x > game.width/2)
+        {
+            this.switchPlayer();
+        }
     },
 
     pacmanReset : function () {

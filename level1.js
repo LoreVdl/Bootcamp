@@ -370,8 +370,6 @@ level1 = {
 
         player.movePlayer();
 
-        //player.useButtons();
-
         this.enemiesManager();
         this.parallaxBackground();
 
