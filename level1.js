@@ -17,10 +17,20 @@ level1 = {
         player.resetHurt();
     },
 
+    unpause: function (event) {
+      if (game.paused) {
+        game.paused = false;
+        this.game.state.start('Level1');
+      }
+    },
+
     gameOver: function() {
       if (lives == 0) {
-        game.state.start("TitleScreen");
+        game.paused = true;
         lives = 3;
+        game.input.onDown.add(this.unpause, self);
+        menu = game.add.image(20, 140, 'enter');
+        menu.fixedToCamera = true;
       }
     },
 
