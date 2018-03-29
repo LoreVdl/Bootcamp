@@ -17,7 +17,7 @@ levelSelect = {
 
   	for(let l = 0; l < pages; l++) {
 
-  	   const offsetX = (game.global.width-levelLength)/2+game.global.width*l;
+  	   const offsetX = (game.width-levelLength)/2+game.width*l;
        const offsetY = 20;
        let level = 1;
 
@@ -35,7 +35,7 @@ levelSelect = {
        }
      }
 
-     levelThumbsGroup.x = currentPage * game.global.width * -1
+     levelThumbsGroup.x = currentPage * game.width * -1
  },
 
   thumbClicked:function(button) {
