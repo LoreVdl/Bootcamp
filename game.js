@@ -189,10 +189,7 @@ var player = {
     action: function () {
         switch (character) {
             case 'link':
-                if (this.player.body.onFloor())
-                {
-	               this.player.body.velocity.y = -170;
-                }
+                this.player.animations.play('block');
                 break;
             case 'mario':
                 if (jumpCounter < maxJump)
@@ -267,6 +264,7 @@ var player = {
                 this.player.animations.add('run', Phaser.Animation.generateFrameNames('player-3/run-', 1, 2, '', 0), 10, true);
                 this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player-3/hurt-', 1, 2, '', 0), animVel, true);
                 this.player.animations.add('jump', ['player-3/run-2'], 1, false);
+                this.player.animations.add('block', Phaser.Animation.generateFrameNames('player-3/block-', 1, 2, '', 0), animVel, true);
                 this.player.animations.play('idle');
 
                 character = 'link';
