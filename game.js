@@ -18,14 +18,14 @@ let scoreString = '';
 let scoreText;
 let score = 0;
 let ability = 0;
-let livesString = '';
-let livesText;
+let abilityString = '';
+let abilityText;
 let lives = 3;
 let abPoints = 5;
 let ghosts = [];
 
-var hearts = [];
-var heartCounter = 10;
+let hearts = [];
+let heartCounter = 10;
 
 
 let Pacman_Run;
@@ -37,7 +37,7 @@ let player = {
         this.createPlayer(7, 12);
         
         game.time.events.loop(Phaser.Timer.SECOND * 2, this.abUp);
-        game.time.events.loop(Phaser.Timer.SECOND * 1, this.abDown);
+        game.time.events.loop(Phaser.Timer.SECOND, this.abDown);
         
         abilityString = 'Ability : ';
         abilityText = game.add.text(gameWidth/2, 10, abilityString + abPoints, { font: '10px Arial', fill: '#fff' });
@@ -52,12 +52,12 @@ let player = {
         scoreText.fixedToCamera = true;
         scoreText.anchor.setTo(0.5, 0.5);
 
-				for (i = 0; i < lives; i++) {
-					hearts[i] = game.add.image(gameWidth-heartCounter, gameHeight-(gameHeight-10), "heart");
-					hearts[i].fixedToCamera = true;
-	        hearts[i].anchor.setTo(0.5, 0.5);
-					heartCounter += 10;
-				}
+		for (i = 0; i < lives; i++) {
+			hearts[i] = game.add.image(gameWidth-heartCounter, gameHeight-(gameHeight-10), "heart");
+			hearts[i].fixedToCamera = true;
+            hearts[i].anchor.setTo(0.5, 0.5);
+			heartCounter += 10;
+		}
 
         this.button = game.add.button(gameWidth/2, gameHeight/2, 'button', this.useButtons, this, 2, 1, 0);
         this.button.anchor.set(0.5);
@@ -104,7 +104,7 @@ let player = {
     
     abUp: function() {
      
-          if (abPoints < 5 && ability == 0){
+          if (abPoints < 5 && ability === 0){
               abPoints++;
               abilityText.text = abilityString + abPoints;
           }
@@ -112,7 +112,7 @@ let player = {
     
     abDown: function() {
        
-        if (abPoints > 0 && ability == 1) {
+        if (abPoints > 0 && ability === 1) {
             abPoints--;
             abilityText.text = abilityString + abPoints;
         }
@@ -126,15 +126,13 @@ let player = {
             ability = 0;
             pacmanAbility = 0;
             linkAbility = 0;
-        };
+        }
 
 
         if (abPoints == 0) {
             Pacman_Ability.stop();
         }
 
-
-        ghosts.forEach(this.ghostAbility);
 
         if (hurtFlag) {
             this.player.animations.play('hurt');
@@ -258,8 +256,7 @@ let player = {
         linkAbility = !linkAbility;
 
     },
-// Pacman_Sound = game.add.audio('Pacman_Run', 0.6);
-// Pacman_Ability = game.add.audio('Pacman_Ability', 1, false);
+
     pacmanReset : function () {
         if (pacmanAbility) {
             Pacman_Ability.stop();
@@ -306,9 +303,6 @@ let player = {
                 this.pacmanReset();
 
                 this.abilityReset();
-
-
-                
 
             //    game.time.events.add(Phaser.Timer.SECOND*abPoints, this.pacmanReset);
                 break;
@@ -382,7 +376,7 @@ let player = {
 		        break;
         }
     }
-}
+};
 
 
 const game = new Phaser.Game(gameWidth, gameHeight, Phaser.AUTO, "");
@@ -395,7 +389,7 @@ game.global = {
   thumbSpacing : 8,
   starsArray : [0,4,4,4,4,4],
   level : 1
-}
+};
 
 game.state.add('Boot', boot);
 game.state.add('Preload', preload);
