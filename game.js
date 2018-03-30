@@ -188,7 +188,8 @@ let player = {
                         player.player.body.velocity.x = 0;
                     }
                 }
-
+            } else if (hasReachedEnd) {
+                player.player.body.velocity.x = 0;
             }
         });
 
@@ -325,7 +326,7 @@ let player = {
                 this.player.animations.add('jump', ['player-1/jump-1'], 1, false);
                 this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player-1/hurt-', 1, 2, '', 0), animVel, true);
                 this.player.animations.play('idle');
-                
+
                 character = 'mario';
 		        break;
 

@@ -409,6 +409,7 @@ level2 = {
         game.physics.arcade.collide(this.arrows, this.layer, this.arrowHitWorld, null, this);
 
         this.parallaxBackground();
+        this.enemiesManager();
 
         if (!freezeGame) {
             game.physics.arcade.collide(player.player, this.layer);
@@ -425,7 +426,6 @@ level2 = {
 
         if (!hasReachedEnd) {
             game.physics.arcade.overlap(this.ends, player.player, this.endGame, null, this);
-            this.enemiesManager();
             this.gameOver();
         }
 
