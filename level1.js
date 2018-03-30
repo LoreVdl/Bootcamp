@@ -5,14 +5,9 @@ level1 = {
         this.createWorld();
         this.decorWorld();
 
-        player.create(7,12);
-
         this.populateWorld();
 
-        // music
-        this.music = game.add.audio('music');
-        this.music.loop = true;
-        this.music.play();
+        player.create(7,12);
 
         player.resetHurt();
     },
