@@ -85,10 +85,8 @@ let player = {
         this.switchBtn.inputEnabled = false;
         this.switchBtn.fixedToCamera = true;
 
-
         Pacman_Run = game.add.audio('Pacman_Run', 0.6, true);
         Pacman_Ability = game.add.audio('Pacman_Ability', 1, false);
-
     },
 
     bindKeys: function () {
@@ -327,6 +325,7 @@ let player = {
                 this.player.animations.add('jump', ['player-1/jump-1'], 1, false);
                 this.player.animations.add('hurt', Phaser.Animation.generateFrameNames('player-1/hurt-', 1, 2, '', 0), animVel, true);
                 this.player.animations.play('idle');
+                
                 character = 'mario';
 		        break;
 
