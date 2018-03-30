@@ -18,8 +18,6 @@ let scoreString = '';
 let scoreText;
 let score = 0;
 let ability = 0;
-let abilityString = '';
-let abilityText;
 let lives = 3;
 let abPoints = 5;
 let ghosts = [];
@@ -168,35 +166,6 @@ let player = {
 
         const vel = 150;
         gyro.frequency = 10;
-/*
-        if (this.wasd.left.isDown) {
-            this.player.body.velocity.x = -vel;
-            this.player.animations.play('run');
-            this.player.scale.x = -1;
-        } else if (this.wasd.right.isDown) {
-            this.player.body.velocity.x = vel;
-            this.player.animations.play('run');
-            this.player.scale.x = 1;
-        } else if (game.input.pointer1.isDown) {
-            if (game.input.pointer1.x < game.width/2) {
-                this.player.body.velocity.x = -vel;
-                this.player.animations.play('run');
-                this.player.scale.x = -1;
-            } else if (game.input.pointer1.x > game.width/2) {
-                this.player.body.velocity.x = vel;
-                this.player.animations.play('run');
-                this.player.scale.x = 1;
-            } else {
-                this.player.body.velocity.x = 0;
-                this.player.animations.play('idle');
-            }
-        } else {
-            this.player.body.velocity.x = 0;
-            this.player.animations.play('idle');
-        }*/
-
-
-
 
         gyro.startTracking(function(o) {
             if (!hurtFlag && !freezeGame) {
@@ -309,7 +278,6 @@ let player = {
             case 'link':
                 this.abilityReset();
                 this.linkReset();
-            //    game.time.events.add(Phaser.Timer.SECOND*abPoints, this.linkReset);
                 break;
             case 'mario':
                 if (jumpCounter < maxJump)
@@ -322,10 +290,8 @@ let player = {
                 break;
             case 'pacman':
                 this.pacmanReset();
-
                 this.abilityReset();
 
-            //    game.time.events.add(Phaser.Timer.SECOND*abPoints, this.pacmanReset);
                 break;
 
         }
