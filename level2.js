@@ -20,12 +20,18 @@ level2 = {
     restart: function () {
           game.paused = false;
           this.game.state.start('Level2');
+          lives = 3;
+          score = 0;
+          abPoints = 5;
 
       },
 
       menu: function() {
         game.paused = false;
         this.game.state.start('TitleScreen');
+        lives = 3;
+        score = 0;
+        abPoints = 5;
       },
 
       gameOver: function() {
@@ -82,11 +88,6 @@ level2 = {
 
     decorWorld: function () {
         // game.add.image(42 * 16, 7 * 16 + 3, 'atlas-props', 'tree');
-        // game.add.image(7 * 16, 6 * 16 + 5, 'atlas-props', 'house');
-        // game.add.image(41 * 16, 11 * 16 + 4, 'atlas-props', 'bush');
-        // game.add.image(25 * 16, 21 * 16 + 6, 'atlas-props', 'skulls');
-        // game.add.image(44 * 16, 21 * 16 + 6, 'atlas-props', 'skulls');
-        // game.add.image(16 * 16, 21 * 16, 'atlas-props', 'shrooms');
     },
 
     populateWorld: function () {
@@ -119,11 +120,6 @@ level2 = {
         frogTimer = game.time.create(false);
         frogTimer.loop(2000, this.switchFrogJump, this);
         frogTimer.start();
-/*
-        arrowTimer1 = game.time.create(false);
-        arrowTimer1.loop(2000, this.createArrow, this, 49, 21.5, -1);
-        arrowTimer1.start();
-*/
 
         let arrowTimer1 = game.time.create(false);
         arrowTimer1.loop(1500, this.createArrow, this, 40, 6.5, -1);
@@ -147,14 +143,11 @@ level2 = {
         this.createObstacleBig(24, 0);
         this.createObstacleBig(24, 2);
 
-        // this.createCherry(55, 20);
-        // this.createCherry(21, 17);
-        // this.createCherry(31, 5);
+        this.createCherry(5, 8);
+        this.createCherry(42, 17);
 
-        // this.createGem(28, 21);
-        // this.createGem(37, 20);
-        // this.createGem(38, 20);
-        // this.createGem(39, 20);
+        this.createGem(22, 11);
+        this.createGem(5, 1);
 
         // create enemies
         this.createFrog(23, 8);
@@ -494,7 +487,7 @@ level2 = {
         if (!hasReachedEnd) {
             game.sound.play('Winning_Sound');
         }
-        
+
         hasReachedEnd = true;
 
         game.time.events.add(Phaser.Timer.SECOND*6, this.pauseGame);
@@ -526,6 +519,9 @@ level2 = {
     nextLevel: function() {
       game.paused = false;
       this.game.state.start('level2');
+      lives = 3;
+      score = 0;
+      abPoints = 5;
     },
 
     pickItem: function (player, item) {

@@ -20,11 +20,17 @@ level1 = {
     restart: function () {
         game.paused = false;
         this.game.state.start('Level1');
+        lives = 3;
+        score = 0;
+        abPoints = 5;
     },
 
     menu: function() {
         game.paused = false;
         this.game.state.start('TitleScreen');
+        lives = 3;
+        score = 0;
+        abPoints = 5;
     },
 
     gameOver: function() {
@@ -49,7 +55,7 @@ level1 = {
             freezeGame = true;
 
             game.time.events.add(Phaser.Timer.SECOND*deathTime, this.pauseGame);
-  
+
 
             character = 'link';
 
@@ -119,11 +125,6 @@ level1 = {
         frogTimer = game.time.create(false);
         frogTimer.loop(2000, this.switchFrogJump, this);
         frogTimer.start();
-/*
-        arrowTimer1 = game.time.create(false);
-        arrowTimer1.loop(2000, this.createArrow, this, 49, 21.5, -1);
-        arrowTimer1.start();
-*/
 
         let arrowTimer2 = game.time.create(false);
         arrowTimer2.loop(1500, this.createArrow, this, 51, 22.5, -1);
@@ -452,7 +453,7 @@ level1 = {
 
             if (((player.x + player.body.width * 0.5 > arrow.x) && player.scale.x === -1) || ((player.x + player.body.width * 0.5 < arrow.x) && player.scale.x === 1)) {
 
-                arrow.kill()
+                arrow.kill();
                 game.sound.play('Zelda_Block');
             } else {
                 arrow.kill();
@@ -491,7 +492,7 @@ level1 = {
         if (!hasReachedEnd) {
             game.sound.play('Winning_Sound');
         }
-        
+
         hasReachedEnd = true;
 
         game.time.events.add(Phaser.Timer.SECOND*6, this.pauseGame);
@@ -523,6 +524,9 @@ level1 = {
     nextLevel: function() {
       game.paused = false;
       this.game.state.start('Level2');
+      lives = 3;
+      score = 0;
+      abPoints = 5;
     },
 
     pickItem: function (player, item) {
