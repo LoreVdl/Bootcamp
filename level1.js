@@ -119,11 +119,6 @@ level1 = {
         frogTimer = game.time.create(false);
         frogTimer.loop(2000, this.switchFrogJump, this);
         frogTimer.start();
-/*
-        arrowTimer1 = game.time.create(false);
-        arrowTimer1.loop(2000, this.createArrow, this, 49, 21.5, -1);
-        arrowTimer1.start();
-*/
 
         let arrowTimer2 = game.time.create(false);
         arrowTimer2.loop(1500, this.createArrow, this, 51, 22.5, -1);
@@ -450,7 +445,7 @@ level1 = {
 
             if (((player.x + player.body.width * 0.5 > arrow.x) && player.scale.x === -1) || ((player.x + player.body.width * 0.5 < arrow.x) && player.scale.x === 1)) {
 
-                arrow.kill()
+                arrow.kill();
                 game.sound.play('Zelda_Block');
             } else {
                 arrow.kill();

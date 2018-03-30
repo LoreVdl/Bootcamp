@@ -93,7 +93,7 @@ level0 = {
         // groups
         this.enemies = game.add.group();
         this.enemies.enableBody = true;
-        //
+
         this.items = game.add.group();
         this.items.enableBody = true;
 
@@ -119,11 +119,6 @@ level0 = {
         frogTimer = game.time.create(false);
         frogTimer.loop(2000, this.switchFrogJump, this);
         frogTimer.start();
-/*
-        arrowTimer1 = game.time.create(false);
-        arrowTimer1.loop(2000, this.createArrow, this, 49, 21.5, -1);
-        arrowTimer1.start();
-*/
 
         let arrowTimer2 = game.time.create(false);
         arrowTimer2.loop(1500, this.createArrow, this, 21, 15.5, -1);
@@ -447,7 +442,7 @@ level0 = {
 
             if (((player.x + player.body.width * 0.5 > arrow.x) && player.scale.x === -1) || ((player.x + player.body.width * 0.5 < arrow.x) && player.scale.x === 1)) {
 
-                arrow.kill()
+                arrow.kill();
                 game.sound.play('Zelda_Block');
             } else {
                 arrow.kill();
