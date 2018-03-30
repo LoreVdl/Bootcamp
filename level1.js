@@ -414,7 +414,7 @@ level1 = {
         game.physics.arcade.collide(this.enemies, this.obstacles);
         game.physics.arcade.collide(this.enemies, this.obstaclesBig);
         game.physics.arcade.collide(this.arrows, this.layer, this.arrowHitWorld, null, this);
-        
+
         this.parallaxBackground();
 
         if (!freezeGame) {
@@ -519,9 +519,6 @@ level1 = {
     nextLevel: function() {
       game.paused = false;
       this.game.state.start('Level2');
-      lives = 3;
-      score = 0;
-      abPoints = 5;
     },
 
     pickItem: function (player, item) {
