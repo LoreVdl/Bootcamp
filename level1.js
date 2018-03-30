@@ -519,6 +519,7 @@ level1 = {
     nextLevel: function() {
       game.paused = false;
       this.game.state.start('Level2');
+      heartCounter = 10;
     },
 
     pickItem: function (player, item) {
