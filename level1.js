@@ -613,12 +613,14 @@ level1 = {
             this.createEnemyDeath(enemy.x, enemy.y);
             enemy.kill();
             score += 10;
+            scoreText.text = scoreString + score;
         }
         else if ((player.y + player.body.height * .5 < enemy.y ) && player.body.velocity.y > 0 && enemy.enemyType!=="ghost") {
 
             this.createEnemyDeath(enemy.x, enemy.y);
             enemy.kill();
             score += 10;
+            scoreText.text = scoreString + score;
             player.body.velocity.y = -200;
         } else {
             this.hurtPlayer();
