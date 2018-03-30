@@ -342,6 +342,12 @@ let player = {
     },
 
     switchPlayer: function () {
+        
+    
+            ability = 0;
+            pacmanAbility = 0;
+            linkAbility = 0;
+        
         switch(character) {
 		    case 'link':
 				this.createItemFeedback(this.player.x, this.player.y);
