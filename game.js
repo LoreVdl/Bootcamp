@@ -37,6 +37,8 @@ let freezeGame = false;
 
 let player = {
 	create: function (x, y) {
+        game.forceSingleUpdate = true;
+
         freezeGame = false;
         hasReachedEnd = false;
 
