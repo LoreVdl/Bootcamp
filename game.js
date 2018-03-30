@@ -199,7 +199,7 @@ let player = {
 
 
         gyro.startTracking(function(o) {
-            if (!hurtFlag && !freezeGame) {
+            if (!hurtFlag && !freezeGame && !hasReachedEnd) {
                 if (game.device.android) {
                     if (o.y < -1 || player.wasd.left.isDown) {
                         player.player.body.velocity.x = -vel;

@@ -416,30 +416,32 @@ level2 = {
         game.physics.arcade.collide(this.ends, this.layer);
         game.physics.arcade.collide(this.obstacles, this.layer);
         game.physics.arcade.collide(this.cranks, this.layer);
-        game.physics.arcade.collide(player.player, this.obstacles);
         game.physics.arcade.collide(this.enemies, this.obstacles);
         game.physics.arcade.collide(this.enemies, this.obstaclesBig);
-        game.physics.arcade.collide(player.player, this.obstaclesBig);
-        game.physics.arcade.overlap(player.player, this.enemies, this.checkAgainstEnemies, null, this);
-        game.physics.arcade.overlap(player.player, this.items, this.pickItem, null, this);
-        game.physics.arcade.overlap(player.player, this.lives, this.pickLives, null, this);
-        game.physics.arcade.overlap(this.ends, player.player, this.endGame, null, this);
-        game.physics.arcade.collide(player.player, this.cranks.children[0], this.destroyBlock, null, this);
-        game.physics.arcade.collide(player.player, this.cranks.children[1], this.destroyBlockBig, null, this);
         game.physics.arcade.collide(this.arrows, this.layer, this.arrowHitWorld, null, this);
-        game.physics.arcade.overlap(player.player, this.arrows, this.arrowHitPlayer, null, this);
+        
+        this.parallaxBackground();
 
         if (!freezeGame) {
             game.physics.arcade.collide(player.player, this.layer);
-            
-            player.movePlayer();
+            game.physics.arcade.overlap(player.player, this.items, this.pickItem, null, this);
+            game.physics.arcade.collide(player.player, this.obstacles);
+            game.physics.arcade.collide(player.player, this.obstaclesBig);
+            game.physics.arcade.overlap(player.player, this.enemies, this.checkAgainstEnemies, null, this);
+            game.physics.arcade.overlap(player.player, this.lives, this.pickLives, null, this);
+            game.physics.arcade.collide(player.player, this.cranks.children[0], this.destroyBlock, null, this);
+            game.physics.arcade.collide(player.player, this.cranks.children[1], this.destroyBlockBig, null, this);
+            game.physics.arcade.overlap(player.player, this.arrows, this.arrowHitPlayer, null, this);
+        }
 
+
+        if (!hasReachedEnd) {
+            game.physics.arcade.overlap(this.ends, player.player, this.endGame, null, this);
             this.enemiesManager();
-        
-            this.parallaxBackground();
-
             this.gameOver();
         }
+
+        player.movePlayer();
     },
 
     arrowHitWorld: function (arrow) {
