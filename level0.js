@@ -20,12 +20,18 @@ level0 = {
     restart: function () {
           game.paused = false;
           this.game.state.start('Level0');
+          lives = 3;
+          score = 0;
+          abPoints = 5;
 
       },
 
       menu: function() {
         game.paused = false;
         this.game.state.start('TitleScreen');
+        lives = 3;
+        score = 0;
+        abPoints = 5;
       },
 
       gameOver: function() {
@@ -513,6 +519,9 @@ level0 = {
     nextLevel: function() {
       game.paused = false;
       this.game.state.start('Level1');
+      lives = 3;
+      score = 0;
+      abPoints = 5;
     },
 
     pickItem: function (player, item) {

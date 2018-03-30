@@ -20,12 +20,18 @@ level2 = {
     restart: function () {
           game.paused = false;
           this.game.state.start('Level2');
+          lives = 3;
+          score = 0;
+          abPoints = 5;
 
       },
 
       menu: function() {
         game.paused = false;
         this.game.state.start('TitleScreen');
+        lives = 3;
+        score = 0;
+        abPoints = 5;
       },
 
       gameOver: function() {
@@ -418,11 +424,11 @@ level2 = {
 
         if (!freezeGame) {
             game.physics.arcade.collide(player.player, this.layer);
-            
+
             player.movePlayer();
 
             this.enemiesManager();
-        
+
             this.parallaxBackground();
 
             this.gameOver();
@@ -479,7 +485,7 @@ level2 = {
         if (!hasReachedEnd) {
             game.sound.play('Winning_Sound');
         }
-        
+
         hasReachedEnd = true;
 
         game.time.events.add(Phaser.Timer.SECOND*6, this.pauseGame);
@@ -511,6 +517,9 @@ level2 = {
     nextLevel: function() {
       game.paused = false;
       this.game.state.start('level2');
+      lives = 3;
+      score = 0;
+      abPoints = 5;
     },
 
     pickItem: function (player, item) {
