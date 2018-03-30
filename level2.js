@@ -137,6 +137,12 @@ level2 = {
         this.createObstacleBig(24, 0);
         this.createObstacleBig(24, 2);
 
+        this.createCherry(5, 8);
+        this.createCherry(42, 17);
+
+        this.createGem(22, 11);
+        this.createGem(5, 1);
+
         // create enemies
         this.createFrog(23, 8);
         this.createOpossum(39, 17);
